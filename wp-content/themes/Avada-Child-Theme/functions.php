@@ -27,3 +27,4 @@ function after_logo_slogan()
     echo '<div class="logo-slogan">a kanári szigetek szakértője</div>';
 }
 add_action( 'avada_logo_append', 'after_logo_slogan' );
+
