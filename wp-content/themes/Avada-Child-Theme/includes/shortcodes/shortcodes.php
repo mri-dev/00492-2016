@@ -1,2 +1,2 @@
-<?php 
-	require_once "rentDatePicker.php";
+<?php
+	require_once "FooterAfterMenu.php";

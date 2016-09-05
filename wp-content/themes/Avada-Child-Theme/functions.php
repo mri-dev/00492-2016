@@ -28,3 +28,12 @@ function after_logo_slogan()
 }
 add_action( 'avada_logo_append', 'after_logo_slogan' );
 
+function content_before_copyright_text()
+{
+    $menu = wp_nav_menu(array(
+        'menu' => 'Lábrész Lábléc Menü',
+        'echo' => false
+    ));
+   echo $menu;
+}
+add_action('avada_footer_copyright_content', 'content_before_copyright_text');

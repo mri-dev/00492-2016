@@ -222,3 +222,38 @@
 .header-search:hover {
   width: 240px;
 }
+
+/* line 211, assets/css/sass/tenerifeingatlan.scss */
+.fusion-widget-menu li a {
+  text-transform: uppercase;
+  text-align: center !important;
+}
+
+/* line 219, assets/css/sass/tenerifeingatlan.scss */
+.fusion-copyright-content ul.menu {
+  margin: 0 auto;
+  padding: 0;
+}
+/* line 223, assets/css/sass/tenerifeingatlan.scss */
+.fusion-copyright-content ul.menu li {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 229, assets/css/sass/tenerifeingatlan.scss */
+.fusion-copyright-content ul.menu li a {
+  font-size: 12px;
+  padding: 5px;
+  color: white;
+  display: block;
+  line-height: 15px;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* line 241, assets/css/sass/tenerifeingatlan.scss */
+.fusion-copyright-content ul.menu li a:hover {
+  font-size: 13px;
+}
