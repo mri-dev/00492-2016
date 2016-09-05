@@ -1,0 +1,20 @@
+/*
+Theme Name: Avada Child
+Description: Child theme for Avada theme
+Author: ThemeFusion
+Author URI: https://theme-fusion.com
+Template: Avada
+Version: 1.0.0
+Text Domain:  Avada
+*/
+
+.fusion-footer-widget-area {
+  overflow: hidden;
+  position: relative;
+  padding: 43px 10px 40px;
+  border-top: none;
+  background: #363839;
+  color: #8c8989;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
