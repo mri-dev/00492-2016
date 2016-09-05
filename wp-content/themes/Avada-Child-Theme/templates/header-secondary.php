@@ -8,8 +8,8 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
         <div class="sec-header-wrap">
             <div class="item csh-notify">
                 <ul id="notification">
-                    <li class="visited-adv"><a href="/"></a><span class="num">0</span></li>
-                    <li class="new-adv"><a href="/"><i class="fa fa-home"></i></a><span class="num">0</span></li>
+                    <li class="visited-adv fusion-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Megtekintett ingatlan hirdetések"><a href="/"><span class="num">99</span></a></li>
+                    <li class="new-adv fusion-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Új ingatlan hirdetések"><a href="/"><span class="num">150</span></a></li>
                 </ul>
             </div>
             <div class="item csh-socialling"><?php echo $content_2; ?></div>
