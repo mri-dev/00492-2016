@@ -1,20 +1,93 @@
 /*
-Theme Name: Avada Child
-Description: Child theme for Avada theme
-Author: ThemeFusion
-Author URI: https://theme-fusion.com
+Theme Name: Tenerife Ingatlan
+Description: Avada gyermek stílusa, ne töröljük az Avada template-et.
+Author: ViaSale Travel
+Author URI: http://viasaletravel.com
 Template: Avada
 Version: 1.0.0
 Text Domain:  Avada
 */
+/* Colors */
+/* line 12, assets/css/sass/style.scss */
+.fusion-secondary-header {
+  background: #47bfd6 !important;
+}
 
-.fusion-footer-widget-area {
-  overflow: hidden;
+/* line 15, assets/css/sass/style.scss */
+.logo-slogan {
+  color: #f7941f;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 2px 0 0 3px;
+}
+
+/* line 21, assets/css/sass/style.scss */
+.fusion-main-menu {
+  float: left;
+  margin-left: 10px;
+  margin-top: 27px;
+}
+
+/* line 26, assets/css/sass/style.scss */
+.fusion-main-menu > ul > li > a {
+  background: #1296d9;
+  padding: 0 10px !important;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+/* line 33, assets/css/sass/style.scss */
+.fusion-main-menu > ul > li > a:hover {
+  color: white !important;
+  background: #f7941f;
+}
+
+/* line 38, assets/css/sass/style.scss */
+.fusion-main-menu > ul > li.current_page_item a {
+  color: white !important;
+  background: #f7941f;
+}
+
+/* line 43, assets/css/sass/style.scss */
+.fusion-secondary-menu > ul > li > a {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* line 47, assets/css/sass/style.scss */
+.fusion-secondary-menu > ul {
+  float: right;
+}
+
+/* line 52, assets/css/sass/style.scss */
+.fusion-secondary-header .custom-secondary-header-holder {
   position: relative;
-  padding: 43px 10px 40px;
-  border-top: none;
-  background: #363839;
-  color: #8c8989;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  width: 1200px;
+  margin: 0 auto;
+}
+/* line 57, assets/css/sass/style.scss */
+.fusion-secondary-header .custom-secondary-header-holder .top-sec-menu {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+/* line 65, assets/css/sass/style.scss */
+.fusion-secondary-header .custom-secondary-header-holder .sec-header-wrap {
+  width: 100%;
+  height: 43px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+}
+/* line 73, assets/css/sass/style.scss */
+.fusion-secondary-header .custom-secondary-header-holder .sec-header-wrap .item.csh-socialling {
+  padding-left: 15px;
+}
+/* line 76, assets/css/sass/style.scss */
+.fusion-secondary-header .custom-secondary-header-holder .sec-header-wrap .item.csh-notify {
+  padding: 0 50px;
 }

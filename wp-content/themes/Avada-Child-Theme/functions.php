@@ -1,14 +1,14 @@
 <?php
 
-define('IFROOT', get_stylesheet_directory_uri().'/' );
+define('THEMEROOT', get_stylesheet_directory_uri() );
 define('DEVMODE', true);
 
 // Includes
 require_once "includes/include.php";
 
 function theme_enqueue_styles() {
-    wp_enqueue_style( 'avada-parent-stylesheet', get_template_directory_uri() . '/style.css?' . ( (DEVMODE === true) ? time() : '' )  );
-    wp_enqueue_style( 'avada-child-stylesheet', IFROOT . '/style.css?' . ( (DEVMODE === true) ? time() : '' ) );
+    wp_enqueue_style( 'avada-parent-stylesheet', get_template_directory_uri() . '/style.css');
+    wp_enqueue_style( 'avada-child-stylesheet', THEMEROOT . '/style.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
@@ -18,3 +18,8 @@ function avada_lang_setup() {
 }
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
+function after_logo_slogan()
+{
+    echo '<div class="logo-slogan">a kanári szigetek szakértője</div>';
+}
+add_action( 'avada_logo_append', 'after_logo_slogan' );
