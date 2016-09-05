@@ -1,7 +1,7 @@
 <?php
 define('DEVMODE', true);
 define('THEMEROOT', get_stylesheet_directory_uri() );
-define('IMGROOT', THEMEROOT.'images/' );
+define('IMGROOT', THEMEROOT.'/images/' );
 
 // Includes
 require_once "includes/include.php";

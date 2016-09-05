@@ -46,7 +46,8 @@ class Footer_After_Menu extends AvadaTemplate
         $r->_('<div class="'.self::SHORTCODE_TAG.'">');
 
         	$r->_($r->row_start());
-
+                $r->_($r->column( 1, 2, '<a href="'.get_option('siteurl', true).'"><img src="'.IMGROOT.'viasale-travel-logo-100x50.png" alt="'.get_option('blogname', true).'"></a>', 'no'));
+                $r->_($r->column( 1, 2, '<div>social link + search</div>', 'no', true));
          	$r->_($r->row_end());
 
         $r->_('</div>');
