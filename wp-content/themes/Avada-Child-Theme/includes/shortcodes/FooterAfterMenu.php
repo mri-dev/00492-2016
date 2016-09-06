@@ -42,14 +42,28 @@ class Footer_After_Menu extends AvadaTemplate
         /* Parse the arguments. */
         $attr = shortcode_atts( $defaults, $attr );
 
+        // Kereső
+        $search = '
+        <form class="searchform seach-form" role="search" method="get" action="'.get_option('url', true).'">
+            <input type="hidden" name="lang" value="hu">
+            <input id="searchform" type="text" value="" name="s" class="s" placeholder="">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>';
+
+        // Social
+        $social = new Avada_Social_Icons();
+        $socials = $social->render_social_icons(array(
+            'position' => 'footer'
+        ));
+
         /* Set up the default variables. */
         $r->_('<div class="'.self::SHORTCODE_TAG.'">');
 
         	$r->_($r->row_start());
                 $r->_($r->column( 1, 2, '<a href="'.get_option('siteurl', true).'"><img src="'.IMGROOT.'viasale-travel-logo-100x50.png" alt="'.get_option('blogname', true).'"></a>', 'no'));
                 $r->_($r->column( 1, 2, '<div class="footer-right-side">
+                        <div class="footer-search">'.$search.'</div>
                         <div class="social-links">'.$socials.'</div>
-                        <div class="search-box">'.$search.'</div>
                     </div>', 'no', true));
          	$r->_($r->row_end());
 
