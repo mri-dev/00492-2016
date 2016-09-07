@@ -223,7 +223,7 @@
   width: 240px;
 }
 
-/* line 211, assets/css/sass/tenerifeingatlan.scss */
+/* line 214, assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links, .footer-after-menu .footer-search {
   display: inline-block;
   *display: inline;
@@ -231,55 +231,55 @@
   float: right;
   height: 30px;
 }
-/* line 218, assets/css/sass/tenerifeingatlan.scss */
+/* line 221, assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .footer-search {
   margin: 0;
   width: 250px;
 }
-/* line 222, assets/css/sass/tenerifeingatlan.scss */
+/* line 225, assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .footer-search input[type=text] {
   height: 30px;
   line-height: 30px;
 }
-/* line 228, assets/css/sass/tenerifeingatlan.scss */
+/* line 231, assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links {
   margin: 0 25px;
 }
-/* line 230, assets/css/sass/tenerifeingatlan.scss */
+/* line 233, assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links .fusion-social-networks-wrapper {
   padding: 0 5px;
 }
-/* line 233, assets/css/sass/tenerifeingatlan.scss */
+/* line 236, assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links a {
   margin: 0 !important;
   line-height: 30px;
   color: white !important;
 }
 
-/* line 243, assets/css/sass/tenerifeingatlan.scss */
+/* line 246, assets/css/sass/tenerifeingatlan.scss */
 .fusion-widget-menu li a {
   text-transform: uppercase;
   text-align: center !important;
 }
 
-/* line 249, assets/css/sass/tenerifeingatlan.scss */
+/* line 252, assets/css/sass/tenerifeingatlan.scss */
 .fusion-footer-widget-column {
   margin-bottom: 5px;
 }
 
-/* line 255, assets/css/sass/tenerifeingatlan.scss */
+/* line 258, assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu {
   margin: 0 auto;
   padding: 0;
 }
-/* line 259, assets/css/sass/tenerifeingatlan.scss */
+/* line 262, assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu li {
   display: inline-block;
   *display: inline;
   zoom: 1;
   vertical-align: middle;
 }
-/* line 265, assets/css/sass/tenerifeingatlan.scss */
+/* line 268, assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu li a {
   font-size: 12px;
   padding: 5px;
@@ -291,12 +291,12 @@
   transition: all .3s;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
 }
-/* line 277, assets/css/sass/tenerifeingatlan.scss */
+/* line 280, assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu li a:hover {
   font-size: 13px;
 }
 
-/* line 283, assets/css/sass/tenerifeingatlan.scss */
+/* line 286, assets/css/sass/tenerifeingatlan.scss */
 .footer-right-side {
   margin-top: 15px;
 }
