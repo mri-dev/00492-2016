@@ -1,12 +1,26 @@
 /* Colors */
-/* Colors */
-/* line 3, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-header {
   position: relative;
   z-index: 100;
 }
 
-/* line 7, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
+a.back-to-home {
+  float: left;
+  background: #dadada;
+  color: white;
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 5px 8px;
+  margin-right: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+a.back-to-home:hover {
+  color: white !important;
+}
+
 .fusion-secondary-header {
   background: #47bfd6 !important;
   border-bottom-color: transparent !important;
@@ -14,7 +28,6 @@
   z-index: 200;
 }
 
-/* line 13, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .logo-slogan {
   color: #f7941f;
   font-weight: 700;
@@ -22,14 +35,12 @@
   margin: 2px 0 0 3px;
 }
 
-/* line 19, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-main-menu {
   float: left;
   margin-left: 10px;
   margin-top: 27px;
 }
 
-/* line 24, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-main-menu > ul > li > a {
   background: #1296d9;
   padding: 0 10px !important;
@@ -39,49 +50,45 @@
   text-transform: uppercase;
 }
 
-/* line 31, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-main-menu > ul > li > a:hover {
   color: white !important;
   background: #f7941f;
 }
 
-/* line 35, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-main-menu > ul > li > a[href='/ugyfelkapu'] {
   background: #fc4226;
 }
 
-/* line 39, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-main-menu > ul > li.current_page_item a {
   color: white !important;
   background: #f7941f;
 }
 
-/* line 44, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-page-title-bar {
   background: #fff;
   border-top: none;
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* line 50, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
+.fusion-page-title-bar h1 {
+  line-height: 24px;
+}
+
 .fusion-secondary-menu > ul > li > a {
   text-transform: uppercase;
   font-weight: 700;
 }
 
-/* line 54, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-secondary-menu > ul {
   float: right;
 }
 
-/* line 58, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-secondary-header .custom-secondary-header-holder {
   position: relative;
   width: 1200px;
   margin: 0 auto;
 }
 
-/* line 63, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-secondary-header .custom-secondary-header-holder .top-sec-menu {
   position: absolute;
   left: 50%;
@@ -90,7 +97,6 @@
   transform: translateX(-50%);
 }
 
-/* line 71, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-secondary-header .custom-secondary-header-holder .sec-header-wrap {
   width: 100%;
   height: 43px;
@@ -100,23 +106,19 @@
   justify-content: flex-end;
 }
 
-/* line 79, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-secondary-header .custom-secondary-header-holder .sec-header-wrap .item.csh-socialling {
   padding-left: 15px;
 }
 
-/* line 82, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-secondary-header .custom-secondary-header-holder .sec-header-wrap .item.csh-notify {
   padding: 0 50px;
 }
 
-/* line 90, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification {
   margin: 0 auto;
   margin-top: 15px;
 }
 
-/* line 94, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li {
   display: inline-block;
   *display: inline;
@@ -124,7 +126,6 @@
   margin: 0 5px;
 }
 
-/* line 100, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li a {
   position: relative;
   display: block;
@@ -143,7 +144,6 @@
   box-shadow: -1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
-/* line 117, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li a .num {
   top: 0;
   right: -50%;
@@ -164,7 +164,6 @@
   border-radius: 30px;
 }
 
-/* line 136, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li a:before {
   content: "";
   padding-top: 15px;
@@ -176,12 +175,10 @@
   background-position: center;
 }
 
-/* line 149, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li.visited-adv a {
   background: #0dc4c7;
 }
 
-/* line 154, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li a:hover {
   background: #f7941f;
   -webkit-transform: scale(1.1);
@@ -189,17 +186,14 @@
   transform: scale(1.1);
 }
 
-/* line 161, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li.visited-adv a:before {
   background-image: url("images/ico-history.png");
 }
 
-/* line 164, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 #notification li.new-adv a:before {
   background-image: url("images/ico-house.png");
 }
 
-/* line 170, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .header-search, .footer-search {
   float: right;
   margin-top: 27px;
@@ -210,7 +204,6 @@
   transition: all .3s;
 }
 
-/* line 179, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .header-search input[type=text], .footer-search input[type=text] {
   border-color: #cccfd1;
   color: #f7941f;
@@ -221,7 +214,6 @@
   padding-right: 33px;
 }
 
-/* line 189, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .header-search button, .footer-search button {
   position: absolute;
   top: 0;
@@ -235,7 +227,6 @@
   cursor: pointer;
 }
 
-/* line 201, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .header-search button i, .footer-search button i {
   line-height: 30px;
   padding: 0;
@@ -244,22 +235,18 @@
   color: #1296d9;
 }
 
-/* line 210, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .header-search:hover, .footer-search:hover {
   width: 240px;
 }
 
-/* line 215, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box {
   background: #fff;
 }
 
-/* line 218, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box .sb-inp-wrapper {
   padding: 0 5px;
 }
 
-/* line 222, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box .sb-header {
   background: #1296d9;
   color: white;
@@ -269,13 +256,11 @@
   padding: 8px 15px;
 }
 
-/* line 231, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box .sb-body {
   padding: 15px;
   border: 1px solid #cccfd1;
 }
 
-/* line 235, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box .sb-body label {
   font-size: 13px;
   margin-bottom: 4px;
@@ -283,7 +268,6 @@
   color: #878787;
 }
 
-/* line 242, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box .sb-body input[type=number],
 .search-box .sb-body select {
   width: 100%;
@@ -295,7 +279,6 @@
   color: #f7941f;
 }
 
-/* line 254, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box .sb-footer {
   background: #f2f2f2;
   border: 1px solid #cccfd1;
@@ -303,13 +286,11 @@
   padding: 15px 15px;
 }
 
-/* line 260, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .search-box .sb-footer a {
   font-size: 13px;
   color: #1296d9;
 }
 
-/* line 268, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links, .footer-after-menu .footer-search {
   display: inline-block;
   *display: inline;
@@ -318,53 +299,44 @@
   height: 30px;
 }
 
-/* line 275, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .footer-search {
   margin: 0;
   width: 250px;
 }
 
-/* line 279, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .footer-search input[type=text] {
   height: 30px;
   line-height: 30px;
 }
 
-/* line 285, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links {
   margin: 0 25px;
 }
 
-/* line 287, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links .fusion-social-networks-wrapper {
   padding: 0 5px;
 }
 
-/* line 290, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .footer-after-menu .social-links a {
   margin: 0 !important;
   line-height: 30px;
   color: white !important;
 }
 
-/* line 300, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-widget-menu li a {
   text-transform: uppercase;
   text-align: center !important;
 }
 
-/* line 306, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-footer-widget-column {
   margin-bottom: 5px;
 }
 
-/* line 312, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu {
   margin: 0 auto;
   padding: 0;
 }
 
-/* line 316, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu li {
   display: inline-block;
   *display: inline;
@@ -372,7 +344,6 @@
   vertical-align: middle;
 }
 
-/* line 322, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu li a {
   font-size: 12px;
   padding: 5px;
@@ -385,14 +356,10 @@
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* line 334, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .fusion-copyright-content ul.menu li a:hover {
   font-size: 13px;
 }
 
-/* line 340, /Users/MolnarIstvan/Documents/Munka/Idea Fontana Kft/Git/00492-2016/wp-content/themes/Avada-Child-Theme/assets/css/sass/tenerifeingatlan.scss */
 .footer-right-side {
   margin-top: 15px;
 }
-
-/*# sourceMappingURL=../../../tenerifeingatlan.map */

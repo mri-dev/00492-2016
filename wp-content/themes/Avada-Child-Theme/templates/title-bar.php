@@ -2,7 +2,7 @@
     <div class="fusion-page-title-row">
         <div class="fusion-page-title-wrapper">
             <div class="fusion-page-title-captions">
-
+                <a href="<?php echo get_option('siteurl', true); ?>" class="back-to-home"> <i class="fa fa-caret-left"></i> Vissza a főoldalra</a>
                 <?php if ( $title ) : ?>
                     <?php // Add entry-title for rich snippets ?>
                     <?php $entry_title_class = ( Avada()->settings->get( 'disable_date_rich_snippet_pages' ) ) ? ' class="entry-title"' : ''; ?>
