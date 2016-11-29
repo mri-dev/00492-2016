@@ -474,7 +474,7 @@ class WP_Listings_Taxonomies {
 	 */
 	function get_taxonomies() {
 
-		return array_merge( $this->listing_status_taxonomy(), $this->listing_location_taxonomy(), $this->property_type_taxonomy(), $this->property_features_taxonomy(), $this->property_condition_taxonomy(), $this->property_heating_taxonomy(), (array) get_option( $this->settings_field ) );
+		return array_merge( $this->listing_status_taxonomy(), $this->listing_location_taxonomy(), $this->property_type_taxonomy(), $this->property_features_taxonomy(), $this->property_condition_taxonomy(), (array) get_option( $this->settings_field ) );
 
 	}
 

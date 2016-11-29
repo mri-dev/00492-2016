@@ -2,6 +2,8 @@
 define('DEVMODE', true);
 define('THEMEROOT', get_stylesheet_directory_uri() );
 define('IMGROOT', THEMEROOT.'/images/' );
+define('SLUG_INGATLAN', 'ingatlan' );
+define('SLUG_INGATLANOK', 'ingatlan-kereso' );
 
 // Includes
 require_once "includes/include.php";
