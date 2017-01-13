@@ -25,7 +25,7 @@ class PropertyFactory
 
   public function getValuta()
   {
-    return 'Ft';
+    return '€';
   }
 
   public function __construct()

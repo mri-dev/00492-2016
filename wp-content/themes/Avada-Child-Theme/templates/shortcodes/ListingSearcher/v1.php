@@ -4,50 +4,45 @@
 ?>
 
 <form class="" role="searcher" id="searcher-form" action="/<?=SLUG_INGATLAN_LIST?>/" method="get">
-<div class="searcher-header">
-  <ul>
+<div class="searcher-header"><!--
+--><ul>
     <li>
       <div class="ico">
         <i class="fa fa-search"></i>
       </div>
     </li><!--
- --><li>
-      <input type="radio" checked="checked" id="region_all" name="rg" value="0"> <label for="region_all"><?=__('Összes ingatlan', 'gh')?></label>
+ --><li class="title">
+      <?=__('Ingatlankeresés', 'ti')?>
     </li><!--
- --><? foreach( $regions as $r ): if($r->parent != 0) continue; ?><!--
-  --><li>
-      <input type="radio" id="region_<?=$r->term_id?>" name="rg" value="<?=$r->term_id?>"> <label for="region_<?=$r->term_id?>"><?=$r->name?></label>
-    </li><!--
- --><? endforeach; ?>
-  </ul>
-</div>
+--></ul><!--
+--></div>
 <div class="searcher-wrapper">
     <div class="form-items">
       <div class="inp inp-city">
-        <label for="searcher_city"><?=__('Város', 'gh')?></label>
-        <input type="text" id="searcher_city" name="cities" class="form-control" value="" placeholder="<?=__('Összes', 'gh')?>">
+        <label for="searcher_city"><?=__('Régió', 'ti')?></label>
+        <input type="text" id="searcher_city" name="cities" class="form-control" value="" placeholder="<?=__('Összes', 'ti')?>">
         <div id="searcher_city_autocomplete" class="selector-wrapper"></div>
         <input type="hidden" name="ci" id="searcher_city_ids" value="">
       </div>
       <div class="inp inp-rooms">
-        <label for="searcher_rooms"><?=__('Szobák száma', 'gh')?></label>
+        <label for="searcher_rooms"><?=__('Szobák száma', 'ti')?></label>
         <div class="select-wrapper">
           <select class="form-control" name="r" id="searcher_rooms">
-            <option value="0" selected="selected"><?=__('Összes', 'gh')?></option>
+            <option value="0" selected="selected"><?=__('Összes', 'ti')?></option>
             <?php $c = 0; while ( $c < 10 ): $c++; ?>
-            <option value="<?=$c?>"><?=sprintf(_n('%d+ szoba', '%d+ szoba', $c, 'gh'), $c)?></option>
+            <option value="<?=$c?>"><?=sprintf(_n('%d+ szoba', '%d+ szoba', $c, 'ti'), $c)?></option>
             <?php endwhile; ?>
           </select>
         </div>
       </div>
       <div class="inp inp-alapterulet">
-        <label for="searcher_property_size"><?=__('Min. alapterület', 'gh')?></label>
-        <input type="number" class="form-control" id="searcher_property_size" name="ps" min="0" placeholder="<?=__('nm', 'gh')?>" step="10" value="">
+        <label for="searcher_property_size"><?=__('Min. alapterület', 'ti')?></label>
+        <input type="number" class="form-control" id="searcher_property_size" name="ps" min="0" placeholder="<?=__('nm', 'ti')?>" step="10" value="">
       </div>
       <div class="inp inp-kategoria">
-        <label for="kategoria_multiselect_text"><?=__('Kategória', 'gh')?></label>
+        <label for="kategoria_multiselect_text"><?=__('Kategória', 'ti')?></label>
         <div class="tglwatcher-wrapper">
-          <input type="text" readonly="readonly" id="kategoria_multiselect_text" class="form-control tglwatcher" tglwatcher="kategoria_multiselect" placeholder="<?=__('Összes', 'gh')?>" value="">
+          <input type="text" readonly="readonly" id="kategoria_multiselect_text" class="form-control tglwatcher" tglwatcher="kategoria_multiselect" placeholder="<?=__('Összes', 'ti')?>" value="">
         </div>
         <input type="hidden" id="kategoria_multiselect_ids" name="c" value="">
         <div class="multi-selector-holder" tglwatcherkey="kategoria_multiselect" id="kategoria_multiselect">
@@ -63,14 +58,10 @@
           </div>
         </div>
       </div>
-      <div class="inp inp-azonosito">
-        <label for="searcher-idn"><?=__('Referenciaszám', 'gh')?></label>
-        <input type="text" class="form-control" id="searcher-idn" name="n" value="">
-      </div>
       <div class="inp inp-status">
-        <label for="status_multiselect_text"><?=__('Státusz', 'gh')?></label>
+        <label for="status_multiselect_text"><?=__('Státusz', 'ti')?></label>
         <div class="tglwatcher-wrapper">
-          <input type="text" readonly="readonly" id="status_multiselect_text" class="form-control tglwatcher" tglwatcher="status_multiselect" placeholder="<?=__('Összes', 'gh')?>" value="">
+          <input type="text" readonly="readonly" id="status_multiselect_text" class="form-control tglwatcher" tglwatcher="status_multiselect" placeholder="<?=__('Összes', 'ti')?>" value="">
         </div>
         <input type="hidden" id="status_multiselect_ids" name="st" value="">
         <div class="multi-selector-holder" tglwatcherkey="status_multiselect" id="status_multiselect">
@@ -87,15 +78,15 @@
         </div>
       </div>
       <div class="inp inp-price-min">
-        <label for="searcher_price_min"><?=__('Minimum ár (Ft)', 'gh')?></label>
-        <input type="text" class="form-control pricebind" id="searcher_price_min" name="pa" placeholder="<?=__('MFt', 'gh')?>" value="">
+        <label for="searcher_price_min"><?=__('Minimum ár (Ft)', 'ti')?></label>
+        <input type="text" class="form-control pricebind" id="searcher_price_min" name="pa" placeholder="<?=__('MFt', 'ti')?>" value="">
       </div>
       <div class="inp inp-price-max">
-        <label for="searcher_price_max"><?=__('Maximum ár (Ft)', 'gh')?></label>
-        <input type="text" class="form-control pricebind" id="searcher_price_max" name="pb" placeholder="<?=__('MFt', 'gh')?>" value="">
+        <label for="searcher_price_max"><?=__('Maximum ár (Ft)', 'ti')?></label>
+        <input type="text" class="form-control pricebind" id="searcher_price_max" name="pb" placeholder="<?=__('MFt', 'ti')?>" value="">
       </div>
       <div class="inp inp-submit">
-        <button type="submit"><i class="fa fa-search"></i> <?=__('Keresés', 'gh')?></button>
+        <button type="submit"><i class="fa fa-search"></i> <?=__('Keresés', 'ti')?></button>
       </div>
     </div>
 </div>
@@ -222,7 +213,7 @@
     if(seln <= 3 ){
       jQuery('#'+rkey+'_text').val(str.join(", "));
     } else {
-      jQuery('#'+rkey+'_text').val(seln + " <?=__('kiválasztva', 'gh')?>");
+      jQuery('#'+rkey+'_text').val(seln + " <?=__('kiválasztva', 'ti')?>");
     }
 
     return arr.join(",");

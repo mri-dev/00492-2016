@@ -115,9 +115,11 @@ class Properties extends PropertyFactory
     $meta_qry = array();
 
     if (isset($this->arg['highlight'])) {
-      $meta_qry[] = array(
-        'key' => '_listing_flag_highlight',
-        'value' => '1'
+      $post_arg['tax_query'][] = array(
+        'taxonomy'  => 'status',
+        'field'     => 'name',
+        'terms'     => 'Kiemelt',
+        'compare'   => '='
       );
     }
 
