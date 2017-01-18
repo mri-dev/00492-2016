@@ -37,8 +37,17 @@ class Property extends PropertyFactory
   }
   public function AuthorPhone()
   {
-    $meta = get_the_author_meta('phone', $this->raw_post->post_author);
-    return $meta;
+    $phone = get_the_author_meta('phone', $this->raw_post->post_author);
+
+    $_phone = PHONE_PREFIX.' '.substr($phone, 0, 2);
+    $last = substr($phone, 2);
+
+    if (strlen($last) > 6) {
+      $_phone .= ' '.substr($last, 0, 3).' '. substr($last, 3 );
+    } else {
+      $_phone .= ' '. substr($last, 0, 3).' '. substr($last, 3 );
+    }
+    return $_phone;
   }
   public function AuthorEmail()
   {
@@ -54,9 +63,20 @@ class Property extends PropertyFactory
   }
   public function URL()
   {
-    return get_option('siteurl').'/'.SLUG_INGATLAN.'/'.$this->RegionSlug().'/'.$this->ParentRegionSlug().'/'.sanitize_title($this->Title()).'-'.$this->ID();
+    $regionslug = $this->ParentRegionSlug();
+    $megye = $this->RegionSlug();
+
+    if(in_array($this->ParentRegion(), $this->fake_city)) {
+      $megye = 'magyarorszag';
+    }
+
+    if (empty($regionslug)) {
+      $regionslug = '-';
+    }
+
+    return get_option('siteurl').'/'.SLUG_INGATLAN.'/'.$megye.'/'.$regionslug.'/'.sanitize_title($this->Title()).'-'.$this->ID();
   }
-  public function RegionName()
+  public function RegionName( $html_text = true )
   {
     $terms = wp_get_post_terms( $this->ID(), 'locations' );
 
@@ -66,7 +86,17 @@ class Property extends PropertyFactory
         if ($term->parent != 0) {
           $parent = get_term($term->parent);
         }
-        return ($parent) ? $parent->name.', '.$term->name : $term->name;
+
+        if(in_array($term->name, $this->fake_city)) {
+          $parent = false;
+        }
+
+        if ($html_text) {
+          return ($parent) ? $parent->name.' <span class="sep">/</span> '.$term->name . ( ($parent->name == 'Budapest') ? ' '.__('kerület', 'gh') : '' ) : $term->name;
+        } else {
+          return ($parent) ? $parent->name.', '.$term->name . ( ($parent->name == 'Budapest') ? ' '.__('kerület', 'gh') : '' ) : $term->name;
+        }
+
       }
     }
 
@@ -84,9 +114,24 @@ class Property extends PropertyFactory
     $ctp      = $term->parent;
     $regions[$term->term_id] = $term;
 
+    if($term->parent != 0){
+      $pt = get_term($term->parent);
+      if($pt->name == 'Budapest') {
+        $term->name .= ' '.__('kerület', 'gh');
+      }
+    }
+
     while ( $ctp )
     {
       $term =  get_term($ctp, 'locations');
+
+      if($term->parent != 0){
+        $pt = get_term($term->parent);
+        if($pt->name == 'Budapest') {
+          $term->name .= ' '.__('kerület', 'gh');
+        }
+      }
+
       $regions[$term->term_id] = $term;
 
       if($term->parent != 0) {
@@ -185,34 +230,31 @@ class Property extends PropertyFactory
   {
     $terms = wp_get_post_terms( $this->ID(), 'property-condition' );
 
-    foreach ($terms as $term) {
-      if($term->taxonomy == 'property-condition') {
-        if ($text) {
-          return $this->i18n_taxonomy_values($term->name);
-        } else {
-          return $term->name;
-        }
+    return $terms;
+  }
+
+  public function multivalue_list( $term_list = array(), $linked = false, $base = '' )
+  {
+    $text = '';
+
+    foreach ($term_list as $term) {
+      if (!$linked) {
+        $text .= $this->i18n_taxonomy_values($term->name).', ';
+      }else{
+        $link = str_replace('#value#', $term->term_id, $base);
+        $text .= '<a target="_blank" href="'.$link.'">'.$this->i18n_taxonomy_values($term->name).'</a>, ';
       }
     }
 
-    return false;
+    $text = rtrim($text, ', ');
+
+    return $text;
   }
 
   public function PropertyType( $text = false )
   {
     $terms = wp_get_post_terms( $this->ID(), 'property-types' );
-
-    foreach ($terms as $term) {
-      if($term->taxonomy == 'property-types') {
-        if ($text) {
-          return $this->i18n_taxonomy_values($term->name);
-        } else {
-          return $term->name;
-        }
-      }
-    }
-
-    return false;
+    return $terms;
   }
 
   public function historyChangeCount( $user = false )
@@ -235,6 +277,15 @@ class Property extends PropertyFactory
   public function isNews()
   {
     $h = true;
+
+    // Diff
+    $diff = 86400 * self::NEWSDAY;
+
+    $time = ((int)strtotime($this->raw_post->post_date)) + $diff;
+
+    if ( time() > $time ) {
+      $h = false;
+    }
 
     return $h;
   }
@@ -300,10 +351,29 @@ class Property extends PropertyFactory
     return $h;
   }
 
+  public function isExclusive()
+  {
+    $h = true;
+
+    $v = $this->getMetaValue('_listing_flag_exclusive');
+
+    if (!$v || $v == '' || $v == '0') {
+      return false;
+    }
+
+    return $h;
+  }
+
   public function Images()
   {
     return get_attached_media( 'image', $this->ID() );
   }
+
+  public function PDFDocuments()
+  {
+    return get_attached_media( 'application/pdf', $this->ID() );
+  }
+
 
   public function imageNumbers()
   {
@@ -314,29 +384,51 @@ class Property extends PropertyFactory
   public function StatusID()
   {
     $terms = wp_get_post_terms( $this->ID(), 'status' );
+    $ids = array();
 
     if (!$terms) {
       return 0;
     }
 
-    return $terms[0]->term_id;
+    foreach ($terms as $t) {
+      $ids[] = $t->term_id;
+    }
+
+    return $ids;
   }
 
   public function CatID()
   {
     $terms = wp_get_post_terms( $this->ID(), 'property-types' );
+    $ids = array();
 
     if (!$terms) {
       return 0;
     }
 
-    return $terms[0]->term_id;
+    foreach ($terms as $t) {
+      $ids[] = $t->term_id;
+    }
+
+    return $ids;
   }
 
   public function GPS()
   {
     $lat = $this->getMetaValue( '_listing_gps_lat' );
     $lng = $this->getMetaValue( '_listing_gps_lng' );
+
+    if (!$lng || !$lat)
+    {
+      // Mentett GPS vizsgálat GEO alapján
+      $parent_zone_term = end($this->Regions());
+      $zone_gps = $this->getZoneGPS($parent_zone_term->term_id);
+
+      if ($zone_gps) {
+        $lng = (float) $zone_gps['lng'];
+        $lat = (float) $zone_gps['lat'];
+      }
+    }
 
     if (!$lng || !$lat) {
       return false;
@@ -362,12 +454,17 @@ class Property extends PropertyFactory
   public function ConditionID()
   {
     $terms = wp_get_post_terms( $this->ID(), 'property-condition' );
+    $ids = array();
 
     if (!$terms) {
       return 0;
     }
 
-    return $terms[0]->term_id;
+    foreach ($terms as $t) {
+      $ids[] = $t->term_id;
+    }
+
+    return $ids;
   }
 
   public function ShortDesc()
@@ -402,6 +499,11 @@ class Property extends PropertyFactory
     return $content;
   }
 
+  public function RawDescription()
+  {
+    return sanitize_text_field($this->raw_post->post_content);
+  }
+
   public function Address()
   {
     $addr = get_post_meta($this->ID(), '_listing_address', true);
@@ -427,14 +529,26 @@ class Property extends PropertyFactory
     }
 
     if ( !$price ) {
-      return __('Ár hiányzik (!)', 'ti');
+      return __('Ár hiányzik (!)', 'gh');
     }
 
     if ($formated) {
-      $price = number_format($price, 0, ' ', '.').' '.$this->getValuta();
+      $price = number_format($price, 0, ' ', '.');
     }
 
     return $price;
+  }
+  public function PriceType()
+  {
+    $price_index = (int)$this->getMetaValue('_listing_flag_pricetype');
+    if ($price_index === 0) {
+      return $this->getValuta();
+    }
+    return $this->getPriceTypeText($price_index);
+  }
+  public function PriceTypeID()
+  {
+    return (int)$this->getMetaValue('_listing_flag_pricetype');
   }
   public function OriginalPrice( $formated = false )
   {
@@ -468,16 +582,74 @@ class Property extends PropertyFactory
   {
     return get_post_thumbnail_id( $this->ID() );
   }
+
+  public function ProfilImgAttr()
+  {
+    $imgmeta = wp_get_attachment_metadata($this->ProfilImgID());
+    if (is_array($imgmeta))
+    {
+      $width = $imgmeta['width'];
+      $height = $imgmeta['height'];
+
+      if ($width === $height) {
+        $imgmeta['orientation'] = 'square';
+      } else if($width < $height ){
+        $imgmeta['orientation'] = 'portrait';
+      } else {
+        $imgmeta['orientation'] = 'landscape';
+      }
+    } else {
+      $imgmeta = array();
+
+      $prof_img = $this->ProfilImg();
+
+      $size = getimagesize($prof_img);
+
+      if (!$size) {
+        return false;
+      }
+
+      $width = $size[0];
+      $height = $size[1];
+
+      if ($width === $height) {
+        $imgmeta['orientation'] = 'square';
+      } else if($width < $height ){
+        $imgmeta['orientation'] = 'portrait';
+      } else {
+        $imgmeta['orientation'] = 'landscape';
+      }
+    }
+    return $imgmeta;
+  }
+
+  public function Viewed()
+  {
+    global $wpdb;
+    $click = 0;
+
+    $click = $wpdb->get_var("SELECT count(ID) FROM ".self::LOG_VIEW_DB." WHERE pid = ".$this->ID()." GROUP BY pid");
+
+    if (!$click) {
+      return 0;
+    }
+
+
+    return $click;
+  }
+
   public function ProfilImg()
   {
-    $img = wp_get_attachment_image_src( get_post_thumbnail_id( $this->ID() ), "full" );
+    global $wpdb;
+    $img_id = (int)get_post_thumbnail_id( $this->ID() );
 
-    if (!$img) {
+    if (!$img_id) {
       return IMG.'/default_image.jpg';
     } else {
-        return $img[0];
+      return $wpdb->get_var($wpdb->prepare("SELECT guid FROM $wpdb->posts WHERE post_type='attachment' and post_parent = %d and ID = %d", $this->ID(), $img_id));
     }
   }
+
   public function Status( $only_text = true )
   {
     $status = null;

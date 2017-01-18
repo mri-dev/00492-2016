@@ -5,6 +5,8 @@ define('IMGROOT', THEMEROOT.'/images/' );
 define('IMG', IMGROOT );
 define('SLUG_INGATLAN', 'ingatlan' );
 define('SLUG_INGATLANOK', 'ingatlan-kereso' );
+define('SLUG_INGATLAN_LIST', 'ingatlan-kereso' );
+define('PHONE_PREFIX', '+36' );
 
 // Includes
 require_once "includes/include.php";
@@ -40,3 +42,42 @@ function content_before_copyright_text()
    echo $menu;
 }
 add_action('avada_footer_copyright_content', 'content_before_copyright_text');
+
+function app_init()
+{
+  date_default_timezone_set('Europe/Budapest');
+
+  add_rewrite_rule('^'.SLUG_INGATLAN.'/([^/]+)/([^/]+)/([^/]+)', 'index.php?custom_page='.SLUG_INGATLAN.'&regionslug=$matches[1]&cityslug=$matches[2]&urlstring=$matches[3]', 'top');
+  add_rewrite_rule('^'.SLUG_FAVORITE.'/?', 'index.php?custom_page='.SLUG_FAVORITE.'&urlstring=$matches[1]', 'top');
+}
+add_action('init', 'app_init');
+
+
+function app_custom_template($template)
+{
+  global $post, $wp_query;
+
+  if(isset($wp_query->query_vars['custom_page'])) {
+    add_filter( 'body_class','ingatlan_class_body' );
+    //add_filter( 'document_title_parts', 'ingatlan_custom_title' );
+    return get_stylesheet_directory() . '/'.$wp_query->query_vars['custom_page'].'.php';
+  } else {
+    return $template;
+  }
+}
+add_filter( 'template_include', 'app_custom_template' );
+
+function ingatlan_class_body( $classes ) {
+  $classes[] = 'ingatlan_page';
+  return $classes;
+}
+
+function app_query_vars($aVars)
+{
+  $aVars[] = "custom_page";
+  $aVars[] = "urlstring";
+  $aVars[] = "cityslug";
+  $aVars[] = "regionslug";
+  return $aVars;
+}
+add_filter('query_vars', 'app_query_vars');

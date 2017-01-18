@@ -24,20 +24,25 @@
         <div id="searcher_city_autocomplete" class="selector-wrapper"></div>
         <input type="hidden" name="ci" id="searcher_city_ids" value="">
       </div>
-      <div class="inp inp-rooms">
-        <label for="searcher_rooms"><?=__('Szobák száma', 'ti')?></label>
-        <div class="select-wrapper">
-          <select class="form-control" name="r" id="searcher_rooms">
-            <option value="0" selected="selected"><?=__('Összes', 'ti')?></option>
-            <?php $c = 0; while ( $c < 10 ): $c++; ?>
-            <option value="<?=$c?>"><?=sprintf(_n('%d+ szoba', '%d+ szoba', $c, 'ti'), $c)?></option>
-            <?php endwhile; ?>
-          </select>
+
+      <div class="inp inp-status">
+        <label for="status_multiselect_text"><?=__('Státusz', 'ti')?></label>
+        <div class="tglwatcher-wrapper">
+          <input type="text" readonly="readonly" id="status_multiselect_text" class="form-control tglwatcher" tglwatcher="status_multiselect" placeholder="<?=__('Összes', 'ti')?>" value="">
         </div>
-      </div>
-      <div class="inp inp-alapterulet">
-        <label for="searcher_property_size"><?=__('Min. alapterület', 'ti')?></label>
-        <input type="number" class="form-control" id="searcher_property_size" name="ps" min="0" placeholder="<?=__('nm', 'ti')?>" step="10" value="">
+        <input type="hidden" id="status_multiselect_ids" name="st" value="">
+        <div class="multi-selector-holder" tglwatcherkey="status_multiselect" id="status_multiselect">
+          <div class="selector-wrapper">
+            <? $status = $properties->getSelectors( 'status' ); ?>
+            <?php if ($status): ?>
+              <?php foreach ($status as $k): ?>
+              <div class="selector-row">
+                <input type="checkbox" tglwatcherkey="status_multiselect" htxt="<?=$k->name?>" id="stat_<?=$k->term_id?>" value="<?=$k->term_id?>"> <label for="stat_<?=$k->term_id?>"><?=$k->name?> <span class="n">(<?=$k->count?>)</span></label>
+              </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
       <div class="inp inp-kategoria">
         <label for="kategoria_multiselect_text"><?=__('Kategória', 'ti')?></label>
@@ -58,32 +63,29 @@
           </div>
         </div>
       </div>
-      <div class="inp inp-status">
-        <label for="status_multiselect_text"><?=__('Státusz', 'ti')?></label>
-        <div class="tglwatcher-wrapper">
-          <input type="text" readonly="readonly" id="status_multiselect_text" class="form-control tglwatcher" tglwatcher="status_multiselect" placeholder="<?=__('Összes', 'ti')?>" value="">
+
+      <div class="inp inp-rooms">
+        <label for="searcher_rooms"><?=__('Szobák száma', 'ti')?></label>
+        <div class="select-wrapper">
+          <select class="form-control" name="r" id="searcher_rooms">
+            <option value="0" selected="selected"><?=__('Összes', 'ti')?></option>
+            <?php $c = 0; while ( $c < 10 ): $c++; ?>
+            <option value="<?=$c?>"><?=sprintf(_n('%d+ szoba', '%d+ szoba', $c, 'ti'), $c)?></option>
+            <?php endwhile; ?>
+          </select>
         </div>
-        <input type="hidden" id="status_multiselect_ids" name="st" value="">
-        <div class="multi-selector-holder" tglwatcherkey="status_multiselect" id="status_multiselect">
-          <div class="selector-wrapper">
-            <? $status = $properties->getSelectors( 'status' ); ?>
-            <?php if ($status): ?>
-              <?php foreach ($status as $k): ?>
-              <div class="selector-row">
-                <input type="checkbox" tglwatcherkey="status_multiselect" htxt="<?=$k->name?>" id="stat_<?=$k->term_id?>" value="<?=$k->term_id?>"> <label for="stat_<?=$k->term_id?>"><?=$k->name?> <span class="n">(<?=$k->count?>)</span></label>
-              </div>
-              <?php endforeach; ?>
-            <?php endif; ?>
-          </div>
-        </div>
+      </div>
+      <div class="inp inp-alapterulet">
+        <label for="searcher_property_size"><?=__('Min. alapterület', 'ti')?></label>
+        <input type="number" class="form-control" id="searcher_property_size" name="ps" min="0" placeholder="<?=__('nm', 'ti')?>" step="10" value="">
       </div>
       <div class="inp inp-price-min">
-        <label for="searcher_price_min"><?=__('Minimum ár (Ft)', 'ti')?></label>
-        <input type="text" class="form-control pricebind" id="searcher_price_min" name="pa" placeholder="<?=__('MFt', 'ti')?>" value="">
+        <label for="searcher_price_min"><?=__('Minimum ár (€)', 'ti')?></label>
+        <input type="text" class="form-control pricebind" id="searcher_price_min" name="pa" placeholder="<?=__('€', 'ti')?>" value="">
       </div>
       <div class="inp inp-price-max">
-        <label for="searcher_price_max"><?=__('Maximum ár (Ft)', 'ti')?></label>
-        <input type="text" class="form-control pricebind" id="searcher_price_max" name="pb" placeholder="<?=__('MFt', 'ti')?>" value="">
+        <label for="searcher_price_max"><?=__('Maximum ár (€)', 'ti')?></label>
+        <input type="text" class="form-control pricebind" id="searcher_price_max" name="pb" placeholder="<?=__('€', 'ti')?>" value="">
       </div>
       <div class="inp inp-submit">
         <button type="submit"><i class="fa fa-search"></i> <?=__('Keresés', 'ti')?></button>

@@ -188,7 +188,7 @@ class ListingLista
 
 
       if ( count($list) != 0 ) {
-        $o .= '<div class="prop-list style-'.$this->template.'"><div class="prop-wrapper">';
+        $o .= '<div class="prop-list im3 style-'.$this->template.'"><div class="prop-wrapper">';
         foreach ( $list as $e )
         {
           $o .= $t->load_template( array( 'item' => $e ) );
@@ -209,7 +209,7 @@ class ListingLista
     private function highlight( $arg = array() )
     {
       $o = '<div class="header">
-        <div class="morev"><a title="'.__('További kiemelt ingatlanok', 'ti').'" href="/ingatlanok/?hl=1&title=highlight"><i class="fa fa-bars"></i></a></div>
+        <div class="morev"><a title="'.__('További kiemelt ingatlanok', 'ti').'" href="/'.SLUG_INGATLAN_LIST.'/?hl=1&title=highlight">'.__('Még több', 'ti').' <i class="fa fa-bars"></i></a></div>
         <h2>'.__('Kiemelt ingatlanok', 'ti').'</h2>
       </div>';
       $t = new ShortcodeTemplates(__CLASS__.'/'.$this->template);
