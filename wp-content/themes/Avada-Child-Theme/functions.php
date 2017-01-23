@@ -67,6 +67,47 @@ function app_custom_template($template)
 }
 add_filter( 'template_include', 'app_custom_template' );
 
+/**
+* Szerepkörök
+**/
+$user_roles = false;;
+function gh_custom_role()
+{
+  global $user_roles;
+  /**
+  * Új szerepkörök
+  **/
+  $user_roles = new UserRoles();
+  $user_roles->addRoles(array(
+    array( 'reference_manager', __('Ingatlan referens','gh') ),
+    array( 'starter', __('Előregisztráló','gh') )
+  ));
+  // Alap felhasználói körök eltávolítása
+  $user_roles->removeRoles(array('subscriber', 'contributor', 'author', 'editor'));
+
+  // Jogkörök
+  // Referens
+  $user_roles->addAvaiableCaps( 'reference_manager', array(
+    'property_create', 'property_archive', 'property_edit', 'property_edit_price', 'property_edit_status',
+    'property_edit_autoconfirm_price', 'property_edit_autoconfirm_datas', 'property_archive_autoconfirm',
+    'stat_property'
+  ) );
+  $user_roles->addCap('reference_manager', 'read');
+
+  // Admin
+  $user_roles->addAvaiableCaps( 'administrator', array(
+    'property_create', 'property_delete', 'property_archive', 'property_edit', 'property_edit_price', 'property_edit_status',
+    'user_property_connector',
+    'property_edit_autoconfirm_price', 'property_edit_autoconfirm_datas', 'property_archive_autoconfirm',
+    'stat_property'
+  ) );
+
+  /* * /
+  print_r(wp_get_current_user());
+  /* */
+}
+add_action('after_setup_theme', 'gh_custom_role');
+
 function ingatlan_class_body( $classes ) {
   $classes[] = 'ingatlan_page';
   return $classes;

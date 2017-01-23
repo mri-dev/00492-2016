@@ -39,7 +39,9 @@ class Property extends PropertyFactory
   {
     $phone = get_the_author_meta('phone', $this->raw_post->post_author);
 
-    $_phone = PHONE_PREFIX.' '.substr($phone, 0, 2);
+    return $phone;
+
+    $_phone = substr($phone, 0, 2);
     $last = substr($phone, 2);
 
     if (strlen($last) > 6) {
