@@ -31,6 +31,10 @@ class Property extends PropertyFactory
   {
     return $this->raw_post->post_author;
   }
+  public function AuthorImage( $size = 96 )
+  {
+    return get_avatar( $this->AuthorID(), $size );
+  }
   public function AuthorName()
   {
     return get_author_name( $this->raw_post->post_author );
@@ -256,6 +260,11 @@ class Property extends PropertyFactory
   public function PropertyType( $text = false )
   {
     $terms = wp_get_post_terms( $this->ID(), 'property-types' );
+
+    if($text){
+        return $terms[0]->name;
+    }
+
     return $terms;
   }
 
@@ -583,6 +592,89 @@ class Property extends PropertyFactory
   public function ProfilImgID()
   {
     return get_post_thumbnail_id( $this->ID() );
+  }
+
+  public function Paramteres()
+  {
+    $params = array();
+
+    $params[] = array(
+      'name' => __('Típusa', 'ti'),
+      'value' => $this->PropertyStatus(true),
+      'after' => false
+    );
+
+    $params[] = array(
+      'name' => __('Épület állapota kívül', 'ti'),
+      'value' => $this->getMetaValue('_listing_star_outside'),
+      'after' => false
+    );
+
+    $params[] = array(
+      'name' => __('Ingatlan típusa', 'ti'),
+      'value' => $this->PropertyType(true),
+      'after' => false
+    );
+
+    $params[] = array(
+      'name' => __('Telek mérete', 'ti'),
+      'value' => $this->getMetaValue('_listing_lot_size'),
+      'after' => 'm<sup>2</sup>'
+    );
+
+    $regions = $this->Regions();
+    $city = end($regions);
+
+    $params[] = array(
+      'name' => __('Település', 'ti'),
+      'value' => $city->name,
+      'after' => false
+    );
+
+    $params[] = array(
+      'name' => __('Belső szintek száma', 'ti'),
+      'value' => $this->getMetaValue('_listing_level_numbers'),
+      'after' => 'db'
+    );
+
+    $params[] = array(
+      'name' => __('Épült', 'ti'),
+      'value' => $this->getMetaValue('_listing_year_built'),
+      'after' => false
+    );
+
+    $params[] = array(
+      'name' => __('Ház típusa', 'ti'),
+      'value' => false,
+      'after' => false
+    );
+
+    $params[] = array(
+      'name' => __('Fényviszony', 'ti'),
+      'value' => $this->getMetaValue('_listing_light_condition'),
+      'after' => false
+    );
+
+    $params[] = array(
+      'name' => __('Méret', 'ti'),
+      'value' => $this->getMetaValue('_listing_property_size'),
+      'after' => 'm<sup>2</sup>'
+    );
+
+    $params[] = array(
+      'name' => __('Szobák', 'ti'),
+      'value' => $this->getMetaValue('_listing_room_numbers'),
+      'after' => 'db'
+    );
+
+    $params[] = array(
+      'name' => __('Ingatlan állapota', 'ti'),
+      'value' => $this->getMetaValue('_listing_star_property'),
+      'after' => false
+    );
+
+
+    return $params;
   }
 
   public function ProfilImgAttr()

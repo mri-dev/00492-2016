@@ -68,20 +68,7 @@
             </div>
             <div class="properties">
               <div class="list">
-                <div class="e">
-                 <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/szoba.svg" alt="<?=__('Szobák száma', 'ti')?>"></div>
-                   <?=__('Szobák száma', 'ti')?>
-                 </div><!--
-              --><div class="v"><?=($v = $prop->getMetaValue('_listing_room_numbers'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
-                </div>
-                <div class="e">
-                 <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/telek-alapterulet.svg" alt="<?=__('Telek területe', 'ti')?>"></div>
-                   <?=__('Telek területe', 'ti')?>
-                 </div><!--
-              --><div class="v"><?=($v = $prop->getMetaValue('_listing_lot_size'))?sprintf(__('%d nm', 'ti'), $v):'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
-                </div>
+
                 <div class="e">
                  <div class="h">
                    <div class="ico"><img src="<?=IMG?>/ico/alapterulet.svg" alt="<?=__('Alapterület', 'ti')?>"></div>
@@ -89,33 +76,48 @@
                  </div><!--
               --><div class="v"><?=($v = $prop->getMetaValue('_listing_property_size'))?sprintf(__('%d nm', 'ti'), $v):'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
+
                 <div class="e">
                  <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/szint.svg" alt="<?=__('Szintek száma', 'ti')?>"></div>
+                   <div class="ico"><img src="<?=IMG?>/ico/szint.svg" alt="<?=__('Emelet', 'ti')?>"></div>
                    <?=__('Szintek száma', 'ti')?>
                  </div><!--
               --><div class="v"><?=($v = $prop->getMetaValue('_listing_level_numbers'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
                 <div class="e">
                  <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/payment.svg" alt="<?=__('Megbízás típusa', 'ti')?>"></div>
-                   <?=__('Megbízás típusa', 'ti')?>
+                   <div class="ico"><img src="<?=IMG?>/ico/szoba.svg" alt="<?=__('Szobaszám', 'ti')?>"></div>
+                   <?=__('Szobák száma', 'ti')?>
                  </div><!--
-              --><div class="v"><?=($v = $prop->PropertyStatus(true))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
+              --><div class="v"><?=($v = $prop->getMetaValue('_listing_room_numbers'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
                 <div class="e">
                  <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/home.svg" alt="<?=__('Ingatlan típusa', 'ti')?>"></div>
-                   <?=__('Ingatlan típusa', 'ti')?>
+                   <div class="ico"><img src="<?=IMG?>/ico/halok.svg" alt="<?=__('Hálók', 'ti')?>"></div>
+                   <?=__('Hálók', 'ti')?>
                  </div><!--
-              --><div class="v"><?=($v = $prop->PropertyType(true))?$prop->multivalue_list($v):'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
+              --><div class="v"><?=($v = $prop->getMetaValue('_listing_bedrooms'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
+                </div>
+                <div class="e">
+                 <div class="h">
+                   <div class="ico"><img src="<?=IMG?>/ico/bathroom.svg" alt="<?=__('Fürdők', 'ti')?>"></div>
+                   <?=__('Fürdők', 'ti')?>
+                 </div><!--
+              --><div class="v"><?=($v = $prop->getMetaValue('_listing_bathroom_numbers'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
+                </div>
+                <div class="e">
+                 <div class="h">
+                   <div class="ico"><img src="<?=IMG?>/ico/garage.svg" alt="<?=__('Garázs', 'ti')?>"></div>
+                   <?=__('Garázs', 'ti')?>
+                 </div><!--
+              --><div class="v"><?=($v = $prop->getMetaValue('_listing_garage'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
                 <div class="e">
                  <div class="h">
                    <div class="ico"><img src="<?=IMG?>/ico/allapot.svg" alt="<?=__('Állapot', 'ti')?>"></div>
                    <?=__('Állapot', 'ti')?>
                  </div><!--
-              --><div class="v"><?=($v = $prop->PropertyCondition(true))?$prop->multivalue_list($v):'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
+              --><div class="v"><?=($v = $prop->PropertyCondition(true))?$prop->multivalue_list($v):'<span class="na">'.__('N/A', 'ti').'</span>'?></div>
                 </div>
                 <div class="e price">
                   <?php if ($prop->isDropOff()): ?>
@@ -130,6 +132,9 @@
               </div>
             </div>
             <div class="contact">
+              <div class="profil-img">
+                <?=$prop->AuthorImage(130)?>
+              </div>
               <div class="title"><?=__('Érdeklődjön kollégánknál', 'ti')?></div>
               <div class="name"><strong><?=$prop->AuthorName()?></strong> <span class="tit"><?=__('Ingatlan referens', 'ti')?></span></div>
               <div class="email"><a href="mailto:<?=$prop->AuthorEmail()?>"><?=$prop->AuthorEmail()?></a></div>
@@ -154,16 +159,59 @@
     						</div>
     						<div class="tab-content">
     							<div class="tab-pane active in" id="params">
-                    Params
+                    <div class="parameters">
+                      <div class="line">
+                      <?
+                        $params = $prop->Paramteres();
+                        $pi = 0;
+                        foreach( $params as $param): $pi++; ?>
+                        <div class="param">
+                          <div class="text">
+                            <?=$param['name']?>
+                          </div>
+                          <div class="value">
+                            <?php $v = $param['value']; ?>
+                            <?php if (!empty($v)): ?>
+                              <?php if ($param['name'] == 'Ingatlan állapota' || $param['name'] == 'Épület állapota kívül'): ?>
+                                <?php $star = (int)$v; ?>
+                                <?php if (is_numeric($star)): ?>
+                                  <?php echo str_repeat('<i class="fa fa-star"></i>', $star); ?>
+                                <?php endif; ?>
+                              <?php else: ?>
+                                <?php echo $v; ?>
+                                <?php if ($param['after']): ?>
+                                  <?php echo $param['after']; ?>
+                                <?php endif; ?>
+                              <?php endif; ?>
+                            <?php else: ?>
+                              <div class="na">
+                                <?php echo __('N/A', 'ti'); ?>
+                              </div>
+                            <?php endif; ?>
+                          </div>
+                        </div>
+                        <?php if ($pi%2 == 0): ?>
+                          </div>
+                          <div class="line">
+                        <?php endif; ?>
+                      <? endforeach;?>
+                      </div>
+                    </div>
     							</div>
                   <div class="tab-pane" id="info">
-                    INFO
+                    <div class="pad">
+                      <? echo $prop->Description(); ?>
+                    </div>
     							</div>
                   <div class="tab-pane" id="alaprajz">
-                    Alaprajz
+                    <div class="pad">
+                      Hamarosan...
+                    </div>
     							</div>
                   <div class="tab-pane" id="video">
-                    Videó
+                    <div class="pad">
+                      Hamarosan...
+                    </div>
     							</div>
     						</div>
     					</div>

@@ -19,7 +19,6 @@ class PropertyFactory
     'future' => '#fff8a8',
     'archived' => '#ff9797',
   );
-
   public $price_types = array(
     'fix' => 0,
     'per_nm' => 1,
