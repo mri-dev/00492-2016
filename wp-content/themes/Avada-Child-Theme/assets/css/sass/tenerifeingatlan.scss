@@ -561,9 +561,11 @@ body.ingatlan_page {
     }
     & > .data-top-right {
       flex-basis: 40%;
-
+      .properties {
+        margin-top: 10px;
+      }
       .title{
-        margin: 0 0 20px 0;
+        margin: 0;
         position:relative;
         h1 {
           margin: 0 0 5px 0;
@@ -657,14 +659,14 @@ body.ingatlan_page {
           display: inline-block;
           margin: 0 -1px;
           line-height: 0;
-          padding: 25px 0;
-          font-size: 1em;
+          padding: 18px 0;
+          font-size: 1.15em;
           vertical-align: middle;
-          max-height: 50px;
+          max-height: 35px;
         }
         .text {
           width: 50%;
-          padding: 25px 0 20px 15px;
+          padding: 0 0 0 15px;
         }
         .value {
           width: 50%;
@@ -844,6 +846,26 @@ body.ingatlan_page {
       a, a:link, a:visited {
         font-size: 0.9em;
         color: $color-secondary !important;
+      }
+    }
+
+    .mail {
+      text-align: right;
+      margin-top: 4px;
+      a {
+        font-size: 0.9em;
+        background: $color-red;
+        color: white;
+        text-decoration: none;
+        padding: 5px 8px;
+        line-height: 1;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        text-transform: uppercase;
+        i {
+          color: white;
+        }
       }
     }
   }
@@ -1597,6 +1619,10 @@ input[type=checkbox]:checked + label {
             right: 5px;
             top: 10px;
             z-index: 90;
+
+            img {
+              max-height: 42px;
+            }
           }
 
           .photo {
@@ -1820,7 +1846,7 @@ input[type=checkbox]:checked + label {
         }
       }
       .sec-line{
-        background: desaturate($color-primary, 10);
+        background: #79828e;
         color: #f5f5f5;
 
         .price {

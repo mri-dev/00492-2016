@@ -93,21 +93,21 @@
                 </div>
                 <div class="e">
                  <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/halok.svg" alt="<?=__('Hálók', 'ti')?>"></div>
+                   <div class="ico"><img src="<?=IMG?>/ico/halo.svg" alt="<?=__('Hálók', 'ti')?>"></div>
                    <?=__('Hálók', 'ti')?>
                  </div><!--
               --><div class="v"><?=($v = $prop->getMetaValue('_listing_bedrooms'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
                 <div class="e">
                  <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/bathroom.svg" alt="<?=__('Fürdők', 'ti')?>"></div>
+                   <div class="ico"><img src="<?=IMG?>/ico/furdo.svg" alt="<?=__('Fürdők', 'ti')?>"></div>
                    <?=__('Fürdők', 'ti')?>
                  </div><!--
               --><div class="v"><?=($v = $prop->getMetaValue('_listing_bathroom_numbers'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
                 <div class="e">
                  <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/garage.svg" alt="<?=__('Garázs', 'ti')?>"></div>
+                   <div class="ico"><img src="<?=IMG?>/ico/garazs.svg" alt="<?=__('Garázs', 'ti')?>"></div>
                    <?=__('Garázs', 'ti')?>
                  </div><!--
               --><div class="v"><?=($v = $prop->getMetaValue('_listing_garage'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
@@ -133,12 +133,13 @@
             </div>
             <div class="contact">
               <div class="profil-img">
-                <?=$prop->AuthorImage(130)?>
+                <?=$prop->AuthorImage(135)?>
               </div>
               <div class="title"><?=__('Érdeklődjön kollégánknál', 'ti')?></div>
               <div class="name"><strong><?=$prop->AuthorName()?></strong> <span class="tit"><?=__('Ingatlan referens', 'ti')?></span></div>
               <div class="email"><a href="mailto:<?=$prop->AuthorEmail()?>"><?=$prop->AuthorEmail()?></a></div>
               <div class="phone"><i class="fa fa-phone"></i> <?=$prop->AuthorPhone()?></div>
+              <div class="mail"><a href="mailto:<?=$prop->AuthorEmail()?>"><i class="fa fa-envelope-o"></i> <?=__('Üzenet küldése', 'ti')?></a></div>
             </div>
           </div>
         </div>
