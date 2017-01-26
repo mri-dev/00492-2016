@@ -7,12 +7,23 @@ define('SLUG_INGATLAN', 'ingatlan' );
 define('SLUG_INGATLANOK', 'ingatlan-kereso' );
 define('SLUG_INGATLAN_LIST', 'ingatlan-kereso' );
 define('PHONE_PREFIX', '+36' );
+define('GOOGLE_API_KEY', 'AIzaSyDxeIuQwvCtMzBGo53tV7AdwG6QCDzmSsQ');
+define('LANGKEY','hu');
+define('FB_APP_ID', '');
 
 // Includes
 require_once "includes/include.php";
 
 function theme_enqueue_styles() {
-    wp_enqueue_style( 'avada-parent-stylesheet', get_template_directory_uri() . '/style.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
+    wp_enqueue_style( 'avada-parent-stylesheet', get_template_directory_uri() . '/style.css?' . ( (DEVMODE === true) ? time() : '' )  );
+    wp_enqueue_style( 'avada-child-stylesheet', IFROOT . '/style.css?' . ( (DEVMODE === true) ? time() : '' ) );
+    //wp_enqueue_style( 'slick', IFROOT . '/assets/vendor/slick/slick.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
+    //wp_enqueue_style( 'slick-theme', IFROOT . '/assets/css/slick-theme.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
+    //wp_enqueue_script( 'slick', IFROOT . '/assets/vendor/slick/slick.min.js?t=' . ( (DEVMODE === true) ? time() : '' ) , array('jquery'));
+    wp_enqueue_script( 'google-maps', '//maps.googleapis.com/maps/api/js?sensor=false&language=hu&region=hu&libraries=places&key='.GOOGLE_API_KEY);
+    //wp_enqueue_script( 'google-charts', '//www.gstatic.com/charts/loader.js');
+    //wp_enqueue_script( 'mocjax', IFROOT . '/assets/vendor/autocomplete/scripts/jquery.mockjax.js');
+    //wp_enqueue_script( 'autocomplete', IFROOT . '/assets/vendor/autocomplete/dist/jquery.autocomplete.min.js');
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
@@ -52,20 +63,129 @@ function app_init()
 }
 add_action('init', 'app_init');
 
-
+$is_ingatlan_list = false;
 function app_custom_template($template)
 {
-  global $post, $wp_query;
+  global $post, $wp_query, $is_ingatlan_list;
+
+  if (SLUG_INGATLAN_LIST == $wp_query->query['pagename']) {
+    $is_ingatlan_list = true;
+  }
 
   if(isset($wp_query->query_vars['custom_page'])) {
     add_filter( 'body_class','ingatlan_class_body' );
-    //add_filter( 'document_title_parts', 'ingatlan_custom_title' );
+    add_filter( 'document_title_parts', 'custom_title' );
     return get_stylesheet_directory() . '/'.$wp_query->query_vars['custom_page'].'.php';
   } else {
     return $template;
   }
 }
 add_filter( 'template_include', 'app_custom_template' );
+
+$is_ingatlan_page = false;
+function custom_title($title)
+{ global $wp_query, $is_ingatlan_page;
+
+  if($wp_query->query_vars['custom_page'] == 'ingatlan' ) {
+    $xs = explode("-",$wp_query->query_vars['urlstring']);
+    $ingatlan_id = end($xs);
+    $properties = new Properties(array(
+      'id' => $ingatlan_id,
+      'post_status' => array('publish'),
+    ));
+    $property = $properties->getList();
+    $property = $property[0];
+
+    if ($property) {
+      $is_ingatlan_page = true;
+      $title['title'] = $property->Title() . ' - ' . $property->PropertyStatus(true) . ' '. $property->PropertyType(true) . ' - '. $property->RegionName( false );
+      add_filter('the_title', 'custom_ingatlan_title_bar');
+    }
+  }
+
+  if($wp_query->query_vars['custom_page'] == 'news' ) {
+    $title['title'] = __('Nem megtekintett ingatlanok', 'gh');
+  }
+
+  return $title;
+}
+
+function custom_ingatlan_title_bar( $title )
+{ global $wp_query;
+
+  if ($title == 'Helló Világ!')
+  {
+    if($wp_query->query_vars['custom_page'] == 'ingatlan' ) {
+      $xs = explode("-",$wp_query->query_vars['urlstring']);
+      $ingatlan_id = end($xs);
+      $properties = new Properties(array(
+        'id' => $ingatlan_id,
+        'post_status' => array('publish'),
+      ));
+      $property = $properties->getList();
+      $property = $property[0];
+
+      if ($property) {
+        $title = $property->Title();
+      }
+    }
+  }
+
+  return $title;
+}
+
+function ingatlan_social_share_titlebar()
+{
+  ob_start();
+    include(locate_template('/templates/parts/ingatlan_social_share_titlebar.php'));
+    $output = ob_get_contents();
+  ob_end_clean();
+
+  return $output;
+}
+
+function facebook_og_meta_header()
+{
+  global $wp_query;
+
+  if ( !in_array($wp_query->query['custom_page'], array(SLUG_INGATLAN, SLUG_INGATLAN_LIST)) ) {
+    return;
+  }
+
+  $title = get_option('blogname');
+  $image = 'http://globalhungary.mri-dev.com/wp-content/uploads/global-hungary-logo-wtext-h75.png';
+  $desc  = get_option('blogdescription');
+  $url   = get_option('site_url');
+
+  if($wp_query->query_vars['custom_page'] == 'ingatlan' ) {
+    $xs = explode("-",$wp_query->query_vars['urlstring']);
+    $ingatlan_id = end($xs);
+    $properties = new Properties(array(
+      'id' => $ingatlan_id,
+      'post_status' => array('publish'),
+    ));
+    $property = $properties->getList();
+    $property = $property[0];
+
+    if ($property) {
+      $title = $property->Title() . ' - ' . $property->PropertyStatus(true) . ' '. $property->PropertyType(true) . ' - '. $property->RegionName( false );
+      $image = $property->ProfilImg();
+      $desc = $property->ShortDesc();
+      $url = $property->URL();
+    }
+  }
+
+  echo '<meta property="fb:app_id" content="'.FB_APP_ID.'"/>'."\n";
+  echo '<meta property="og:title" content="' . $title . '"/>'."\n";
+  echo '<meta property="og:type" content="article"/>'."\n";
+  echo '<meta property="og:url" content="' . $url . '/"/>'."\n";
+  echo '<meta property="og:description" content="' . $desc . '/"/>'."\n";
+  echo '<meta property="og:site_name" content="'.get_option('blogname').'"/>'."\n";
+  echo '<meta property="og:image" content="' . $image . '"/>'."\n";
+
+}
+add_action( 'wp_head', 'facebook_og_meta_header', 5);
+
 
 /**
 * Szerepkörök
@@ -122,3 +242,22 @@ function app_query_vars($aVars)
   return $aVars;
 }
 add_filter('query_vars', 'app_query_vars');
+
+/**
+* AJAX REQUESTS
+*/
+function ajax_requests()
+{
+  $ajax = new AjaxRequests();
+  $ajax->check_property_fav();
+  $ajax->property_fav_action();
+  $ajax->city_autocomplete();
+  $ajax->set_regio_gps();
+}
+add_action( 'init', 'ajax_requests' );
+
+// AJAX URL
+function get_ajax_url( $function )
+{
+  return admin_url('admin-ajax.php?action='.$function);
+}

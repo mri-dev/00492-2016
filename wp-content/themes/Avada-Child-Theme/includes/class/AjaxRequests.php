@@ -19,11 +19,41 @@ class AjaxRequests
     add_action( 'wp_ajax_nopriv_'.__FUNCTION__, array( $this, 'propertyFavAction'));
   }
 
-  public function city_autocomplete($value='')
+  public function city_autocomplete()
   {
     add_action( 'wp_ajax_'.__FUNCTION__, array( $this, 'AutocompleteCity'));
     add_action( 'wp_ajax_nopriv_'.__FUNCTION__, array( $this, 'AutocompleteCity'));
   }
+
+  public function set_regio_gps()
+  {
+    add_action( 'wp_ajax_'.__FUNCTION__, array( $this, 'setRegioGPS'));
+    add_action( 'wp_ajax_nopriv_'.__FUNCTION__, array( $this, 'setRegioGPS'));
+  }
+
+  public function setRegioGPS()
+  {
+
+    extract($_POST);
+
+    $return = array(
+      'error' => 0,
+      'msg'   => ''
+    );
+
+    $lat = (float)$lat;
+    $lng = (float)$lng;
+
+    $lat_meta_id = add_term_meta( $term, 'gps_lat', $lat, true);
+    $lng_meta_id = add_term_meta( $term, 'gps_lng', $lng, true);
+
+    $return['data']['lng'] = $lng_meta_id;
+    $return['data']['lat'] = $lat_meta_id;
+
+    echo json_encode($return);
+    die();
+  }
+
 
   public function checkPropertyFavorites()
   {
@@ -39,7 +69,12 @@ class AjaxRequests
 
     $ucid = ucid();
 
-    $ids = $wpdb->get_results("SELECT pid FROM listing_favorites WHERE ucid = '$ucid' GROUP BY pid;", ARRAY_A);
+    $ids = $wpdb->get_results("SELECT
+      f.pid
+    FROM listing_favorites as f
+    LEFT JOIN $wpdb->posts as p ON p.ID = f.pid
+    WHERE f.ucid = '$ucid' and p.post_status = 'publish'
+    GROUP BY pid;", ARRAY_A);
 
     foreach ($ids as $id) {
       $total++;
@@ -104,18 +139,24 @@ class AjaxRequests
 
     extract($_GET);
 
+    $pf = new PropertyFactory();
+
     $return = array();
     $arg    = array(
-      'taxonomy' => 'locations'
+      'taxonomy' => 'locations',
+      'hierarchical' => 1,
+      'hide_empty' => 1,
+      'orderby' => 'name',
+      'order' => 'ASC'
     );
 
     if ($region) {
-      $arg['parent'] = $region;
+      $arg['child_of'] = $region;
     }
 
-    $arg['name__like'] = $search;
+    //$arg['name__like'] = $search;
 
-    $terms = get_terms( $arg );
+    $terms = get_terms($arg);
 
     foreach ($terms as $t) {
       if ($t->parent == 0) {
@@ -124,8 +165,15 @@ class AjaxRequests
       if ($t->parent != 0) {
         $parent = get_term($t->parent);
       }
+
+      $name = ( ($parent->slug == 'budapest') ? $parent->name.' / '.$t->name.' '.__('kerület') : $t->name  );
+
+      if (!empty($search) && stristr($name, $search) === FALSE) {
+        continue;
+      }
+
       $return[] = array(
-        'label' => ( ($parent->slug == 'budapest') ? $parent->name.' / '.$t->name.' '.__('kerület') : $t->name  ),
+        'label' => $name,
         'value' => (int)$t->term_id,
         'slug' => $t->slug,
         'region' => $t->parent,

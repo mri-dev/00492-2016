@@ -1,8 +1,21 @@
+<?php
+  global $is_ingatlan_page, $is_ingatlan_list;
+
+  if ($is_ingatlan_page) {
+      $secondary_content = ingatlan_social_share_titlebar();
+  } else if ($is_ingatlan_list) {
+      $secondary_content = null;
+  }
+?>
 <div class="fusion-page-title-bar fusion-page-title-bar-<?php echo $content_type; ?> fusion-page-title-bar-<?php echo $alignment; ?>">
     <div class="fusion-page-title-row">
         <div class="fusion-page-title-wrapper">
             <div class="fusion-page-title-captions">
-                <a href="<?php echo get_option('siteurl', true); ?>" class="back-to-home"> <i class="fa fa-caret-left"></i> Vissza a főoldalra</a>
+                <?php if ($is_ingatlan_page): ?>
+                  <a href="<?php echo get_option('siteurl', true); ?>" class="back-to-home"> <i class="fa fa-caret-left"></i> Vissza a találati listára</a>
+                <?php else: ?>
+                  <a href="<?php echo get_option('siteurl', true); ?>" class="back-to-home"> <i class="fa fa-caret-left"></i> Vissza a főoldalra</a>
+                <?php endif; ?>
                 <?php if ( $title ) : ?>
                     <?php // Add entry-title for rich snippets ?>
                     <?php $entry_title_class = ( Avada()->settings->get( 'disable_date_rich_snippet_pages' ) ) ? ' class="entry-title"' : ''; ?>

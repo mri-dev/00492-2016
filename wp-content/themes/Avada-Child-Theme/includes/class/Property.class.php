@@ -243,6 +243,7 @@ class Property extends PropertyFactory
   {
     $text = '';
 
+    if(!empty($term_list))
     foreach ($term_list as $term) {
       if (!$linked) {
         $text .= $this->i18n_taxonomy_values($term->name).', ';
@@ -570,7 +571,7 @@ class Property extends PropertyFactory
     }
 
     if ($formated) {
-      $price = number_format($price, 0, ' ', '.').' '.$this->getValuta();
+      $price = $this->getValuta().number_format($price, 0, ' ', '.');
     }
 
     return $price;
@@ -584,7 +585,7 @@ class Property extends PropertyFactory
     }
 
     if ($formated) {
-      $price = number_format($price, 0, ' ', '.').' '.$this->getValuta();
+      $price = $this->getValuta().number_format($price, 0, ' ', '.');
     }
 
     return $price;

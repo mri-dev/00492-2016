@@ -7,16 +7,18 @@
 <div class="searcher-header">
   <ul>
     <li>
-      <div class="ico">
-        <i class="fa fa-search"></i>
+      <div class="head-title">
+        <?=__('Ingatlankeresés', 'gh')?>
       </div>
     </li><!--
  --><li>
-      <div class="head-title">
-        <?=__('Ingatlan keresés', 'gh')?>
+      <div class="selecting">
+        <select name="">
+          <option value="">---</option>
+        </select>
       </div>
-    </li>
-  </ul>
+    </li><!--
+--></ul>
 </div><!--
 --><div class="searcher-wrapper">
     <div class="form-items">
@@ -100,9 +102,6 @@
 </div>
 <div class="submit">
   <button type="submit"><i class="fa fa-search"></i> <?=__('Keresés', 'gh')?></button>
-</div>
-<div class="searcher-footer">
-  OPTIONS
 </div>
 </form>
 <script type="text/javascript">

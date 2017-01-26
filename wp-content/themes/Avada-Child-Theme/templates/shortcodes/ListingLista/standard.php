@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="sec-line">
-      <div class="price"><?=$item->Price(true)?></div>
+      <div class="price"><?=$item->getValuta()?><?=$item->Price(true)?></div>
     </div>
   </div>
 </div>

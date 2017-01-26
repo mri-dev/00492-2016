@@ -126,10 +126,10 @@
                     </div>
                   <?php endif; ?>
                   <div class="current-price">
-                    <?=$prop->Price(true)?> <span class="type"><?=$prop->PriceType()?></span>
+                    <span class="type"><?=$prop->PriceType()?></span><?=$prop->Price(true)?>
                   </div>
-                </div>
-              </div>
+                </div><!--
+            --></div>
             </div>
             <div class="contact">
               <div class="profil-img">
@@ -225,9 +225,9 @@
                 <?
                   $gps = $prop->GPS();
                   $gps_term_id = $regio->term_id;
-                  /*ob_start();
+                  ob_start();
                   include(locate_template('/templates/parts/map_place_poi.php'));
-                  ob_end_flush();*/
+                  ob_end_flush();
                 ?>
               </div>
             </div>

@@ -74,7 +74,7 @@
     "elementType": "labels.text.fill",
     "stylers": [
       {
-        "color": "#ff8d00"
+        "color": "#0ec5c7"
       }
     ]
   },
