@@ -421,7 +421,8 @@ a.back-to-home {
     }
   }
 
-  .listing-list-set-viewed{
+  .listing-list-set-viewed,
+  .listing-list-set-recomended{
     .header {
       h2 {
         color: #79828e !important;
@@ -480,6 +481,12 @@ a.back-to-home {
 }
 
 body.ingatlan_page {
+  .divider {
+    height: 1px;
+    width: 100%;
+    margin: 10px 0;
+    background: #d7d7d7;
+  }
   #main {
     background: #ffffff;
     padding: 0 !important;
@@ -505,11 +512,12 @@ body.ingatlan_page {
 }
 
 .ingatlan-page-view{
-  .history-list{
+  .history-list,
+  .recomended-list{
     padding: 20px 0;
 
     .header {
-      padding: 0 0 25px 0;
+      padding: 0 0 15px 0;
 
       h2 {
         font-size: 2.2em !important;
@@ -554,6 +562,7 @@ body.ingatlan_page {
     }
 
     .tab-content{
+      margin-top: -2px;
       .tab-pane {
         padding: 0 !important;
         background: #ffffff;
@@ -617,7 +626,7 @@ body.ingatlan_page {
         margin: 0;
         position:relative;
         h1 {
-          margin: 0 0 5px 0;
+          margin: 0 0 10px 0;
           font-size: 2em;
           line-height: 1;
           color: #78818d;
@@ -629,12 +638,12 @@ body.ingatlan_page {
         .subtitle {
           font-size: 1.3em;
           line-height: 1.3;
+          margin: 0 0 20px 0;
 
           .addr{
             font-family: 'Arial';
             font-weight: bold !important;
             color: $color-secondary;
-            margin-right: 15px;
           }
         }
 
@@ -796,12 +805,18 @@ body.ingatlan_page {
           padding: 8px;
           line-height: 65px;
           .current-price {
-            font-size: 3.4em;
+            font-size: 2.8em;
             line-height: 88px;
+
+            .pt {
+              font-size: 0.5em;
+              font-weight: normal;
+              letter-spacing: -1px;
+            }
           }
           .old-price {
             position: relative;
-            font-size: 1.6em;
+            font-size: 1.3em;
             float: left;
             font-weight: normal;
             line-height: 88px;
@@ -823,6 +838,11 @@ body.ingatlan_page {
         }
         &:nth-child(3n+3) {
           border-right: none;
+        }
+        &.smaller {
+          .v {
+            font-size: 1.3em;
+          }
         }
       }
 
@@ -1009,7 +1029,8 @@ body.ingatlan_page {
     }
   }
 
-  .history-list{
+  .history-list,
+  .recomended-list{
     .header {
       text-align: center;
       h2{
@@ -1682,7 +1703,7 @@ input[type=checkbox]:checked + label {
 
           .dropoff {
             right: 5px;
-            top: 10px;
+            top: 16px;
             z-index: 90;
 
             img {
@@ -1774,6 +1795,12 @@ input[type=checkbox]:checked + label {
             font-size: 2.2em;
             font-family: 'Arial';
             font-weight: 700;
+
+            .pt {
+              font-size: 0.5em;
+              letter-spacing: -1px;
+              font-weight: normal;
+            }
           }
         }
 
@@ -1855,7 +1882,7 @@ input[type=checkbox]:checked + label {
 
       .dropoff {
         right: 5px !important;
-        top: 10px !important;
+        top: 17px !important;
       }
 
       .image{

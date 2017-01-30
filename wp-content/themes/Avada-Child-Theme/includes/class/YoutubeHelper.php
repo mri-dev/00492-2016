@@ -1,7 +1,7 @@
 <?
 class YoutubeHelper {
 	static $video_width = '100%';
-	static $video_height = 320;
+	static $video_height = 420;
 
 	static function videoData($yid){
 		$url = "http://gdata.youtube.com/feeds/api/videos/" . $yid;

@@ -236,7 +236,13 @@ class Property extends PropertyFactory
   {
     $terms = wp_get_post_terms( $this->ID(), 'property-condition' );
 
-    return $terms;
+    if ($text) {
+      $term  = $terms[0];
+      return $term->name;
+    }
+
+
+    return $term;
   }
 
   public function multivalue_list( $term_list = array(), $linked = false, $base = '' )
@@ -479,6 +485,20 @@ class Property extends PropertyFactory
     return $ids;
   }
 
+  public function Videos()
+  {
+    $video = $this->getMetaValue( '_listing_video' );
+
+    return $video;
+  }
+
+  public function Layouts()
+  {
+    $v = $this->getMetaValue( '_listing_property_layouts' );
+
+    return $v;
+  }
+
   public function ShortDesc()
   {
     return $this->raw_post->post_excerpt;
@@ -554,9 +574,9 @@ class Property extends PropertyFactory
   {
     $price_index = (int)$this->getMetaValue('_listing_flag_pricetype');
     if ($price_index === 0) {
-      return $this->getValuta();
+      return false;
     }
-    return $this->getPriceTypeText($price_index);
+    return str_replace($this->getValuta().' ', '', $this->getPriceTypeText($price_index));
   }
   public function PriceTypeID()
   {

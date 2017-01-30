@@ -114,13 +114,21 @@ class Properties extends PropertyFactory
     );
     $meta_qry = array();
 
-    if (isset($this->arg['highlight'])) {
+    if (isset($this->arg['highlight']))
+    {
+      $meta_qry[] = array(
+          array(
+            'key' => '_listing_flag_highlight',
+            'value' => '1'
+          )
+      );
       $post_arg['tax_query'][] = array(
-        'taxonomy'  => 'status',
+        'taxonomy'  => 'positions',
         'field'     => 'name',
-        'terms'     => 'Kiemelt',
+        'terms'     => 'Főoldal kiemelt',
         'compare'   => '='
       );
+      
     }
 
     if (isset($this->arg['orderby'])) {

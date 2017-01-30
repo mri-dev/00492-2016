@@ -3,6 +3,7 @@ define('DEVMODE', true);
 define('THEMEROOT', get_stylesheet_directory_uri() );
 define('IMGROOT', THEMEROOT.'/images/' );
 define('IMG', IMGROOT );
+define('IFROOT', THEMEROOT );
 define('SLUG_INGATLAN', 'ingatlan' );
 define('SLUG_INGATLANOK', 'ingatlan-kereso' );
 define('SLUG_INGATLAN_LIST', 'ingatlan-kereso' );
@@ -17,13 +18,13 @@ require_once "includes/include.php";
 function theme_enqueue_styles() {
     wp_enqueue_style( 'avada-parent-stylesheet', get_template_directory_uri() . '/style.css?' . ( (DEVMODE === true) ? time() : '' )  );
     wp_enqueue_style( 'avada-child-stylesheet', IFROOT . '/style.css?' . ( (DEVMODE === true) ? time() : '' ) );
-    //wp_enqueue_style( 'slick', IFROOT . '/assets/vendor/slick/slick.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
-    //wp_enqueue_style( 'slick-theme', IFROOT . '/assets/css/slick-theme.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
-    //wp_enqueue_script( 'slick', IFROOT . '/assets/vendor/slick/slick.min.js?t=' . ( (DEVMODE === true) ? time() : '' ) , array('jquery'));
+    wp_enqueue_style( 'slick', IFROOT . '/assets/vendor/slick/slick.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
+    wp_enqueue_style( 'slick-theme', IFROOT . '/assets/css/slick-theme.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
+    wp_enqueue_script( 'slick', IFROOT . '/assets/vendor/slick/slick.min.js?t=' . ( (DEVMODE === true) ? time() : '' ) , array('jquery'));
     wp_enqueue_script( 'google-maps', '//maps.googleapis.com/maps/api/js?sensor=false&language=hu&region=hu&libraries=places&key='.GOOGLE_API_KEY);
     //wp_enqueue_script( 'google-charts', '//www.gstatic.com/charts/loader.js');
     //wp_enqueue_script( 'mocjax', IFROOT . '/assets/vendor/autocomplete/scripts/jquery.mockjax.js');
-    //wp_enqueue_script( 'autocomplete', IFROOT . '/assets/vendor/autocomplete/dist/jquery.autocomplete.min.js');
+    wp_enqueue_script( 'autocomplete', IFROOT . '/assets/vendor/autocomplete/dist/jquery.autocomplete.min.js');
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 

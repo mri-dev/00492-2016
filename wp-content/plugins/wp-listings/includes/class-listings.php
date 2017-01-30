@@ -183,15 +183,22 @@ class WP_Listings {
 
 	}
 
-	function register_meta_boxes() {
+	function register_meta_boxes()
+	{
+		add_meta_box( 'listing_check_flags_metabox', __( 'Extra Details', 'wp-listings' ), array( &$this, 'listing_check_flags_metabox' ), 'listing', 'normal', 'high' );
+
 		add_meta_box( 'listing_details_metabox', __( 'Property Details', 'wp-listings' ), array( &$this, 'listing_details_metabox' ), 'listing', 'normal', 'high' );
-		add_meta_box( 'listing_features_metabox', __( 'Additional Details', 'wp-listings' ), array( &$this, 'listing_features_metabox' ), 'listing', 'normal', 'high' );
+
+		//add_meta_box( 'listing_features_metabox', __( 'Additional Details', 'wp-listings' ), array( &$this, 'listing_features_metabox' ), 'listing', 'normal', 'high' );
+
 		if ( !class_exists( 'Idx_Broker_Plugin' ) ) {
 			add_meta_box( 'idx_metabox', __( 'IDX Broker', 'wp-listings' ), array( &$this, 'idx_metabox' ), 'wp-listings-options', 'side', 'core' );
 		}
 		if( !function_exists( 'equity' ) ) {
 			add_meta_box( 'agentevo_metabox', __( 'Equity Framework', 'wp-listings' ), array( &$this, 'agentevo_metabox' ), 'wp-listings-options', 'side', 'core' );
 		}
+
+
 
 	}
 
@@ -201,6 +208,10 @@ class WP_Listings {
 
 	function listing_features_metabox() {
 		include( dirname( __FILE__ ) . '/views/listing-features-metabox.php' );
+	}
+
+	function listing_check_flags_metabox() {
+		include( dirname( __FILE__ ) . '/views/listing-checkboxflags-metabox.php' );
 	}
 
 	function agentevo_metabox() {
@@ -229,6 +240,12 @@ class WP_Listings {
 	    if ( ! current_user_can( 'edit_post', $post_id ) )
 	        return;
 
+
+			$checkbox_collector = $_POST['wp_listings']['checkboxes'];
+			unset($_POST['wp_listings']['checkboxes']);
+			$checkbox_selected = $_POST['wp_listings']['checkbox'];
+			unset($_POST['wp_listings']['checkbox']);
+
 	    $property_details = $_POST['wp_listings'];
 
 	    if ( ! isset( $property_details['_listing_hide_price'] ) )
@@ -246,6 +263,17 @@ class WP_Listings {
 
 	    }
 
+			// checkboxes
+			foreach ((array)$checkbox_selected as $cb => $f) {
+				update_post_meta($post->ID, $cb, '1');
+				unset($checkbox_collector[array_search($cb, (array)$checkbox_collector)]);
+			}
+
+
+			if(!empty($checkbox_collector))
+			foreach ((array)$checkbox_collector as $key) {
+				delete_post_meta($post->ID, $key);
+			}
 	}
 
 	/**

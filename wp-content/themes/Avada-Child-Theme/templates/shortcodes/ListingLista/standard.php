@@ -57,7 +57,7 @@
           <div class="v c"><?=$o?></div>
         </div>
       </div>
-      <?php $o = $item->getMetaValue('_listing_rooms'); ?>
+      <?php $o = $item->getMetaValue('_listing_room_numbers'); ?>
       <?php $o = ($o && !empty($o)) ? $o : $def_o; ?>
       <div class="opt">
         <div class="d">
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="sec-line">
-      <div class="price"><?=$item->getValuta()?><?=$item->Price(true)?></div>
+      <div class="price"><?=$item->getValuta()?><?=$item->Price(true)?><span class="pt"><?php echo $item->PriceType(); ?></span></div>
     </div>
   </div>
 </div>

@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="sec-line">
-      <div class="price"><?=$item->getValuta()?><?=$item->Price(true)?></div>
+      <div class="price"><?=$item->getValuta()?><?=$item->Price(true)?><span class="pt"><?php echo $item->PriceType(); ?></span></div>
     </div>
   </div>
 </div>

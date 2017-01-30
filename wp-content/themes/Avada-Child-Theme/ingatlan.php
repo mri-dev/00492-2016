@@ -112,12 +112,12 @@
                  </div><!--
               --><div class="v"><?=($v = $prop->getMetaValue('_listing_garage'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
-                <div class="e">
+                <div class="e smaller">
                  <div class="h">
                    <div class="ico"><img src="<?=IMG?>/ico/allapot.svg" alt="<?=__('Állapot', 'ti')?>"></div>
                    <?=__('Állapot', 'ti')?>
                  </div><!--
-              --><div class="v"><?=($v = $prop->PropertyCondition(true))?$prop->multivalue_list($v):'<span class="na">'.__('N/A', 'ti').'</span>'?></div>
+              --><div class="v"><?=($v = $prop->PropertyCondition(true))?$v:'<span class="na">'.__('N/A', 'ti').'</span>'?></div>
                 </div>
                 <div class="e price">
                   <?php if ($prop->isDropOff()): ?>
@@ -126,7 +126,7 @@
                     </div>
                   <?php endif; ?>
                   <div class="current-price">
-                    <span class="type"><?=$prop->PriceType()?></span><?=$prop->Price(true)?>
+                    <span class="type"><?=$prop->getValuta()?></span><?=$prop->Price(true)?><span class="pt"><?php echo $prop->PriceType(); ?></span>
                   </div>
                 </div><!--
             --></div>
@@ -206,12 +206,17 @@
     							</div>
                   <div class="tab-pane" id="alaprajz">
                     <div class="pad">
-                      Hamarosan...
+                    <?php echo $prop->Layouts(); ?>
                     </div>
     							</div>
                   <div class="tab-pane" id="video">
                     <div class="pad">
-                      Hamarosan...
+                      <?
+                        $video = $prop->Videos();
+                        $video = \YoutubeHelper::ember( $video );
+
+                        echo $video;
+                      ?>
                     </div>
     							</div>
     						</div>
@@ -235,6 +240,12 @@
         </div>
       </div>
 
+      <div class="recomended-list">
+        <div class="page-holder">
+          <? echo do_shortcode('[listing-list view="standard" src="recomended" limit="4"]'); ?>
+        </div>
+      </div>
+      <div class="divider"></div>
       <div class="history-list">
         <div class="page-holder">
           <? echo do_shortcode('[listing-list view="simple-priced" src="viewed" limit="5"]'); ?>
