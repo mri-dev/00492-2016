@@ -1040,25 +1040,224 @@ body.ingatlan_page {
   }
 }
 
-.listing-slider-holder{
+
+.listing-slider-holder
+{
   width: 100%;
   position: relative;
   background: #c7c7c7;
   color: white;
+  overflow: hidden;
 
-  .slider-inside-holder{
-    width: $content-width;
-    margin: 0 auto;
-  }
-
-  &.style-v1 {
+  /* V1 */
+  &.style-v1{
     height: 450px;
     max-height: 450px;
     overflow: hidden;
-    padding: 20px;
+    padding: 0;
     font-size: 1.3em;
+
+    .listing-slider-list{
+      height: 100%;
+      .list-wrapper{
+        position: relative;
+        height: 100%;
+        .pslider{
+          width: 100%;
+          height: 100%;
+          display: none;
+
+
+          .image {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 10;
+          }
+
+          .inside-wrapper{
+            width: $content-width;
+            margin: 0 auto;
+            position: relative;
+            z-index: 100;
+
+            .info-wrapper {
+              width: 90%;
+              margin: 0 auto;
+              position: relative;
+              .infobox {
+                position: absolute;;
+                top: 90px;
+                left: 0;
+                background: rgba(14, 197, 199, 0.91);
+                color: white;
+                padding: 15px;
+
+                .features {
+                  position: absolute;
+                  top: 0;
+                  left: 100%;
+
+                  & > div {
+                    right: 0;
+                    top: 0;
+                    left:auto;
+                    background: #435061;
+                    padding: 10px 20px;
+                    font-size: 0.9em;
+                    text-transform: uppercase;
+                    line-height: 1;
+                    text-align: left;
+                    margin-bottom: 4px;
+                  }
+
+                  .dropoff{
+                     background: transparent;
+                  }
+
+                  .highlight{
+                    background: $color-red;
+                  }
+
+                  .newi{
+                    position: absolute;
+                    background: $color-red;
+                    left: 0;
+                    top:0;
+                    right: auto;
+                    width: 35px;
+                    height: 35px;
+                    padding: 0;
+                    text-align: center;
+                    line-height: 35px;
+
+
+                    -webkit-border-radius: 35px;
+                    -moz-border-radius: 35px;
+                    border-radius: 35px;
+                    -webkit-transform: translate(-50%, -50%);
+                    -moz-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+                  }
+
+                }
+
+                .region {
+                  margin-bottom: 10px;
+                  font-weight: bold;
+                }
+
+                .important-options{
+                  display: flex;
+                  flex-wrap: wrap;
+                  width: 300px;
+
+                  & > .opt {
+                    flex-basis: 50%;
+                    font-size: 1em;
+                    padding: 5px;
+                    line-height: 18px;
+                    .d {
+                      padding: 0;
+                      line-height: 10px;
+                      font-size: 0.78em;
+                      color: #ffffff;
+                      text-align: center;
+                      .ico {
+                        height: 16px;
+                        width: 22px;
+                        margin-right: 5px;
+                        text-align: center;
+                        float: left;
+                        img {
+                          height: 100%;
+                        }
+                      }
+
+                      .t {
+                        line-height: 18px;
+                        float: left;
+                      }
+                      .v {
+                        line-height: 18px;
+                        float: right;
+                        padding: 0 3px;
+
+                        &.c {
+                          background: #ffffff;
+                          color: #444444;
+                          padding: 5px;
+                          font-size: 0.8em;
+                          line-height: 1;
+                          letter-spacing: -1px;
+                          text-align: center;
+                          -moz-border-radius: 15px;
+                          -webkit-border-radius: 15px;
+                          border-radius: 15px;
+                          width: 20px;
+                          height: 20px;
+                        }
+                      }
+                    }
+                  }
+
+                  & > .opt:last-child{
+                    border-right: none;
+                  }
+                }
+
+                .prices {
+                  margin-top: 5px;
+                  padding-left: 5px;
+                  .price {
+                    font-size: 2em;
+                    font-weight: bold;
+
+                    .oldar {
+                      font-size: 0.4em;
+                      font-weight: normal;
+                      color: #e4e4e4;
+                      position: absolute;
+                      margin-top: 44px;
+                      font-style: italic;
+                      &:before {
+                        position: absolute;
+                        width: 100%;
+                        height: 2px;
+                        background: #d9ecf5;
+                        left: 0;
+                        top: 50%;
+                        content: "";
+                        -webkit-transform: rotate(-10deg);
+                        -moz-transform: rotate(-10deg);
+                        transform: rotate(-10deg);
+                        content: "";
+                      }
+                    }
+                  }
+                  .url {
+                    color: white;
+                    float: right;
+                    font-size: 2em;
+                    line-height: 54px;
+                  }
+                }
+              }
+            }
+          }
+          &.active {
+            display: block;
+          }
+        }
+      }
+    }
   }
+  /* END: V1 */
 }
+
 
 .listing-searcher-holder {
   background: #ffffff;
@@ -1105,8 +1304,7 @@ body.ingatlan_page {
 
   .searcher-header{
     position: relative;;
-    left: -1px;
-    right: -1px;
+    left: 0;
     width: 100%;
     top: 0;
     background: $color-secondary;

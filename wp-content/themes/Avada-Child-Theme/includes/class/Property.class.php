@@ -753,6 +753,13 @@ class Property extends PropertyFactory
     return $click;
   }
 
+  public function SliderImage()
+  {
+    $profil = $this->ProfilImg();
+
+    return $profil;
+  }
+
   public function ProfilImg()
   {
     global $wpdb;

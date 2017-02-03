@@ -128,7 +128,7 @@ class Properties extends PropertyFactory
         'terms'     => 'Főoldal kiemelt',
         'compare'   => '='
       );
-      
+
     }
 
     if (isset($this->arg['orderby'])) {
@@ -160,6 +160,7 @@ class Properties extends PropertyFactory
             'key' => '_listing_flag_archived',
             'compare' => 'NOT EXISTS'
           ),
+
           array(
             'key' => '_listing_flag_archived',
             'value' => ''
@@ -225,6 +226,16 @@ class Properties extends PropertyFactory
         'field'     => 'term_id',
         'terms'     => $this->arg['property-types'],
         'compare'   => 'IN'
+      );
+    }
+
+    // Pozíciók
+    if (isset($this->arg['position']) && !empty($this->arg['position'])) {
+      $post_arg['tax_query'][] = array(
+        'taxonomy'  => 'positions',
+        'field'     => 'name',
+        'terms'     => $this->arg['position'],
+        'compare'   => '='
       );
     }
 
@@ -294,12 +305,13 @@ class Properties extends PropertyFactory
 
     $post_arg['paged'] = (int)$this->arg['page'];
 
+
     $posts = new WP_Query($post_arg);
 
     $this->query = $posts;
     $this->count = $posts->found_posts;
 
-    //print_r($posts);
+    //print_r($post_arg);
 
     foreach($posts->posts as $post) {
       $this->datalist[] = new Property($post);

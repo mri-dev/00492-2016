@@ -24,11 +24,33 @@ class ListingSlider
         $attr = shortcode_atts( $defaults, $attr );
         $output = '<div class="'.self::SCTAG.'-holder style-'.$attr['view'].'">';
 
-        $properties = new Properties();
+        $arg = array();
+        $arg['position'] = 'Slideshow';
+        $arg['order'] = 'ASC';
+        $arg['orderby'] = 'ID';
+        $properties = new Properties( $arg );
+        $list = $properties->getList();
+
 
         $t = new ShortcodeTemplates(__CLASS__.'/'.$attr['view']);
 
-        $output .= $t->load_template();
+
+
+        if ( count($list) != 0 ) {
+          $output .= '<div class="'.self::SCTAG.'-list"><div class="list-wrapper">';
+          $i = 0;
+          foreach ( $list as $e )
+          {
+            $i++;
+            $output .= $t->load_template( array( 'item' => $e, 'i' => $i ) );
+          }
+          $output .= '</div></div>';
+        } else {
+          ob_start();
+          include(locate_template('templates/parts/nodata-listing-get.php'));
+          $output .= ob_get_contents();
+          ob_end_clean();
+        }
 
         $output .= '</div>';
 
