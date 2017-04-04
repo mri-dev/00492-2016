@@ -16,7 +16,7 @@
     </div>
     <div class="prim-line">
       <div class="pos">
-        <div class="region"><a href="#"><img src="<?=IMG?>/ico/pinner.svg" alt=""> <?=$item->RegionName()?></a></div>
+        <div class="region"><a href="#"><img src="<?=IMG?>/ico/pinner.svg" alt=""> <?=$item->RegionName(true, 1)?></a></div>
       </div>
     </div>
     <?php $def_o = '&mdash;'; ?>

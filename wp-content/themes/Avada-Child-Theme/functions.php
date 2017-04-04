@@ -21,6 +21,7 @@ function theme_enqueue_styles() {
     wp_enqueue_style( 'slick', IFROOT . '/assets/vendor/slick/slick.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
     wp_enqueue_style( 'slick-theme', IFROOT . '/assets/css/slick-theme.css?t=' . ( (DEVMODE === true) ? time() : '' ) );
     wp_enqueue_script( 'slick', IFROOT . '/assets/vendor/slick/slick.min.js?t=' . ( (DEVMODE === true) ? time() : '' ) , array('jquery'));
+    wp_enqueue_script( 'simpleSlider', IFROOT . '/assets/vendor/simpleSlider/jquery.simpleslide.js?t=' . ( (DEVMODE === true) ? time() : '' ) , array('jquery'));
     wp_enqueue_script( 'google-maps', '//maps.googleapis.com/maps/api/js?sensor=false&language=hu&region=hu&libraries=places&key='.GOOGLE_API_KEY);
     //wp_enqueue_script( 'google-charts', '//www.gstatic.com/charts/loader.js');
     //wp_enqueue_script( 'mocjax', IFROOT . '/assets/vendor/autocomplete/scripts/jquery.mockjax.js');
@@ -262,3 +263,8 @@ function get_ajax_url( $function )
 {
   return admin_url('admin-ajax.php?action='.$function);
 }
+
+function add_post_enctype() {
+    echo ' enctype="multipart/form-data"';
+}
+add_action('post_edit_form_tag', 'add_post_enctype');

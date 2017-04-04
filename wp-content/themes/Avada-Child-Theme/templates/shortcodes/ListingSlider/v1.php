@@ -1,4 +1,4 @@
-<div class="pslider <?=($i == 1)?'active':''?> i<?=$i?>" >
+<div class="pslider i<?=$i?>" >
   <div class="image" style="background-image: url('<?=$item->SliderImage()?>');"></div>
  <div class="inside-wrapper">
    <div class="info-wrapper">

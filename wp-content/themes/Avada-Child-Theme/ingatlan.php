@@ -61,7 +61,7 @@
             <div class="title">
               <h1><?=$prop->Title()?></h1>
               <div class="subtitle">
-                <span class="addr"><i class="fa fa-map-marker"></i> <?php $regtext = ''; foreach ($regions as $r ): $regtext .= $r->name.' / '; endforeach; $regtext = rtrim($regtext, ' / '); ?><?=$regtext?></span>
+                <span class="addr"><i class="fa fa-map-marker"></i> <?php echo $prop->RegionName(true, 0); ?></span>
 
                 <!-- <strong><?=$prop->multivalue_list($prop->PropertyType(true), true, '/'.SLUG_INGATLAN_LIST.'/?c=#value#')?></strong>-->
               </div>

@@ -37,7 +37,7 @@ class ListingSlider
 
 
         if ( count($list) != 0 ) {
-          $output .= '<div class="'.self::SCTAG.'-list"><div class="list-wrapper">';
+          $output .= '<div class="'.self::SCTAG.'-list" key="psliding" dataSet="1,2" start="1" step="1"><div class="list-wrapper">';
           $i = 0;
           foreach ( $list as $e )
           {
@@ -45,6 +45,12 @@ class ListingSlider
             $output .= $t->load_template( array( 'item' => $e, 'i' => $i ) );
           }
           $output .= '</div></div>';
+
+          ob_start();
+          include(locate_template('templates/shortcodes/'.__CLASS__.'/scripts.php'));
+          $output .= ob_get_contents();
+          ob_end_clean();
+
         } else {
           ob_start();
           include(locate_template('templates/parts/nodata-listing-get.php'));

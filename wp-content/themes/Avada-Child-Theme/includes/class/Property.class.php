@@ -82,73 +82,70 @@ class Property extends PropertyFactory
 
     return get_option('siteurl').'/'.SLUG_INGATLAN.'/'.$megye.'/'.$regionslug.'/'.sanitize_title($this->Title()).'-'.$this->ID();
   }
-  public function RegionName( $html_text = true )
+  public function RegionName( $html_text = true, $start_deep = 0 )
   {
-    $terms = wp_get_post_terms( $this->ID(), 'locations' );
+    $region_arr = array();
+    $regions = $this->Regions();
+    $has_child = true;
+    $current = $regions;
+    $deep = 0;
 
-    foreach ($terms as $term) {
-      if($term->taxonomy == 'locations') {
-        $parent = false;
-        if ($term->parent != 0) {
-          $parent = get_term($term->parent);
-        }
+    while( $has_child ) {
+      if($deep >= $start_deep){
+        $region_arr[] = $current->name;
+      }
 
-        if(in_array($term->name, $this->fake_city)) {
-          $parent = false;
-        }
+      $deep++;
 
-        if ($html_text) {
-          return ($parent) ? $parent->name.' <span class="sep">/</span> '.$term->name . ( ($parent->name == 'Budapest') ? ' '.__('kerület', 'gh') : '' ) : $term->name;
-        } else {
-          return ($parent) ? $parent->name.', '.$term->name . ( ($parent->name == 'Budapest') ? ' '.__('kerület', 'gh') : '' ) : $term->name;
-        }
-
+      if( $current->children ) {
+        $current = $current->children;
+      } else {
+        $current = false;
+        $has_child = false;
       }
     }
 
-    return false;
+    $region = implode(' / ', $region_arr);
+
+    //$region = rtrim(' / ',  $region);
+
+    return $region;
   }
 
   public function Regions()
   {
     $regions  = array();
-    $start    = true;
-    $end      = false;
     $terms    = wp_get_post_terms( $this->ID(), 'locations' );
-    $term     = $terms[0];
-    unset($terms);
-    $ctp      = $term->parent;
-    $regions[$term->term_id] = $term;
+    $top_term = $this->get_top_term($terms);
 
-    if($term->parent != 0){
-      $pt = get_term($term->parent);
-      if($pt->name == 'Budapest') {
-        $term->name .= ' '.__('kerület', 'gh');
-      }
-    }
+    $top_term->children = $this->load_child_term($top_term->term_id, $terms);
 
-    while ( $ctp )
-    {
-      $term =  get_term($ctp, 'locations');
-
-      if($term->parent != 0){
-        $pt = get_term($term->parent);
-        if($pt->name == 'Budapest') {
-          $term->name .= ' '.__('kerület', 'gh');
-        }
-      }
-
-      $regions[$term->term_id] = $term;
-
-      if($term->parent != 0) {
-        $ctp = $term->parent;
-      } else {
-        $ctp = false;
-        $term = null;
-      }
-    }
+    return $top_term;
 
     return array_reverse($regions);
+  }
+
+  private function get_top_term( $terms )
+  {
+    foreach ((array)$terms as $t ) {
+      if($t->parent == 0) return $t;
+      continue;
+    }
+
+    return false;
+  }
+
+  private function load_child_term($parent, $terms)
+  {
+    foreach ((array)$terms as $t ) {
+      if($t->parent == $parent){
+        $t->children = $this->load_child_term($t->term_id, $terms);
+        return $t;
+      }
+      continue;
+    }
+
+    return false;
   }
 
   public function RegionSlug()
@@ -561,7 +558,7 @@ class Property extends PropertyFactory
     }
 
     if ( !$price ) {
-      return __('Ár hiányzik (!)', 'gh');
+      return '??';
     }
 
     if ($formated) {
@@ -612,7 +609,10 @@ class Property extends PropertyFactory
   }
   public function ProfilImgID()
   {
-    return get_post_thumbnail_id( $this->ID() );
+    $img = get_post_thumbnail_id( $this->ID() );
+
+
+    return $img;
   }
 
   public function Paramteres()
@@ -765,10 +765,12 @@ class Property extends PropertyFactory
     global $wpdb;
     $img_id = (int)get_post_thumbnail_id( $this->ID() );
 
+
     if (!$img_id) {
       return IMG.'/default_image.jpg';
     } else {
-      return $wpdb->get_var($wpdb->prepare("SELECT guid FROM $wpdb->posts WHERE post_type='attachment' and post_parent = %d and ID = %d", $this->ID(), $img_id));
+      $img = wp_get_attachment_url($img_id);
+      return $img;
     }
   }
 

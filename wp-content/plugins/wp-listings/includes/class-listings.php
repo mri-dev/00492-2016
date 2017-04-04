@@ -13,6 +13,7 @@ class WP_Listings {
 	var $settings_page = 'wp-listings-settings';
 	var $settings_field = 'wp_listings_taxonomies';
 	var $menu_page = 'register-taxonomies';
+	private $temppostid = false;
 
 	var $options;
 
@@ -30,7 +31,6 @@ class WP_Listings {
 
 		$this->property_details = apply_filters( 'wp_listings_property_details', array(
 			'col1' => array(
-				__( 'Pontos cím (utca, házszám, stb)', 'ti' ) => '_listing_address',
 			  __( 'Irányár', 'ti' ) 	=> '_listing_price',
 				__( 'Akciós irányár', 'ti' ) 	=> '_listing_offprice',
 			),
@@ -185,9 +185,11 @@ class WP_Listings {
 
 	function register_meta_boxes()
 	{
-		add_meta_box( 'listing_check_flags_metabox', __( 'Extra Details', 'wp-listings' ), array( &$this, 'listing_check_flags_metabox' ), 'listing', 'normal', 'high' );
+		add_meta_box( 'listing_images_metabox', __( 'Ingatlan képei', 'ti' ), array( &$this, 'listing_images_metabox' ), 'listing', 'normal', 'high' );
 
-		add_meta_box( 'listing_details_metabox', __( 'Property Details', 'wp-listings' ), array( &$this, 'listing_details_metabox' ), 'listing', 'normal', 'high' );
+		add_meta_box( 'listing_check_flags_metabox', __( 'Extra paraméterek', 'ti' ), array( &$this, 'listing_check_flags_metabox' ), 'listing', 'normal', 'high' );
+
+		add_meta_box( 'listing_details_metabox', __( 'Ingatlan paraméterek', 'ti' ), array( &$this, 'listing_details_metabox' ), 'listing', 'normal', 'high' );
 
 		//add_meta_box( 'listing_features_metabox', __( 'Additional Details', 'wp-listings' ), array( &$this, 'listing_features_metabox' ), 'listing', 'normal', 'high' );
 
@@ -200,6 +202,10 @@ class WP_Listings {
 
 
 
+	}
+
+	function listing_images_metabox() {
+		include( dirname( __FILE__ ) . '/views/listing-images-metabox.php' );
 	}
 
 	function listing_details_metabox() {
@@ -227,6 +233,11 @@ class WP_Listings {
 		/** Run only on listings post type save */
 		if ( 'listing' != $post->post_type )
 			return;
+
+		/* * /
+		print_r($_POST['wp_listings']);
+		exit;
+		/* */
 
 		if ( !isset( $_POST['wp_listings_metabox_nonce'] ) || !wp_verify_nonce( $_POST['wp_listings_metabox_nonce'], 'wp_listings_metabox_save' ) )
 	        return $post_id;
@@ -274,7 +285,133 @@ class WP_Listings {
 			foreach ((array)$checkbox_collector as $key) {
 				delete_post_meta($post->ID, $key);
 			}
+
+		 /********************************************************************
+		 * Images
+		 *********************************************************************/
+		 $post_id = $post->ID;
+		 $this->temppostid = $post_id;
+		 $uploads_dir = wp_upload_dir();
+		 $property_image_dir = $uploads_dir['basedir'] . '/listing/' . $post_id;
+
+		 if ( $_FILES && isset($_FILES['property_images']) )
+		 {
+			 $first_imaged = false;
+			 add_filter( 'upload_dir', array( $this, 'upload_dir_filter') );
+			 add_filter( 'intermediate_image_sizes', '__return_empty_array', 99 );
+
+			 $files = $_FILES["property_images"];
+
+			 foreach ($files['name'] as $key => $value) {
+				 if ($files['name'][$key]) {
+					 $file = array(
+							 'name' => $files['name'][$key],
+							 'type' => $files['type'][$key],
+							 'tmp_name' => $files['tmp_name'][$key],
+							 'error' => $files['error'][$key],
+							 'size' => $files['size'][$key]
+					 );
+
+					 $_FILES = array ("property_images" => $file);
+
+					 foreach ($_FILES as $file => $array) {
+						 $newupload = $this->uploads_handler( $file, $post_id);
+
+						 $changed['image_uploads'][] = $newupload;
+
+						 // Első kép beállítása
+						 /*
+						 if ( !$first_imaged && empty($extra['feature_img_id']) ) {
+							 set_post_thumbnail( $this->temppostid, $newupload);
+							 $first_imaged = true;
+						 }*/
+
+					 }
+				 }
+			 }
+			 remove_filter( 'upload_dir', array( $this, 'upload_dir_filter') );
+			 remove_filter( 'intermediate_image_sizes', '__return_empty_array', 99 );
+		 }
+
+		 $extra = $_POST['wp_listings']['extra'];
+
+		 // Profilkép cseréje
+      if ( $extra['feature_img_id'] != get_post_thumbnail_id($this->temppostid)) {
+        set_post_thumbnail( $this->temppostid, $extra['feature_img_id']);
+      }
+      // Kép(ek) törlése
+      if (!empty($extra['deleting_imgs'])) {
+        foreach ($extra['deleting_imgs']as $did => $v) {
+          wp_delete_attachment( $did );
+        }
+      }
+
+		 $this->temppostid = false;
 	}
+
+	public function upload_dir_filter( $dir )
+  {
+    return array(
+      'path'   => $dir['basedir'] . '/listing/'.$this->temppostid,
+      'url'    => $dir['baseurl'] . '/listing/'.$this->temppostid,
+      'subdir' => '/listing/'.$this->temppostid,
+     ) + $dir;
+  }
+
+	public function uploads_handler ( $file_handler, $post_id, $set_thu = false )
+  {
+    // check to make sure its a successful upload
+    if ($_FILES[$file_handler]['error'] !== UPLOAD_ERR_OK) __return_false();
+
+    require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
+    $attach_id = media_handle_upload( $file_handler, $this->temppostid );
+
+    // Resize
+    if ( true && $attach_id )
+    {
+      $this->resize_attachment($attach_id, 1200, 1200);
+    }
+
+    // Watermark
+    if ( $this->do_watermark && $attach_id )
+    {
+			/*
+      $image = new ImageModifier();
+      $image->loadResourceByID($attach_id);
+      $image->watermark();
+			*/
+    }
+
+    return $attach_id;
+  }
+
+
+  private function resize_attachment( $attachment_id, $width = 1024, $height = 1024 )
+  {
+    // Get file path
+    $file = get_attached_file($attachment_id);
+
+    // Get editor, resize and overwrite file
+    $image_editor = wp_get_image_editor($file);
+    $image_editor->resize($width, $height);
+    $image_editor->set_quality(80);
+    $saved = $image_editor->save($file);
+
+    // We need to change the metadata of the attachment to reflect the new size
+
+    // Get attachment meta
+    $image_meta = get_post_meta($attachment_id, '_wp_attachment_metadata', true);
+
+    // We need to change width and height in metadata
+    $image_meta['height'] = $saved['height'];
+    $image_meta['width']  = $saved['width'];
+
+    // Update metadata
+    return update_post_meta($attachment_id, '_wp_attachment_metadata', $image_meta);
+  }
 
 	/**
 	 * Filter the columns in the "Listings" screen, define our own.
