@@ -105,15 +105,6 @@
 }
 .slick-initialized .slick-slide img
 {
-  /*
-  width: 110%;
-  max-width: 110%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -moz-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);*/
 }
 .slick-initialized .slick-slide.slick-center
 {

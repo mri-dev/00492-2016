@@ -80,11 +80,17 @@ echo '</div><br style="clear: both;" /><br /><br />';
 
 echo '<hr>';
 
-
 echo '<div style="width: 90%; float: left;">';
+	_e('<h4>Lista címke felirat</h4>', 'ti');
+	echo '<p><label for="label_text">'.__('Felirat szövege (rövid, 1 szavas - Pl.: Medencés)', 'ti').'</label><br>';
+	echo '<input type="text" id="label_text" name="wp_listings[_listing_listlabel_text]" value="'.get_post_meta( $post->ID, '_listing_listlabel_text', true).'" /></p>';
+	echo '<p><label for="label_color">'.__('Felirat háttérszín (sötét árnyalat, fehér a szöveg)', 'ti').'</label><br>';
+	echo '<input type="text" id="label_color" class="color-picker" data-default-color="#ffffff" name="wp_listings[_listing_listlabel_bgcolor]" value="'.get_post_meta( $post->ID, '_listing_listlabel_bgcolor', true).'" /></p>';
+echo '<hr>';
 
 echo '<div style="width: 45%; float: left">';
-	_e('<h4>Map Options</h4>', 'wp-listings');
+
+	_e('<h4>Térkép beállítások</h4>', 'ti');
 
 	if(get_post_meta($post->ID, '_listing_automap', 1) == FALSE) {
     	update_post_meta($post->ID, '_listing_automap', 'y');
@@ -105,8 +111,7 @@ echo '</div><br style="clear: both;" />';
 echo '</div><br style="clear: both;" />';
 echo '<hr>';
 echo '<div style="width: 100%; float: left;">';
-
-	_e('<p><label>Property Layouts (use Add Media button to insert Photos of Property Layers):<br />', 'wp-listings');
+	_e('<h4>Tervrajz</h4>', 'ti');
 
 	$wplistings_gallery_content = get_post_meta( $post->ID, '_listing_property_layouts', true);
 	$wplistings_gallery_editor_id = '_listing_property_layouts';
@@ -123,15 +128,12 @@ echo '<div style="width: 100%; float: left;">';
 
 	wp_editor($wplistings_gallery_content, $wplistings_gallery_editor_id, $wplistings_gallery_editor_settings);
 
-echo '</div><br style="clear: both;" /><br /><br />';
+echo '</div><br style="clear: both;" /><br>';
 
-echo '<div style="width: 90%; float: left;">';
-
-	_e('<p><label>Enter Video or Virtual Tour Embed Code (<a href="https://wordpress.org/plugins/jetpack/" target="_blank" rel="nofollow">Jetpack</a> offers several <a href="http://jetpack.me/support/shortcode-embeds/" target="_blank" rel="nofollow">video shortcodes</a>.):<br />', 'wp-listings');
+echo '<hr>';
+echo '<div style="width: 100%; float: left;">';
+	_e('<h4>Videó bemutató</h4>', 'ti');
 	printf( __( '<textarea name="wp_listings[_listing_video]" rows="5" cols="18" style="%s">%s</textarea></label></p>', 'wp-listings' ), 'width: 99%;', htmlentities( get_post_meta( $post->ID, '_listing_video', true) ) );
-
-echo '<br style="clear: both;" />';
-
 
 	/*
 	_e('<p><label>Or enter Map Embed Code or shortcode from Map plugin (such as <a href="http://jetpack.me/support/shortcode-embeds/" target="_blank" rel="nofollow">Jetpack Shortcodes</a>, <a href="https://wordpress.org/plugins/simple-google-maps-short-code/" target="_blank" rel="nofollow">Simple Google Maps Short Code</a> or <a href="https://wordpress.org/plugins/mappress-google-maps-for-wordpress/" target="_blank" rel="nofollow">MapPress</a>):<br /><em>Recommend size: 660x300 (If possible, use 100% width, or your themes content width)</em><br />', 'wp-listings');
@@ -139,11 +141,4 @@ echo '<br style="clear: both;" />';
 	*/
 
 echo '</div>';
-
-echo '<div style="width: 90%; float: left;">';
-	_e('<h4>Contact Form</h4>', 'wp-listings');
-
-	_e('<p><label>If you use a Contact Form plugin, you may enter the Contact Form shortcode here. Otherwise, the single listing template will use a default contact form:<br />', 'wp-listings');
-	printf( __( '<textarea name="wp_listings[_listing_contact_form]" rows="1" cols="18" style="%s">%s</textarea></label></p>', 'wp-listings' ), 'width: 99%;', htmlentities( get_post_meta( $post->ID, '_listing_contact_form', true) ) );
-
-echo '</div><br style="clear: both;" />';
+echo '<br style="clear: both;" />';

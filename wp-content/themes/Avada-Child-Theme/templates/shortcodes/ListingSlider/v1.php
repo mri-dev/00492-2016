@@ -4,7 +4,10 @@
    <div class="info-wrapper">
      <div class="infobox">
        <div class="features">
-         <div class="status status-<?=$item->PropertyStatus()?>"><?=$item->PropertyStatus(true)?></div>
+         <?php $label = $item->PropertyStatus(); ?>
+         <?php if ($label): ?>
+           <div class="status status-<?=sanitize_title($label['text'])?>" style="<?=($label['bg'])?'background: '.$label['bg'].' !important;':''?>"><?=$label['text']?></div>
+         <?php endif; ?>
          <? if($item->isHighlighted()):?><div class="highlight"><?=__('Kiemelt', 'ti')?></div><? endif; ?>
          <? if($item->isNews() || true):?><div class="newi"><?=__('új')?></div><? endif; ?>
          <? if($item->isDropOff()):?><div class="dropoff"><img src="<?=IMG?>/discount-label.svg" alt="<?=__('Leárazott', 'ti')?>" /></div><? endif; ?>

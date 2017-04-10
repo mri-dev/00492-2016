@@ -197,19 +197,20 @@ class Property extends PropertyFactory
 
   public function PropertyStatus( $text = false )
   {
-    $terms = wp_get_post_terms( $this->ID(), 'status' );
+    $re = array();
+    $text = get_post_meta($this->ID(), '_listing_listlabel_text', true);
+    $bgcolor = get_post_meta($this->ID(), '_listing_listlabel_bgcolor', true);
 
-    foreach ($terms as $term) {
-      if($term->taxonomy == 'status') {
-        if ($text) {
-          return $this->i18n_taxonomy_values($term->name);
-        } else {
-          return $term->name;
-        }
-      }
+    if( $text == '' ) {
+      return false;
     }
 
-    return false;
+    $re = array(
+      'text'  => $text,
+      'bg'    => ($bgcolor == '') ? false : $bgcolor,
+    );
+
+    return $re;
   }
 
   public function PropertyHeating( $text = false )
@@ -379,9 +380,24 @@ class Property extends PropertyFactory
     return $h;
   }
 
+  public function getSlideIMGID()
+  {
+    return (int)get_post_meta($this->ID(), '_listing_slide_img_id', true);
+  }
+
   public function Images()
   {
-    return get_attached_media( 'image', $this->ID() );
+    $images = array();
+    $tempimages = get_attached_media( 'image', $this->ID() );
+    $slide_img_id = $this->getSlideIMGID();
+
+    foreach ((array)$tempimages as $aid => $img) {
+      if($slide_img_id != 0 && $slide_img_id == $aid) continue;
+      $images[$aid] = $img;
+    }
+    unset($temimages);
+
+    return $images;
   }
 
   public function PDFDocuments()
@@ -755,9 +771,15 @@ class Property extends PropertyFactory
 
   public function SliderImage()
   {
-    $profil = $this->ProfilImg();
+    $slide_id = $this->getSlideIMGID();
 
-    return $profil;
+    if($slide_id == 0) {
+      $slide = $this->ProfilImg();
+    } else {
+      $slide = wp_get_attachment_url($slide_id);
+    }
+
+    return $slide;
   }
 
   public function ProfilImg()

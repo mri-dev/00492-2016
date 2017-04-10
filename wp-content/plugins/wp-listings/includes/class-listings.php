@@ -103,6 +103,17 @@ class WP_Listings {
 		add_action( 'admin_init', array( &$this, 'add_options' ) );
 		add_action( 'admin_menu', array( &$this, 'settings_init' ), 15 );
 
+		add_action( 'admin_enqueue_scripts', array( &$this, 'app_add_color_picker' ) );
+
+	}
+
+	function app_add_color_picker( $hook ) {
+	    if( is_admin() ) {
+	        // Add the color picker css file
+	        wp_enqueue_style( 'wp-color-picker' );
+	        // Include our custom jQuery file with WordPress Color Picker dependency
+	        wp_enqueue_script( 'custom-script-handle', plugins_url( '/js/label-colorpicker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+	    }
 	}
 
 	/**
@@ -200,8 +211,6 @@ class WP_Listings {
 			add_meta_box( 'agentevo_metabox', __( 'Equity Framework', 'wp-listings' ), array( &$this, 'agentevo_metabox' ), 'wp-listings-options', 'side', 'core' );
 		}
 
-
-
 	}
 
 	function listing_images_metabox() {
@@ -235,7 +244,7 @@ class WP_Listings {
 			return;
 
 		/* * /
-		print_r($_POST['wp_listings']);
+		print_r($_FILES);
 		exit;
 		/* */
 
@@ -286,6 +295,8 @@ class WP_Listings {
 				delete_post_meta($post->ID, $key);
 			}
 
+			$tempfiles = $_FILES;
+
 		 /********************************************************************
 		 * Images
 		 *********************************************************************/
@@ -332,6 +343,43 @@ class WP_Listings {
 			 remove_filter( 'upload_dir', array( $this, 'upload_dir_filter') );
 			 remove_filter( 'intermediate_image_sizes', '__return_empty_array', 99 );
 		 }
+
+		 $_FILES = $tempfiles;
+
+		 /**
+		 *	Slide kép feltöltése
+		 **/
+		 if ( $_FILES && isset($_FILES['slide_img']) )
+		 {
+			 $files = $_FILES["slide_img"];
+
+			 if ($files['name'] != '') {
+				 add_filter( 'upload_dir', array( $this, 'upload_dir_filter') );
+				 add_filter( 'intermediate_image_sizes', '__return_empty_array', 99 );
+
+
+				 $_FILES 	= array ("slide_img" => $files);
+
+				 $slide_img_id = $this->uploads_handler( 'slide_img', $post_id);
+
+				 if($slide_img_id) {
+					 $slide_check = (int)get_post_meta($post_id, '_listing_slide_img_id', true);
+
+					 if($slide_check == 0) {
+						 add_post_meta($post_id, '_listing_slide_img_id', $slide_img_id);
+					 }else{
+						 wp_delete_attachment($slide_check, true);
+						 update_post_meta($post_id, '_listing_slide_img_id', $slide_img_id);
+					 }
+				 }
+
+				 remove_filter( 'upload_dir', array( $this, 'upload_dir_filter') );
+				 remove_filter( 'intermediate_image_sizes', '__return_empty_array', 99 );
+		 	}
+		 }
+
+		 $_FILES = $tempfiles;
+
 
 		 $extra = $_POST['wp_listings']['extra'];
 

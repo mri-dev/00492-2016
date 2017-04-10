@@ -1,10 +1,19 @@
 <?php
   global $post;
-  $images = get_attached_media('image' ,$post->ID);
+  $images = array();
+
+  $tempimages = get_attached_media('image' ,$post->ID);
+  $slide_img_id = (int)get_post_meta($post->ID, '_listing_slide_img_id', true);
+
+  foreach ((array)$tempimages as $aid => $img) {
+    if($slide_img_id != 0 && $slide_img_id == $aid) continue;
+    $images[$aid] = $img;
+  }
+  unset($temimages);
 ?>
-<label for="property_images"><?=__('Képek feltöltése', 'ti')?></label><br>
+<label for="property_images"><?=__('Új képek feltöltése', 'ti')?></label><br>
 <input type="file" multiple="multiple" name="property_images[]" id="property_images" value="" class="form-control">
-<h3><?php echo __('Feltöltött képek', 'ti'); ?></h3>
+<br><br>
 <div class="image-set">
   <?php foreach ($images as $aid => $img):
     $selected = ($aid == get_post_thumbnail_id($post->ID)) ? true : false;
@@ -24,7 +33,24 @@
   </div>
   <?php endforeach; ?>
 </div>
+<?php
+  $slide_img_id = (int)get_post_meta($post->ID, '_listing_slide_img_id', true);
+?>
+<h3><?php echo __('Ingatlan slide képe', 'ti'); ?></h3>
+<input type="file" name="slide_img" id="slide_img" value="" class="form-control">
+<div class="slide-img">
+  <?php if ($slide_img_id == 0): ?>
+    <?php echo __('Nincs slide kép feltöltve. A profilkép az alapértelmezett.','ti'); ?>
+  <?php else: ?>
+    <?php $slide = wp_get_attachment_url($slide_img_id); ?>
+    <img src="<?php echo $slide; ?>" alt="">
+  <?php endif; ?>
+</div>
+
 <style>
+  .slide-img img {
+    max-width: 100%;
+  }
   .image-set{
     position: relative;
     display: flex;
