@@ -238,8 +238,7 @@ class Property extends PropertyFactory
       $term  = $terms[0];
       return $term->name;
     }
-
-
+    
     return $term;
   }
 

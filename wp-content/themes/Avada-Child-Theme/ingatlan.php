@@ -144,7 +144,10 @@
           </div>
         </div>
       </div>
-
+      <?php
+      $layout = $prop->Layouts();
+      $video = $prop->Videos();
+      ?>
       <div class="data-main-holder">
         <div class="page-holder">
           <div class="data-main">
@@ -154,8 +157,12 @@
     							<ul class="nav-tabs">
     								<li class="active"><a class="tab-link" data-toggle="tab" href="#params"><h4 class="fusion-tab-heading"><i class="fa fa-gear"></i> <?=__('Ingatlan adatai', 'ti')?></h4></a></li>
                     <li><a class="tab-link" data-toggle="tab" href="#info"><h4 class="fusion-tab-heading"><i class="fa fa-file"></i> <?=__('Leírás', 'ti')?></h4></a></li>
+                    <?php if ($layout): ?>
                     <li><a class="tab-link" data-toggle="tab" href="#alaprajz"><h4 class="fusion-tab-heading"><i class="fa fa-map-o"></i> <?=__('Alaprajz', 'ti')?></h4></a></li>
+                    <?php endif; ?>
+                    <?php if ($video): ?>
                     <li><a class="tab-link" data-toggle="tab" href="#video"><h4 class="fusion-tab-heading"><i class="fa fa-video-camera"></i> <?=__('Videó', 'ti')?></h4></a></li>
+                    <?php endif; ?>
     							</ul>
     						</div>
     						<div class="tab-content">
@@ -212,7 +219,6 @@
                   <div class="tab-pane" id="video">
                     <div class="pad">
                       <?
-                        $video = $prop->Videos();
                         $video = \YoutubeHelper::ember( $video );
 
                         echo $video;
