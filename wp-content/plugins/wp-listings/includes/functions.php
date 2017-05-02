@@ -6,6 +6,12 @@
 add_image_size( 'listings-full', 1060, 9999, false );
 add_image_size( 'listings', 560, 380, true );
 
+add_filter('site_transient_update_plugins', 'remove_update_notification');
+function remove_update_notification($value) {
+     unset($value->response[ plugin_basename(__FILE__) ]);
+     return $value;
+}
+
 add_filter( 'template_include', 'wp_listings_template_include' );
 function wp_listings_template_include( $template ) {
 

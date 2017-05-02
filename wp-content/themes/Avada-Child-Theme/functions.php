@@ -7,6 +7,8 @@ define('IFROOT', THEMEROOT );
 define('SLUG_INGATLAN', 'ingatlan' );
 define('SLUG_INGATLANOK', 'ingatlan-kereso' );
 define('SLUG_INGATLAN_LIST', 'ingatlan-kereso' );
+define('SLUG_WATCHED', 'megtekintett');
+define('SLUG_NEWS', 'news');
 define('PHONE_PREFIX', '+36' );
 define('GOOGLE_API_KEY', 'AIzaSyDxeIuQwvCtMzBGo53tV7AdwG6QCDzmSsQ');
 define('LANGKEY','hu');
@@ -61,7 +63,8 @@ function app_init()
   date_default_timezone_set('Europe/Budapest');
 
   add_rewrite_rule('^'.SLUG_INGATLAN.'/([^/]+)/([^/]+)/([^/]+)', 'index.php?custom_page='.SLUG_INGATLAN.'&regionslug=$matches[1]&cityslug=$matches[2]&urlstring=$matches[3]', 'top');
-  add_rewrite_rule('^'.SLUG_FAVORITE.'/?', 'index.php?custom_page='.SLUG_FAVORITE.'&urlstring=$matches[1]', 'top');
+  add_rewrite_rule('^'.SLUG_WATCHED.'/?', 'index.php?custom_page='.SLUG_WATCHED.'&urlstring=$matches[1]', 'top');
+  add_rewrite_rule('^'.SLUG_NEWS.'/?', 'index.php?custom_page='.SLUG_NEWS.'&urlstring=$matches[1]', 'top');
 }
 add_action('init', 'app_init');
 
@@ -76,6 +79,7 @@ function app_custom_template($template)
 
   if(isset($wp_query->query_vars['custom_page'])) {
     add_filter( 'body_class','ingatlan_class_body' );
+    add_filter( 'body_class','template_class_body' );
     add_filter( 'document_title_parts', 'custom_title' );
     return get_stylesheet_directory() . '/'.$wp_query->query_vars['custom_page'].'.php';
   } else {
@@ -105,8 +109,14 @@ function custom_title($title)
     }
   }
 
-  if($wp_query->query_vars['custom_page'] == 'news' ) {
-    $title['title'] = __('Nem megtekintett ingatlanok', 'gh');
+  if($wp_query->query_vars['custom_page'] == SLUG_WATCHED ) {
+    $title['title'] = __('Korábban megtekintett ingatlanok', 'gh');
+    add_filter('the_title', 'custom_ingatlan_title_bar');
+  }
+
+  if($wp_query->query_vars['custom_page'] == SLUG_NEWS ) {
+    $title['title'] = __('Új ingatlan hirdetések', 'gh');
+    add_filter('the_title', 'custom_ingatlan_title_bar');
   }
 
   return $title;
@@ -131,10 +141,19 @@ function custom_ingatlan_title_bar( $title )
         $title = $property->Title();
       }
     }
+
+    if($wp_query->query_vars['custom_page'] == SLUG_WATCHED){
+      $title = __('Korábban megtekintett ingatlanok', 'gh');
+    }
+
+    if($wp_query->query_vars['custom_page'] == SLUG_NEWS){
+      $title = __('Új ingatlanok', 'gh');
+    }
   }
 
   return $title;
 }
+
 
 function ingatlan_social_share_titlebar()
 {
@@ -232,6 +251,13 @@ add_action('after_setup_theme', 'gh_custom_role');
 
 function ingatlan_class_body( $classes ) {
   $classes[] = 'ingatlan_page';
+  return $classes;
+}
+
+function template_class_body( $classes ) {
+  global $wp_query;
+
+  $classes[] = $wp_query->query_vars['custom_page'] . '_template_page';
   return $classes;
 }
 

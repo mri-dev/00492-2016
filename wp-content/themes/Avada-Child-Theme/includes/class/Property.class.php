@@ -118,11 +118,13 @@ class Property extends PropertyFactory
     $terms    = wp_get_post_terms( $this->ID(), 'locations' );
     $top_term = $this->get_top_term($terms);
 
-    $top_term->children = $this->load_child_term($top_term->term_id, $terms);
+    $parent = ($top_term) ? $top_term->term_id : false;
+
+    $top_term->children = $this->load_child_term($parent, $terms);
 
     return $top_term;
 
-    return array_reverse($regions);
+    //return array_reverse($regions);
   }
 
   private function get_top_term( $terms )
@@ -138,7 +140,7 @@ class Property extends PropertyFactory
   private function load_child_term($parent, $terms)
   {
     foreach ((array)$terms as $t ) {
-      if($t->parent == $parent){
+      if($parent && $t->parent == $parent){
         $t->children = $this->load_child_term($t->term_id, $terms);
         return $t;
       }
@@ -238,7 +240,7 @@ class Property extends PropertyFactory
       $term  = $terms[0];
       return $term->name;
     }
-    
+
     return $term;
   }
 
@@ -392,6 +394,44 @@ class Property extends PropertyFactory
 
     foreach ((array)$tempimages as $aid => $img) {
       if($slide_img_id != 0 && $slide_img_id == $aid) continue;
+
+      $imgmeta = wp_get_attachment_metadata($aid);
+      if (is_array($imgmeta))
+      {
+        $width = $imgmeta['width'];
+        $height = $imgmeta['height'];
+
+        if ($width === $height) {
+          $imgmeta['orientation'] = 'square';
+        } else if($width < $height ){
+          $imgmeta['orientation'] = 'portrait';
+        } else {
+          $imgmeta['orientation'] = 'landscape';
+        }
+      } else {
+        $imgmeta = array();
+
+        $prof_img = $img->guid;
+
+        $size = getimagesize($prof_img);
+
+        if (!$size) {
+          return false;
+        }
+
+        $width = $size[0];
+        $height = $size[1];
+
+        if ($width === $height) {
+          $imgmeta['orientation'] = 'square';
+        } else if($width < $height ){
+          $imgmeta['orientation'] = 'portrait';
+        } else {
+          $imgmeta['orientation'] = 'landscape';
+        }
+      }
+      $img->metadata = $imgmeta;
+
       $images[$aid] = $img;
     }
     unset($temimages);
@@ -577,7 +617,7 @@ class Property extends PropertyFactory
     }
 
     if ($formated) {
-      $price = number_format($price, 0, ' ', '.');
+      $price = number_format($price, 0, '.', ' ');
     }
 
     return $price;
@@ -603,7 +643,7 @@ class Property extends PropertyFactory
     }
 
     if ($formated) {
-      $price = $this->getValuta().number_format($price, 0, ' ', '.');
+      $price = $this->getValuta().number_format($price, 0, '.', ' ');
     }
 
     return $price;
@@ -617,7 +657,7 @@ class Property extends PropertyFactory
     }
 
     if ($formated) {
-      $price = $this->getValuta().number_format($price, 0, ' ', '.');
+      $price = $this->getValuta().number_format($price, 0, '.', ' ');
     }
 
     return $price;

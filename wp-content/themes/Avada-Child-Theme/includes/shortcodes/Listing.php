@@ -26,7 +26,8 @@ class ListingLista
             array(
               'src' => 'list',
               'view' => 'standard',
-              'limit' => 6
+              'limit' => 6,
+              'listing' => 0
             )
         );
 
@@ -325,9 +326,20 @@ class ListingLista
     {
       global $wpdb;
 
-      $o = '<div class="header">
-        <h2>'.__('Legutóbb megtekintett ingatlanok', 'ti').'</h2>
-      </div>';
+      if ($this->params['listing'] == '1') {
+        $listing = true;
+      }
+
+      if (!$listing) {
+        $o = '<div class="header">
+          <h2>'.__('Legutóbb megtekintett ingatlanok', 'ti').'</h2>
+        </div>';
+      } else {
+        $o = '<div>
+          <h1>'.__('Korábban megtekintett ingatlanok', 'ti').'</h1>
+        </div>';
+      }
+
       $t = new ShortcodeTemplates(__CLASS__.'/'.$this->template);
 
       // Visited
@@ -351,7 +363,7 @@ class ListingLista
       $properties = new Properties($arg);
       $list = $properties->getList();
 
-      $o .= '<div class="prop-list im5 style-'.$this->template.'"><div class="prop-wrapper">';
+      $o .= '<div class="prop-list '.( ($listing) ? 'im3' : 'im5' ).' style-'.$this->template.'"><div class="prop-wrapper">';
       foreach ( $list as $e )
       {
         $o .= $t->load_template( array( 'item' => $e ) );

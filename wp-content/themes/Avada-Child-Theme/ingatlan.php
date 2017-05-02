@@ -46,7 +46,7 @@
                   <div class="stack-wrapper">
                     <div class="items image-slide">
                       <? foreach( $newimgs as $img ): ?>
-                      <div class="i">
+                      <div class="i orientation-<?=$img->metadata['orientation']?>">
                         <img src="<?=$img->guid?>" alt="<?=$prop->Title()?>" />
                       </div>
                       <? endforeach; ?>
@@ -262,15 +262,14 @@
   <script type="text/javascript">
     (function($){
       $('.image-slide').slick({
-        <?=(count($images)>5)?'centerMode: true,':''?>
         autoplay: false,
-        centerPadding: '60px',
         slidesToShow: 5,
       });
 
       $('.image-slide .slick-slide').on('click', function(e) {
         //e.stopPropagation();
         var index = $(this).data("slick-index");
+
         if ($('.image-slide').slick('slickCurrentSlide') !== index) {
           $('.image-slide').slick('slickGoTo', index);
         }
@@ -280,10 +279,10 @@
 
       $('.image-slide').on('beforeChange', function(event, slick, currentSlide, nextSlide){
         var cs = $(slick.$slides).get(nextSlide);
+        console.log(cs);
         var ci = $(cs).find('img').attr('src');
-        //$('#profilimg a').attr('href', ci);
+        $('#profilimg a').attr('href', ci);
         $('#profilimg img').attr('src', ci);
-        console.log(ci);
       });
 
     })(jQuery);

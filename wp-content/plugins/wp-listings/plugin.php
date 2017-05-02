@@ -1,13 +1,12 @@
 <?php
 /*
 	Plugin Name: IMPress Listings
-	Plugin URI: http://wordpress.org/plugins/wp-listings/
 	Description: Creates a real estate listing management system. Designed to work with any theme using built-in templates.
 	Author: Agent Evolution
 	Author URI: http://agentevolution.com
 	Text Domain: wp-listings
 
-	Version: 2.1.2
+	Version: 9999
 
 	License: GNU General Public License v2.0 (or later)
 	License URI: http://www.opensource.org/licenses/gpl-license.php
