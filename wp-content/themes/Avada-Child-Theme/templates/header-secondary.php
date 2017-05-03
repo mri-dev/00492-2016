@@ -1,4 +1,5 @@
 <?php
+global $notify;
 $content_1 = avada_secondary_header_content( 'header_left_content' );
 $content_2 = avada_secondary_header_content( 'header_right_content' );
 ?>
@@ -8,8 +9,10 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
         <div class="sec-header-wrap">
             <div class="item csh-notify">
                 <ul id="notification">
-                    <li class="visited-adv fusion-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Megtekintett ingatlan hirdetések"><a href="/"><span class="num">99</span></a></li>
-                    <li class="new-adv fusion-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Új ingatlan hirdetések"><a href="/"><span class="num">150</span></a></li>
+                  <? $watched = $notify->propertyWatched(); ?>
+                    <li class="visited-adv fusion-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Megtekintett ingatlan hirdetések"><a href="/megtekintett"><span class="num <?=($watched > 0)?'has':''?>"><?php echo $watched; ?></span></a></li>
+                    <? $unwatched = $notify->propertyUnwatched(); ?>
+                    <li class="new-adv fusion-tooltip" data-toggle="tooltip" data-placement="bottom" data-original-title="Új ingatlan hirdetések"><a href="/news"><span class="num <?=($unwatched > 0)?'has':''?>"><?php echo $unwatched; ?></span></a></li>
                 </ul>
             </div>
             <div class="item csh-socialling"><?php echo $content_2; ?></div>

@@ -54,6 +54,9 @@ class ListingLista
             case 'recomended':
               $output .= $this->recomended();
             break;
+            case 'unwatched':
+              $output .= $this->unwatched();
+            break;
             default:
               $output .= $this->no_src();
             break;
@@ -65,6 +68,82 @@ class ListingLista
 
         /* Return the output of the tooltip. */
         return apply_filters( self::SCTAG, $output );
+    }
+
+
+    /**
+    * Nem megnézett ingatlanok listázás
+    **/
+    private function unwatched( $arg = array() )
+    {
+      global $wpdb;
+      global $notify;
+
+      $unwatched_prop = $notify->propertyUnwatched();
+
+      if ($unwatched_prop > 1) {
+        $o = '<a class="set-watced-prop" href="/news/?setwatched=1"><i class="fa fa-eye"></i> '.__('Összes megtekintettnek jelölése', 'gh').'</a>';
+      }
+
+      $o .= '<h1>'.__('Új ingatlan hirdetések', 'gh').'</h1>';
+      $o .= '<div class="subtitle">'.__('Az alábbi listában találja azokat az ingatlanokat, amiket Ön még nem tekintett meg.', 'gh').'</div>';
+      $t = new ShortcodeTemplates(__CLASS__.'/'.$this->template);
+
+      if (isset($_GET['settedWatchedAll'])) {
+        $o .= '<div class="alert alert-success">'.sprintf(__('Ön a mai dátumig (%s) minden korábbi ingatlant megtekintettnek jelölt.', 'gh'), current_time('mysql')).'</div>';
+      }
+
+      $ucid = ucid();
+
+      // Visited
+      $qry = "SELECT pid FROM `".\PropertyFactory::LOG_VIEW_DB."` as t WHERE t.`ucid` = '".$ucid."' ORDER BY t.visited DESC;";
+
+      $idsq = $wpdb->get_results($qry, ARRAY_A );
+      $ids = array();
+      foreach ($idsq as $sid) {
+        if(count($ids) >= $this->params['limit']) break;
+        if (!in_array($sid['pid'], $ids)) {
+          $ids[] = $sid['pid'];
+        }
+      }
+
+      // Time click
+      $t_qry = "SELECT wtime FROM `".\PropertyFactory::LOG_WATCHTIME_DB."` as t WHERE t.`ucid` = '".$ucid."' ORDER BY t.wtime DESC LIMIT 0,1;";
+      $watchtimestmp = $wpdb->get_var($t_qry);
+
+      //var_dump($watchtimestmp);
+
+      $arg = array(
+        'exc_ids' => $ids,
+        'limit' => $this->params['limit'],
+        'lang' => get_locale(),
+      );
+
+      $arg['page'] = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+
+      if ($watchtimestmp) {
+        $arg['after_date'] = $watchtimestmp;
+      }
+      $properties = new Properties($arg);
+      $list = $properties->getList();
+      $this->pagionation = $properties->pagination('/news/');
+
+      if ( count($list) != 0 ) {
+        $o .= '<div class="prop-list im3 style-'.$this->template.'">';
+        $o .= '<div class="prop-wrapper">';
+        foreach ( $list as $e )
+        {
+          $o .= $t->load_template( array( 'item' => $e ) );
+        }
+        $o .= '</div></div>';
+      } else {
+        ob_start();
+        include(locate_template('templates/parts/nodata-listing-unwatched.php'));
+        $o .= ob_get_contents();
+        ob_end_clean();
+      }
+
+      return $o;
     }
 
     /**
@@ -364,10 +443,24 @@ class ListingLista
       $list = $properties->getList();
 
       $o .= '<div class="prop-list '.( ($listing) ? 'im3' : 'im5' ).' style-'.$this->template.'"><div class="prop-wrapper">';
-      foreach ( $list as $e )
-      {
-        $o .= $t->load_template( array( 'item' => $e ) );
+
+      if (count($list) > 0) {
+        foreach ( $list as $e )
+        {
+          $o .= $t->load_template( array( 'item' => $e ) );
+        }
+      } else {
+        if ($listing) {
+          ob_start();
+          include(locate_template('templates/parts/nodata-listing-viewed.php'));
+          $o .= ob_get_contents();
+          ob_end_clean();
+        }
       }
+
+
+
+
       $o .= '</div></div>';
 
       return $o;

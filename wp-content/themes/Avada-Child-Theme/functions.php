@@ -39,6 +39,10 @@ add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_styles', 100 );
 function avada_lang_setup() {
 	$lang = get_stylesheet_directory() . '/languages';
 	load_child_theme_textdomain( 'Avada', $lang );
+
+  $ucid = ucid();
+
+  $ucid = $_COOKIE['uid'];
 }
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
@@ -294,3 +298,40 @@ function add_post_enctype() {
     echo ' enctype="multipart/form-data"';
 }
 add_action('post_edit_form_tag', 'add_post_enctype');
+
+function ucid()
+{
+  $ucid = $_COOKIE['ucid'];
+
+  if (!isset($ucid)) {
+    $ucid = mt_rand();
+    setcookie( 'ucid', $ucid, time() + 60*60*24*365*2, "/");
+  }
+
+  return $ucid;
+}
+
+function gh_get_fnc()
+{
+  global $wpdb;
+  if (isset($_GET['setwatched']) && $_GET['setwatched'] == '1')
+  {
+    $ucid = ucid();
+
+    $wpdb->insert(
+      \PropertyFactory::LOG_WATCHTIME_DB,
+      array(
+        'ucid'  => $ucid,
+        'ip'    => $_SERVER['REMOTE_ADDR'],
+        'wtime' => current_time('mysql')
+      ),
+      array(
+        '%s', '%s', '%s'
+      )
+    );
+
+    wp_redirect('/news/?settedWatchedAll=1');
+    exit;
+  }
+}
+add_action('init', 'gh_get_fnc');

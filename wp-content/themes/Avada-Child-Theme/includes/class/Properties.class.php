@@ -144,6 +144,9 @@ class Properties extends PropertyFactory
     if (isset($this->arg['ids']) && is_array($this->arg['ids'])) {
       $post_arg['post__in'] = $this->arg['ids'];
     }
+    if (isset($this->arg['exc_ids']) && is_array($this->arg['exc_ids'])) {
+      $post_arg['post__not_in'] = $this->arg['exc_ids'];
+    }
 
     if (isset($this->arg['author'])) {
       $post_arg['author'] = $this->arg['author'];
@@ -363,12 +366,13 @@ class Properties extends PropertyFactory
         self::LOG_VIEW_DB,
         array(
           'ip' => $_SERVER['REMOTE_ADDR'],
+          'ucid' => ucid(),
           'pid' => $this->arg['id'],
           'ref' => $_SERVER['HTTP_REFERER'],
           'qrystr' => $_SERVER['QUERY_STRING']
         ),
         array(
-          '%s', '%d', '%s', '%s'
+          '%s', '%d', '%d', '%s', '%s'
         )
       );
     }

@@ -121,6 +121,7 @@ a.back-to-home {
     }
 }
 
+
 #notification {
     margin: 0 auto;
     margin-top: 15px;
@@ -166,6 +167,11 @@ a.back-to-home {
                 -webkit-border-radius: 20px;
                 -moz-border-radius: 20px;
                 border-radius: 30px;
+                display: none;
+
+                &.has {
+                  display: block;
+                }
             }
             &:before {
                 content: "";
@@ -511,7 +517,12 @@ body.ingatlan_page{
   }
 }
 
-.megtekintett-page-view{
+.show-on-mobile{
+  display: none;
+}
+
+.megtekintett-page-view,
+.news-page-view{
   width: $content-width;
   margin: 0 auto;
   display: -webkit-box;
@@ -538,11 +549,13 @@ body.ingatlan_page{
   }
 }
 
-body.megtekintett_template_page{
+body.megtekintett_template_page,
+body.news_template_page{
   #content {
     background: #eaf0f3;
   }
 }
+
 
 .ingatlan-page-view {
   .history-list,
@@ -2236,6 +2249,36 @@ input[type=checkbox]:checked + label {
       .prop-item{
           width: calc(100% / 5);
       }
+    }
+  }
+}
+
+
+.listing-list-set-unwatched{
+  h1 {
+    margin: 0 0 5px 0 !important;
+  }
+  .subtitle {
+    color: black;
+    font-size: 1.2em;
+    margin: 0 0 15px 0;
+  }
+  .listing-nodata{
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 50px;
+    color: #7ea0b1;
+
+    i {
+      font-size: 72px;
+      color: #366c86;
+    }
+
+    h2 {
+      color:  #286380;
+      font-weight: bold;
+      font-size: 2em;
+      margin: 0 0 8px 0;
     }
   }
 }
