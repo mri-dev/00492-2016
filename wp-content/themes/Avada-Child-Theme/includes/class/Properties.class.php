@@ -3,7 +3,7 @@ class Properties extends PropertyFactory
 {
   public $arg = array();
   private $datalist = array();
-  private $exclue_megye_str = array( 'Budapest', 'Balaton' );
+  private $exclue_megye_str = array();
   private $count = 0;
   private $query = null;
 
@@ -21,15 +21,35 @@ class Properties extends PropertyFactory
     ));
 
     $t = array();
+    $temp = array();
 
     foreach ($terms as $term) {
-      if ( !in_array($term->name, $this->exclue_megye_str)) {
-        $term->name = sprintf(__('%s megye', 'ti'), $term->name);
+      $temp[$term->term_id] = $term;
+    }
+
+    foreach ($temp as $tid => $term) {
+      if($term->parent == 0) {
+        $term->children = $this->getChildRegion($term->term_id, $temp);
+        $t[$tid] = $term;
       }
-      $t[] = $term;
     }
 
     return $t;
+  }
+
+  private function getChildRegion($parent, $obj)
+  {
+    $child = array();
+
+    foreach ($obj as $o) {
+      if($o->parent == 0) continue;
+      if($o->parent == $parent) {
+        $o->children = $this->getChildRegion($o->term_id, $obj);
+        $child[$o->term_id] = $o;
+      }
+    }
+
+    return $child;
   }
 
   public function getSelectors( $id, $sel_values = array() )
@@ -142,6 +162,9 @@ class Properties extends PropertyFactory
       $post_arg['post__in'] = array((int)$this->arg['id']);
     }
     if (isset($this->arg['ids']) && is_array($this->arg['ids'])) {
+      if(empty($this->arg['ids'])) {
+        $this->arg['ids'] = array(0);
+      }
       $post_arg['post__in'] = $this->arg['ids'];
     }
     if (isset($this->arg['exc_ids']) && is_array($this->arg['exc_ids'])) {
@@ -307,7 +330,6 @@ class Properties extends PropertyFactory
     }
 
     $post_arg['paged'] = (int)$this->arg['page'];
-
 
     $posts = new WP_Query($post_arg);
 

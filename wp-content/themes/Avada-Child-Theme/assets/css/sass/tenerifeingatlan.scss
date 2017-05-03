@@ -2254,7 +2254,8 @@ input[type=checkbox]:checked + label {
 }
 
 
-.listing-list-set-unwatched{
+.listing-list-set-unwatched,
+.listing-list-set-viewed{
   h1 {
     margin: 0 0 5px 0 !important;
   }
@@ -2268,6 +2269,8 @@ input[type=checkbox]:checked + label {
     font-size: 1.3em;
     margin-top: 50px;
     color: #7ea0b1;
+    display: block;
+    width: 100%;
 
     i {
       font-size: 72px;
@@ -2280,5 +2283,11 @@ input[type=checkbox]:checked + label {
       font-size: 2em;
       margin: 0 0 8px 0;
     }
+  }
+}
+
+.listing-list-set-viewed{
+  h1 {
+    margin: 0 0 15px 0 !important;
   }
 }

@@ -62,9 +62,10 @@ class NotifyManager extends PropertyFactory
       }
     }
 
-    if ($ids) {
-      $arg['post__in'] = $ids;
+    if(empty($ids)) {
+      $ids = array(0);
     }
+    $arg['post__in'] = $ids;
 
     $qry = new WP_Query($arg);
 

@@ -18,32 +18,65 @@
 --></div>
 <div class="searcher-wrapper">
     <div class="form-items">
+
       <div class="inp inp-city">
-        <label for="searcher_city"><?=__('Régió', 'ti')?></label>
-        <input type="text" id="searcher_city" name="cities" class="form-control" value="" placeholder="<?=__('Összes', 'ti')?>">
-        <div id="searcher_city_autocomplete" class="selector-wrapper"></div>
-        <input type="hidden" name="ci" id="searcher_city_ids" value="">
+        <label for="zone_multiselect_text">Régió / Város</label>
+        <div class="tglwatcher-wrapper">
+          <input type="text" readonly="readonly" id="zone_multiselect_text" class="form-control tglwatcher" tglwatcher="zone_multiselect" placeholder="<?=__('Összes', 'gh')?>" value="">
+        </div>
+        <input type="hidden" id="zone_multiselect_ids" name="zona" value="">
+        <div class="multi-selector-holder" tglwatcherkey="zone_multiselect" id="zone_multiselect">
+          <div class="selector-wrapper">
+            <?php
+              $lvl = 0;
+              $zonak = array();
+            ?>
+            <?php foreach ($regions as $rid => $r): ?>
+              <div class="lvl-<?=$lvl?> zone<?=$r->term_id?> selector-row" data-parent="<?=$r->parent?>">
+                <input tglwatcherkey="zone_multiselect" htext="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> class="<? if($r->count != 0): echo ' has-childs'; endif; ?>" type="checkbox" id="zone_<?=$r->term_id?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
+              </div>
+              <?php
+              $children = $r->children;
+              while( !empty($children) ){
+                $lvl++;
+                foreach ($children as $rid => $r) {
+                  $children = $r->children;
+                  ?>
+                  <div class="lvl-<?=$lvl?> zone<?=$r->term_id?> selector-row" data-parent="<?=$r->parent?>">
+                    <input tglwatcherkey="zone_multiselect" htext="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> type="checkbox" id="zone_<?=$r->term_id?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
+                  </div>
+                  <?
+                }
+
+              } ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
       </div>
 
       <div class="inp inp-status">
-        <label for="status_multiselect_text"><?=__('Státusz', 'ti')?></label>
+        <label for="status_multiselect_text"><?=__('Státusz', 'gh')?></label>
         <div class="tglwatcher-wrapper">
-          <input type="text" readonly="readonly" id="status_multiselect_text" class="form-control tglwatcher" tglwatcher="status_multiselect" placeholder="<?=__('Összes', 'ti')?>" value="">
+          <input type="text" readonly="readonly" id="status_multiselect_text" class="form-control tglwatcher" tglwatcher="status_multiselect" placeholder="<?=__('Összes', 'gh')?>" value="">
         </div>
-        <input type="hidden" id="status_multiselect_ids" name="st" value="">
+        <input type="hidden" id="status_multiselect_ids" name="st" value="<?=$form['st']?>">
         <div class="multi-selector-holder" tglwatcherkey="status_multiselect" id="status_multiselect">
           <div class="selector-wrapper">
-            <? $status = $properties->getSelectors( 'status' ); ?>
+            <?
+              $selected = explode(",", $form['st']);
+              $status = $properties->getSelectors( 'status' );
+            ?>
             <?php if ($status): ?>
               <?php foreach ($status as $k): ?>
               <div class="selector-row">
-                <input type="checkbox" tglwatcherkey="status_multiselect" htxt="<?=$k->name?>" id="stat_<?=$k->term_id?>" value="<?=$k->term_id?>"> <label for="stat_<?=$k->term_id?>"><?=$k->name?> <span class="n">(<?=$k->count?>)</span></label>
+                <input type="checkbox" <?=(in_array($k->term_id, $selected))?'checked="checked"':''?> tglwatcherkey="status_multiselect" htxt="<?=$k->name?>" id="stat_<?=$k->term_id?>" value="<?=$k->term_id?>"> <label for="stat_<?=$k->term_id?>"><?=$k->name?> <span class="n">(<?=$k->count?>)</span></label>
               </div>
               <?php endforeach; ?>
             <?php endif; ?>
           </div>
         </div>
       </div>
+
       <div class="inp inp-kategoria">
         <label for="kategoria_multiselect_text"><?=__('Kategória', 'ti')?></label>
         <div class="tglwatcher-wrapper">
@@ -134,50 +167,6 @@
       $('#'+tkey+'_ids').val(selected);
     });
 
-    /* Autocompleter */
-    var src_current_region = 0;
-    $("#searcher-form input[name='rg']").change(function(){
-      var sl = $(this).val();
-      src_current_region = sl;
-    });
-    $('#searcher_city').autocomplete({
-        serviceUrl: '/wp-admin/admin-ajax.php?action=city_autocomplete',
-        appendTo: '#searcher_city_autocomplete',
-        paramName: 'search',
-        params : { "region": get_current_regio() },
-        type: 'GET',
-        dataType: 'json',
-        transformResult: function(response) {
-            return {
-                suggestions: $.map(response, function(dataItem) {
-                    //return { value: dataItem.label.toLowerCase().capitalizeFirstLetter(), data: dataItem.value };
-                    return { value: dataItem.label, data: dataItem.value };
-                })
-            };
-        },
-        onSelect: function(suggestion) {
-          $('#searcher_city_ids').val(suggestion.data);
-        },
-        onSearchComplete: function(query, suggestions){
-        },
-        onSearchStart: function(query){
-          $(this).autocomplete().options.params.region = get_current_regio();
-        },
-        onSearchError: function(query, jqXHR, textStatus, errorThrown){
-            console.log('Autocomplete error: '+textStatus);
-        }
-    });
-
-     function get_current_regio() {
-       return $("#searcher-form input[name=rg]:checked").val();
-     }
-
-    String.prototype.capitalizeFirstLetter = function() {
-      return this;
-      //return this.charAt(0).toUpperCase() + this.slice(1);
-    }
-    /* E:Autocompleter */
-
   })(jQuery);
 
   function collect_checkbox(rkey, loader)
@@ -211,6 +200,8 @@
         }
       }
     });
+
+    console.log(str);
 
     if(seln <= 3 ){
       jQuery('#'+rkey+'_text').val(str.join(", "));
