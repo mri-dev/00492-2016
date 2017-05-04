@@ -24,7 +24,7 @@
         <div class="tglwatcher-wrapper">
           <input type="text" readonly="readonly" id="zone_multiselect_text" class="form-control tglwatcher" tglwatcher="zone_multiselect" placeholder="<?=__('Összes', 'gh')?>" value="">
         </div>
-        <input type="hidden" id="zone_multiselect_ids" name="zona" value="">
+        <input type="hidden" id="zone_multiselect_ids" name="rg" value="">
         <div class="multi-selector-holder" tglwatcherkey="zone_multiselect" id="zone_multiselect">
           <div class="selector-wrapper">
             <?php
@@ -33,7 +33,7 @@
             ?>
             <?php foreach ($regions as $rid => $r): ?>
               <div class="lvl-<?=$lvl?> zone<?=$r->term_id?> selector-row" data-parent="<?=$r->parent?>">
-                <input tglwatcherkey="zone_multiselect" htext="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> class="<? if($r->count != 0): echo ' has-childs'; endif; ?>" type="checkbox" id="zone_<?=$r->term_id?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
+                <input tglwatcherkey="zone_multiselect" htxt="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> class="<? if(count($r->children) != 0): echo ' has-childs'; endif; ?>" type="checkbox" id="zone_<?=$r->term_id?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
               </div>
               <?php
               $children = $r->children;
@@ -42,8 +42,8 @@
                 foreach ($children as $rid => $r) {
                   $children = $r->children;
                   ?>
-                  <div class="lvl-<?=$lvl?> zone<?=$r->term_id?> selector-row" data-parent="<?=$r->parent?>">
-                    <input tglwatcherkey="zone_multiselect" htext="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> type="checkbox" id="zone_<?=$r->term_id?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
+                  <div class="lvl-<?=$lvl?> childof<?=$r->parent?> zone<?=$r->term_id?> selector-row" data-parent="<?=$r->parent?>">
+                    <input tglwatcherkey="zone_multiselect" htxt="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> type="checkbox" id="zone_<?=$r->term_id?>" class="<? if(count($r->children) != 0): echo ' has-childs'; endif; ?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
                   </div>
                   <?
                 }
@@ -126,7 +126,19 @@
     </div>
 </div>
 <div class="searcher-footer">
-  OPTIONS
+  <div class="option-holder">
+    <div class="options-more">
+      <a href="javascript:void(0);" data-options-tgl="0" id="options-toggler"><?=__('További opciók megjelenítése', 'gh')?> <i class="fa fa-caret-right"></i> </a>
+    </div>
+    <div class="options-selects">
+      <?php foreach((array)$options as $opt_id => $opt_text): ?>
+        <div class="<?=(!in_array($opt_id, $primary_options))?'secondary-param':''?>">
+          <input type="checkbox" data-options="<?=$opt_id?>" class="fake-radio" value="<?=$opt_id?>" id="<?=$opt_id?>"><label for="<?=$opt_id?>"><?=$opt_text?></label>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+  <input type="hidden" id="options" name="opt" value="">
 </div>
 </form>
 <script type="text/javascript">
@@ -138,9 +150,37 @@
       }
     });
 
-    $('.pricebind').bind("keyup change", function() {
+    $('#options-toggler').click(function(){
+      var toggled = ($(this).data('options-tgl') == '0') ? false : true ;
 
+      if (toggled) {
+        $(this).data('options-tgl', 0);
+        $(this).find('i').removeClass('fa-caret-down').addClass('fa-caret-right');
+        $('form[role=searcher] .options-selects .secondary-param').removeClass('show');
+      }else {
+        $(this).find('i').removeClass('fa-caret-right').addClass('fa-caret-down');
+        $('form[role=searcher] .options-selects .secondary-param').addClass('show');
+        $(this).data('options-tgl', 1);
+      }
     });
+
+    $('form[role=searcher] input[data-options]').change(function()
+   {
+     var e = $(this);
+     var checkin = $(this).is(':checked');
+     var selected = collect_options(false);
+     $('#options').val(selected);
+   });
+
+     $('.pricebind').bind("keyup", function(event) {
+        if(event.which >= 37 && event.which <= 40){
+         event.preventDefault();
+        }
+        var $this = $(this);
+        var num = $this.val().replace(/ /gi, "");
+        var num2 = num.split(/(?=(?:\d{3})+$)/).join(" ");
+        $this.val(num2);
+     });
 
     $('.tglwatcher').click(function(event){
       event.stopPropagation();
@@ -163,7 +203,26 @@
       var e = $(this);
       var checkin = $(this).is(':checked');
       var tkey = e.attr('tglwatcherkey');
+      var haschild = e.hasClass('has-childs');
+
+      if(!$(e).is(':checked')) {
+        if(haschild) {
+          var childs = $('.multi-selector-holder div.childof'+e.val());
+          $(childs).each(function(i,e){
+            $(e).find('input').prop('checked', false);
+          });
+        }
+      }else {
+        if(haschild) {
+          var childs = $('.multi-selector-holder div.childof'+e.val());
+          $(childs).each(function(i,e){
+            $(e).find('input').prop('checked', true);
+          });
+        }
+      }
+
       var selected = collect_checkbox(tkey, false);
+
       $('#'+tkey+'_ids').val(selected);
     });
 
@@ -200,8 +259,6 @@
         }
       }
     });
-
-    console.log(str);
 
     if(seln <= 3 ){
       jQuery('#'+rkey+'_text').val(str.join(", "));

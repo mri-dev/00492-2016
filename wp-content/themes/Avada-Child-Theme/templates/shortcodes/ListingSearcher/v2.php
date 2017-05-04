@@ -10,23 +10,44 @@
       <div class="head-title">
         <?=__('Ingatlankeresés', 'gh')?>
       </div>
-    </li><!--
- --><li>
-      <div class="selecting">
-        <select name="">
-          <option value="">---</option>
-        </select>
-      </div>
-    </li><!--
---></ul>
+    </li>
+  </ul>
 </div><!--
 --><div class="searcher-wrapper">
     <div class="form-items">
       <div class="inp inp-city">
-        <label for="searcher_city"><?=__('Város', 'gh')?></label>
-        <input type="text" id="searcher_city" class="form-control" name="cities" value="<?=$form['cities']?>" placeholder="<?=__('Összes', 'gh')?>">
-        <div id="searcher_city_autocomplete" class="selector-wrapper"></div>
-        <input type="hidden" name="ci" id="searcher_city_ids" value="<?=$form['ci']?>">
+        <label for="zone_multiselect_text">Régió / Város</label>
+        <div class="tglwatcher-wrapper">
+          <input type="text" readonly="readonly" id="zone_multiselect_text" class="form-control tglwatcher" tglwatcher="zone_multiselect" placeholder="<?=__('Összes', 'gh')?>" value="">
+        </div>
+        <input type="hidden" id="zone_multiselect_ids" name="rg" value="">
+        <div class="multi-selector-holder" tglwatcherkey="zone_multiselect" id="zone_multiselect">
+          <div class="selector-wrapper">
+            <?php
+              $lvl = 0;
+              $zonak = explode(",", $form['rg']);
+            ?>
+            <?php foreach ($regions as $rid => $r): ?>
+              <div class="lvl-<?=$lvl?> zone<?=$r->term_id?> selector-row" data-parent="<?=$r->parent?>">
+                <input tglwatcherkey="zone_multiselect" htxt="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> class="<? if(count($r->children) != 0): echo ' has-childs'; endif; ?>" type="checkbox" id="zone_<?=$r->term_id?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
+              </div>
+              <?php
+              $children = $r->children;
+              while( !empty($children) ){
+                $lvl++;
+                foreach ($children as $rid => $r) {
+                  $children = $r->children;
+                  ?>
+                  <div class="lvl-<?=$lvl?> childof<?=$r->parent?> zone<?=$r->term_id?> selector-row" data-parent="<?=$r->parent?>">
+                    <input tglwatcherkey="zone_multiselect" htxt="<?=$r->name?>" <?=(in_array($r->term_id, $zonak))?'checked="checked"':''?> type="checkbox" id="zone_<?=$r->term_id?>" class="<? if(count($r->children) != 0): echo ' has-childs'; endif; ?>" value="<?=$r->term_id?>"> <label for="zone_<?=$r->term_id?>"><?=$r->name?> <span class="n">(<?=$r->count?>)</span></label>
+                  </div>
+                  <?
+                }
+
+              } ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
       </div>
       <div class="inp inp-kategoria">
         <label for="kategoria_multiselect_text"><?=__('Kategória', 'gh')?></label>
@@ -71,10 +92,6 @@
           </div>
         </div>
       </div>
-      <div class="inp inp-azonosito">
-        <label for="searcher-idn"><?=__('Referenciaszám', 'gh')?></label>
-        <input type="text" class="form-control" id="searcher-idn" name="n" value="<?=$form['n']?>">
-      </div>
       <div class="inp inp-rooms">
         <label for="searcher_rooms"><?=__('Szobák száma', 'gh')?></label>
         <div class="select-wrapper">
@@ -91,11 +108,11 @@
         <input type="number" class="form-control" id="searcher_property_size" name="ps" min="0" placeholder="<?=__('nm', 'gh')?>" step="10" value="<?=$form['ps']?>">
       </div>
       <div class="inp inp-price-min">
-        <label for="searcher_price_min"><?=__('Minimum ár (Ft)', 'gh')?></label>
+        <label for="searcher_price_min"><?=__('Minimum ár (€)', 'gh')?></label>
         <input type="text" class="form-control pricebind" id="searcher_price_min" name="pa" placeholder="<?=__('MFt', 'gh')?>" value="<?=$form['pa']?>">
       </div>
       <div class="inp inp-price-max">
-        <label for="searcher_price_max"><?=__('Maximum ár (Ft)', 'gh')?></label>
+        <label for="searcher_price_max"><?=__('Maximum ár (€)', 'gh')?></label>
         <input type="text" class="form-control pricebind" id="searcher_price_max" name="pb" placeholder="<?=__('MFt', 'gh')?>" value="<?=$form['pb']?>">
       </div>
     </div>
@@ -108,6 +125,7 @@
   (function($){
     collect_checkbox('kategoria_multiselect', true);
     collect_checkbox('status_multiselect', true);
+    collect_checkbox('zone_multiselect', true);
 
     $(window).click(function() {
       if (!$(event.target).closest('.toggler-opener').length) {
@@ -116,8 +134,14 @@
       }
     });
 
-    $('.pricebind').bind("keyup change", function() {
-
+    $('.pricebind').bind("keyup", function(event) {
+       if(event.which >= 37 && event.which <= 40){
+        event.preventDefault();
+       }
+       var $this = $(this);
+       var num = $this.val().replace(/ /gi, "");
+       var num2 = num.split(/(?=(?:\d{3})+$)/).join(" ");
+       $this.val(num2);
     });
 
     $('.tglwatcher').click(function(event){
@@ -141,6 +165,25 @@
       var e = $(this);
       var checkin = $(this).is(':checked');
       var tkey = e.attr('tglwatcherkey');
+
+      var haschild = e.hasClass('has-childs');
+
+      if(!$(e).is(':checked')) {
+        if(haschild) {
+          var childs = $('.multi-selector-holder div.childof'+e.val());
+          $(childs).each(function(i,e){
+            $(e).find('input').prop('checked', false);
+          });
+        }
+      }else {
+        if(haschild) {
+          var childs = $('.multi-selector-holder div.childof'+e.val());
+          $(childs).each(function(i,e){
+            $(e).find('input').prop('checked', true);
+          });
+        }
+      }
+
       var selected = collect_checkbox(tkey, false);
       $('#'+tkey+'_ids').val(selected);
     });

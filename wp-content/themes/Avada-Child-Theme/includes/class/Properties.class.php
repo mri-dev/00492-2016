@@ -225,10 +225,11 @@ class Properties extends PropertyFactory
         );
       } else {
         if(isset($this->arg['regio']) && !empty($this->arg['regio'])) {
+          $this->arg['regio'] = explode(",", $this->arg['regio']);
           $post_arg['tax_query'][] = array(
             'taxonomy'  => 'locations',
             'field'     => 'term_id',
-            'terms'     => array($this->arg['regio']),
+            'terms'     => $this->arg['regio'],
             'compare'   => 'IN'
           );
         }
@@ -358,6 +359,11 @@ class Properties extends PropertyFactory
     	'total'   => $this->query->max_num_pages
     ) );
   }
+
+  public function getQuery()
+ {
+   return $this->query;
+ }
 
   public function Count()
   {

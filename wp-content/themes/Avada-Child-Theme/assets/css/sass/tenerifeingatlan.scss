@@ -95,7 +95,7 @@ a.back-to-home {
 
         .top-sec-menu{
             position: absolute;
-            left: 40%;
+            left: 50%;
             margin-top: 6px;
             -webkit-transform: translateX(-50%);
             -moz-transform: translateX(-50%);
@@ -517,6 +517,12 @@ body.ingatlan_page{
   }
 }
 
+.fusion-modal h1, .fusion-post-content h1, .fusion-widget-area h1, .post-content h1{
+  color: $color-orange;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .show-on-mobile{
   display: none;
 }
@@ -542,9 +548,11 @@ body.ingatlan_page{
       font-weight: 500;
       line-height: 1.4;
       letter-spacing: 0px;
-      color: $color-secondary;
+      color: $color-orange;
+      text-transform: uppercase;
       font-size: 34px;
       margin: 0 0 15px 0;
+      font-weight: bold;
     }
   }
 }
@@ -1328,14 +1336,14 @@ body.news_template_page{
 
 .listing-searcher-holder {
   background: #ffffff;
-  border: 1px solid #cccfd1;
   margin: 0 auto;
   position: relative;
   z-index: 100;
+  outline: 4px solid rgba(0, 0, 0, 0.13);
 
   /* Main home style v1 */
   &.style-v1 {
-    width: 90%;
+    width: 80%;
     margin-top: -71px;
     &:after {
       display: block;
@@ -1565,7 +1573,7 @@ body.news_template_page{
         padding: 0 8px;
         border: 1px solid #cccccc;
         font-size: 1.2em;
-        color: $color-primary;
+        color: $color-orange;
       }
     }
   }
@@ -1603,31 +1611,23 @@ body.news_template_page{
       & > div {
         padding: 0 15px 8px 0;
         input[type=checkbox] + label{
-          padding-left: 29px;
+          padding-left: 20px;
           font-size: 0.9em;
           color: #808080;
           line-height: 24px;
+
           &:before {
-            color: #ffffff;
-            -webkit-border-radius: 25px;
-            -moz-border-radius: 25px;
-            border-radius: 25px;
-            overflow: hidden;
-            font-size: 20px;
-            width: 20px;
-            text-align: center;
+            color: #9d9d9d;
             height: 20px;
+            line-height: 20px;
+            font-size: 20px;
+            vertical-align: middle;
+            margin-top: 2px;
           }
         }
         input[type=checkbox]:checked + label{
           &:before {
             color: #6cbf92;
-            background: transparent;
-            width: 24px;
-            height: 24px;
-            font-size: 24px;
-            margin-top: 2px;
-            vertical-align: middle;
           }
         }
         &.secondary-param {
@@ -1650,6 +1650,7 @@ body.news_template_page{
       ul {
         width: 100%;
         background: #eaeaea;
+        border-top: 3px solid darken(#eaeaea, 20%);
 
         li {
           padding: 8px 15px;
@@ -1694,7 +1695,6 @@ body.news_template_page{
     .searcher-wrapper{
       .form-items{
         .inp{
-          &.inp-city,
           &.inp-kategoria,
           &.inp-status,
           &.inp-allapot,
@@ -1703,6 +1703,10 @@ body.news_template_page{
           &.inp-price-min,
           &.inp-price-max{
             flex-basis: 50%;
+          }
+
+          &.inp-city {
+            flex-basis: 100%;
           }
         }
       }
@@ -1924,6 +1928,27 @@ input[type=checkbox]:checked + label {
 
 .prop-list {
   margin: -10px;
+
+  .prop-list-info{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    text-align: right;
+
+    .total {
+      font-size: 1.15em;
+      color: black;
+    }
+
+    .pages {
+      color: #9e9e9e;
+      font-size: 0.7em;
+
+      strong {
+        color: #444444;
+      }
+    }
+  }
 
   .prop-wrapper {
     display: flex;
@@ -2152,7 +2177,7 @@ input[type=checkbox]:checked + label {
 
       .image{
         .excerpt {
-          background: rgba(214, 44, 48, 0.8);
+          background: rgba(214, 44, 48, 0.81);
           padding: 10px;
           font-size: 0.8em;
           color: white;
@@ -2255,7 +2280,8 @@ input[type=checkbox]:checked + label {
 
 
 .listing-list-set-unwatched,
-.listing-list-set-viewed{
+.listing-list-set-viewed,
+.listing-list-set-get{
   h1 {
     margin: 0 0 5px 0 !important;
   }
@@ -2286,8 +2312,35 @@ input[type=checkbox]:checked + label {
   }
 }
 
-.listing-list-set-viewed{
+.listing-list-set-viewed,
+.listing-list-set-get{
   h1 {
     margin: 0 0 15px 0 !important;
+  }
+}
+.pagination{
+  float:none;
+  text-align: center;
+  .page-numbers{
+    line-height: 1;
+    padding: 4px 8px;
+    background: #ffffff;
+    text-align: center;
+    color: black;
+    border: 1px solid #d9d9d9;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    &:hover {
+      background: $color-secondary;
+      color: white;
+    }
+
+    &.current {
+      background: $color-orange;
+      border: 1px solid darken($color-orange, 10%);
+      color: white;
+    }
   }
 }

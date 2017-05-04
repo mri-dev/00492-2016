@@ -119,14 +119,14 @@ class ListingLista
         'lang' => get_locale(),
       );
 
-      $arg['page'] = (isset($_GET['page']) && is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+      $arg['page'] = max( 1, get_query_var('page') );
 
       if ($watchtimestmp) {
         $arg['after_date'] = $watchtimestmp;
       }
       $properties = new Properties($arg);
       $list = $properties->getList();
-      $this->pagionation = $properties->pagination('/news/');
+      $this->pagionation = $properties->pagination('/'.SLUG_NEWS.'/');
 
       if ( count($list) != 0 ) {
         $o .= '<div class="prop-list im3 style-'.$this->template.'">';
@@ -135,7 +135,9 @@ class ListingLista
         {
           $o .= $t->load_template( array( 'item' => $e ) );
         }
-        $o .= '</div></div>';
+        $o .= '</div>';
+        $o .= '<div class="pagination">'.$this->pagionation.'</div>';
+        $o .= '</div>';
       } else {
         ob_start();
         include(locate_template('templates/parts/nodata-listing-unwatched.php'));
@@ -233,11 +235,11 @@ class ListingLista
         $arg['regio'] = $get['rg'];
       }
       if (isset($get['pa']) && !empty($get['pa'])) {
-        $arg['price_from'] = $get['pa'];
+        $arg['price_from'] = (float)str_replace(array("."," "), "", $get['pa']);
         $arg['price'] = 1;
       }
       if (isset($get['pb']) && !empty($get['pb'])) {
-        $arg['price_to'] = $get['pb'];
+        $arg['price_to'] = (float)str_replace(array("."," "), "", $get['pb']);
         $arg['price'] = 1;
       }
 
@@ -264,19 +266,27 @@ class ListingLista
         $arg['property-types'] = explode(",", $get['c']);
       }
 
-      //print_r($arg);
+      $arg['page'] = max( 1, get_query_var('page') );
 
       $properties = new Properties($arg);
       $list = $properties->getList();
-
+      $this->pagionation = $properties->pagination('/'.SLUG_INGATLAN_LIST.'/');
+      $query = $properties->getQuery();
 
       if ( count($list) != 0 ) {
-        $o .= '<div class="prop-list im3 style-'.$this->template.'"><div class="prop-wrapper">';
+        $o .= '<div class="prop-list im3 style-'.$this->template.'">';
+        $o .= '<div class="prop-list-info">
+          <div class="total">'.sprintf(__('%d találat', 'gh'), $query->found_posts).'</div>
+          <div class="pages">'.sprintf(__('<strong>%d. oldal</strong> / %d', 'gh'), $arg['page'], $query->max_num_pages).'</div>
+        </div>';
+        $o .= '<div class="prop-wrapper">';
         foreach ( $list as $e )
         {
           $o .= $t->load_template( array( 'item' => $e ) );
         }
-        $o .= '</div></div>';
+        $o .= '</div>';
+        $o .= '<div class="pagination">'.$this->pagionation.'</div>';
+        $o .= '</div>';
       } else {
         ob_start();
         include(locate_template('templates/parts/nodata-listing-get.php'));
@@ -421,8 +431,10 @@ class ListingLista
 
       $t = new ShortcodeTemplates(__CLASS__.'/'.$this->template);
 
+      $ucid = ucid();
+
       // Visited
-      $qry = "SELECT pid FROM `".\PropertyFactory::LOG_VIEW_DB."` as t WHERE t.`ip` = '".$_SERVER['REMOTE_ADDR']."' ORDER BY t.visited DESC LIMIT 0, 100;";
+      $qry = "SELECT pid FROM `".\PropertyFactory::LOG_VIEW_DB."` as t WHERE t.`ucid` = '".$ucid."' ORDER BY t.visited DESC LIMIT 0, 100;";
 
       $idsq = $wpdb->get_results($qry, ARRAY_A );
       $ids = array();
@@ -439,8 +451,11 @@ class ListingLista
         'orderby' => 'post__in'
       );
 
+      $arg['page'] = max( 1, get_query_var('page') );
+
       $properties = new Properties($arg);
       $list = $properties->getList();
+      $this->pagionation = $properties->pagination('/'.SLUG_WATCHED.'/');
 
       $o .= '<div class="prop-list '.( ($listing) ? 'im3' : 'im5' ).' style-'.$this->template.'"><div class="prop-wrapper">';
 
@@ -458,10 +473,11 @@ class ListingLista
         }
       }
 
-
-
-
-      $o .= '</div></div>';
+      $o .= '</div>';
+      if ($listing) {
+        $o .= '<div class="pagination">'.$this->pagionation.'</div>';
+      }
+      $o .= '</div>';
 
       return $o;
     }
