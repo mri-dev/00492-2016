@@ -7,6 +7,7 @@ define('IFROOT', THEMEROOT );
 define('SLUG_INGATLAN', 'ingatlan' );
 define('SLUG_INGATLANOK', 'ingatlan-kereso' );
 define('SLUG_INGATLAN_LIST', 'ingatlan-kereso' );
+define('SLUG_MAP', 'map' );
 define('SLUG_WATCHED', 'megtekintett');
 define('SLUG_NEWS', 'news');
 define('PHONE_PREFIX', '+36' );
@@ -66,6 +67,7 @@ function app_init()
 {
   date_default_timezone_set('Europe/Budapest');
 
+  add_rewrite_rule('^'.SLUG_MAP.'/?', 'index.php?custom_page='.SLUG_MAP.'&urlstring=$matches[1]', 'top');
   add_rewrite_rule('^'.SLUG_INGATLAN.'/([^/]+)/([^/]+)/([^/]+)', 'index.php?custom_page='.SLUG_INGATLAN.'&regionslug=$matches[1]&cityslug=$matches[2]&urlstring=$matches[3]', 'top');
   add_rewrite_rule('^'.SLUG_WATCHED.'/?', 'index.php?custom_page='.SLUG_WATCHED.'&urlstring=$matches[1]', 'top');
   add_rewrite_rule('^'.SLUG_NEWS.'/?', 'index.php?custom_page='.SLUG_NEWS.'&urlstring=$matches[1]', 'top');
@@ -123,6 +125,11 @@ function custom_title($title)
     add_filter('the_title', 'custom_ingatlan_title_bar');
   }
 
+  if($wp_query->query_vars['custom_page'] == SLUG_MAP ) {
+    $title['title'] = __('Térképes ingatlan kereső', 'gh');
+    add_filter('the_title', 'custom_ingatlan_title_bar');
+  }
+
   return $title;
 }
 
@@ -152,6 +159,10 @@ function custom_ingatlan_title_bar( $title )
 
     if($wp_query->query_vars['custom_page'] == SLUG_NEWS){
       $title = __('Új ingatlanok', 'gh');
+    }
+
+    if($wp_query->query_vars['custom_page'] == SLUG_MAP){
+      $title = __('Térképes ingatlan kereső', 'gh');
     }
   }
 

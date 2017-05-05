@@ -213,7 +213,9 @@ class ListingLista
           $o = '<h1>'.__('Kiemelt ingatlanok', 'ti').'</h1>';
         break;
         default:
-          $o = '<h1>'.__('Keresés eredménye', 'ti').'</h1>';
+          if($this->template != 'maplist') {            
+            $o = '<h1>'.__('Keresés eredménye', 'ti').'</h1>';
+          }
         break;
       }
 
@@ -404,6 +406,14 @@ class ListingLista
         $o .= $t->load_template( array( 'item' => $e ) );
       }
       $o .= '</div></div>';
+
+      if($this->template == 'slide')
+        {
+          ob_start();
+          include(locate_template('templates/shortcodes/'.__CLASS__.'/js/'.$this->template.'.php'));
+          $o .= ob_get_contents();
+          ob_end_clean();
+        }
 
       return $o;
     }

@@ -1,5 +1,11 @@
 @import 'settings';
 
+body, html {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+}
+
 .fusion-header{
     position: relative;
     z-index: 100;
@@ -1642,7 +1648,9 @@ body.news_template_page{
   }
 
   /* MOD v2 */
-  &.style-v2, &.style-floating {
+  &.style-v2,
+  &.style-floating,
+  &.style-map {
     .searcher-header {
       left: -1px;
       right: -1px;
@@ -1650,8 +1658,6 @@ body.news_template_page{
       ul {
         width: 100%;
         background: #eaeaea;
-        border-top: 3px solid darken(#eaeaea, 20%);
-
         li {
           padding: 8px 15px;
           color: white;
@@ -1761,6 +1767,71 @@ body.news_template_page{
 
     &.opened{
       left: 0;
+    }
+  }
+
+  &.style-map {
+    outline: none;
+    background: #f1f1f1;
+
+    .searcher-header{
+     left: 0;
+     right: 0;
+    }
+    .searcher-header ul{
+      background: #54b4e4;
+      li, li .head-title{
+        width: 100%;
+        float: none;
+        color: white;
+        text-align: center;
+      }
+    }
+    li .head-title{
+      padding: 10px;
+      font-size: 1.5em;
+    }
+
+    .submit {
+      button {
+        font-size: 0.89em;
+        background:#7a7a7a;
+
+        i{
+          font-size: 14px;
+          margin-right: 4px;
+        }
+
+        &:hover {
+          background:#4a4a4a;
+        }
+      }
+    }
+
+    .form-items{
+      .inp {
+        display: none;
+
+        input, select{
+          font-size: 0.9em;
+        }
+
+        &.inp-city,
+        &.inp-toggler,
+        &.showed {
+          display: block;
+        }
+
+        &.inp-toggler{
+          flex-basis: 100%;
+          text-align: center;
+
+          a{
+            font-size: 0.84em;
+            color: #666666;
+          }
+        }
+      }
     }
   }
 }
@@ -1955,7 +2026,7 @@ input[type=checkbox]:checked + label {
     flex-wrap: wrap;
     width: 100%;
 
-    & > .prop-item {
+    & .prop-item {
       width: calc(100% / 4);
       padding: 10px;
 
@@ -2166,7 +2237,8 @@ input[type=checkbox]:checked + label {
     }
   }
 
-  &.style-standard {
+  &.style-standard,
+  &.style-slide {
     .prop-item-wrapper {
       border: 1px solid #d9d9d9;
 
@@ -2177,7 +2249,7 @@ input[type=checkbox]:checked + label {
 
       .image{
         .excerpt {
-          background: rgba(214, 44, 48, 0.81);
+          background: transparentize($color-primary, 0.5);
           padding: 10px;
           font-size: 0.8em;
           color: white;
@@ -2238,6 +2310,12 @@ input[type=checkbox]:checked + label {
           text-align: center;
         }
       }
+    }
+  }
+
+  &.style-maplist {
+    .prop-item {
+      flex-basis: 100%;
     }
   }
 
@@ -2312,6 +2390,59 @@ input[type=checkbox]:checked + label {
   }
 }
 
+.map-page-view{
+  min-height: 1100px;
+  height: 1100px;
+  background-color: #afafaf;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+
+
+  .map-view {
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    flex-basis: 75%;
+  }
+
+  .data-list {
+    position: relative;
+    background: white;
+    height: 100%;
+    flex-basis: 25%;
+    -webkit-box-shadow: 4px 0 4px rgba(9, 67, 95, 0.28);
+    -moz-box-shadow: 4px 0 4px rgba(9, 67, 95, 0.28);
+    box-shadow: 4px 0 4px rgba(9, 67, 95, 0.28);
+    z-index: 999;
+    overflow: hidden;
+
+    .listing{
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+    }
+
+    .listing-items{
+      height: 100%;
+      position: relative;
+      overflow: auto;
+    }
+
+    .listing-header {
+      background: $color-orange;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2em;
+      padding: 10px;
+    }
+  }
+}
+
 .listing-list-set-viewed,
 .listing-list-set-get{
   h1 {
@@ -2341,6 +2472,44 @@ input[type=checkbox]:checked + label {
       background: $color-orange;
       border: 1px solid darken($color-orange, 10%);
       color: white;
+      margin: 0;
+    }
+  }
+}
+.listing-list-holder
+{
+   .slick-initialized .slick-slide{
+      height: auto !important;
+   }
+   .slick-next, .slick-prev{
+     &:before {
+       font-size: 20px;
+     }
+    background: transparentize(black, 0.81);
+    height: 30px;
+    width: 30px;
+   }
+
+  .slick-next{
+    right: -34px;
+  }
+
+  .slick-prev{
+    left: -34px;
+  }
+  .slick-dots{
+    bottom: -36px;
+    li{
+      margin: 0;
+    }
+    li button{
+      padding: 2px;
+    }
+    li button:before{
+      color: transparentize(black, 0.4);
+    }
+    li.slick-active button:before{
+      color: transparentize($color-secondary, 0.2);
     }
   }
 }
