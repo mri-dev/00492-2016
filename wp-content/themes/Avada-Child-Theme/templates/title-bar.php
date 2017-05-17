@@ -12,7 +12,7 @@
         <div class="fusion-page-title-wrapper">
             <div class="fusion-page-title-captions">
                 <?php if ($is_ingatlan_page): ?>
-                  <a href="<?php echo get_option('siteurl', true); ?>" class="back-to-home"> <i class="fa fa-caret-left"></i> Vissza a találati listára</a>
+                  <a href="javascript:void(0);" onclick="pageBack()" class="back-to-home"> <i class="fa fa-caret-left"></i> Vissza a találati listára</a>
                 <?php else: ?>
                   <a href="<?php echo get_option('siteurl', true); ?>" class="back-to-home"> <i class="fa fa-caret-left"></i> Vissza a főoldalra</a>
                 <?php endif; ?>
@@ -43,3 +43,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+  function pageBack() {
+    window.history.back();
+  }
+</script>

@@ -256,6 +256,16 @@ class Properties extends PropertyFactory
       );
     }
 
+    // Ingatlan állapota
+    if (isset($this->arg['condition']) && !empty($this->arg['condition'])) {
+      $post_arg['tax_query'][] = array(
+        'taxonomy'  => 'property-condition',
+        'field'     => 'term_id',
+        'terms'     => $this->arg['condition'],
+        'compare'   => 'IN'
+      );
+    }
+
     // Pozíciók
     if (isset($this->arg['position']) && !empty($this->arg['position'])) {
       $post_arg['tax_query'][] = array(

@@ -82,7 +82,7 @@ class Property extends PropertyFactory
 
     return get_option('siteurl').'/'.SLUG_INGATLAN.'/'.$megye.'/'.$regionslug.'/'.sanitize_title($this->Title()).'-'.$this->ID();
   }
-  public function RegionName( $html_text = true, $start_deep = 0 )
+  public function RegionName( $html_text = true, $start_deep = 0, $return_array = false )
   {
     $region_arr = array();
     $regions = $this->Regions();
@@ -92,7 +92,11 @@ class Property extends PropertyFactory
 
     while( $has_child ) {
       if($deep >= $start_deep){
-        $region_arr[] = $current->name;
+        if($return_array){
+          $region_arr[] = $current;
+        }else{
+          $region_arr[] = $current->name;
+        }
       }
 
       $deep++;
@@ -103,6 +107,10 @@ class Property extends PropertyFactory
         $current = false;
         $has_child = false;
       }
+    }
+
+    if ($return_array) {
+      return $region_arr;
     }
 
     $region = implode(' / ', $region_arr);
@@ -197,7 +205,7 @@ class Property extends PropertyFactory
     return false;
   }
 
-  public function PropertyStatus( $text = false )
+  public function PropertyLabel( $text = false )
   {
     $re = array();
     $text = get_post_meta($this->ID(), '_listing_listlabel_text', true);
@@ -213,6 +221,23 @@ class Property extends PropertyFactory
     );
 
     return $re;
+  }
+
+  public function PropertyStatus( $text = false )
+  {
+    $terms = wp_get_post_terms( $this->ID(), 'status' );
+
+    foreach ($terms as $term) {
+      if($term->taxonomy == 'status') {
+        if ($text) {
+          return $this->i18n_taxonomy_values($term->name);
+        } else {
+          return $term->name;
+        }
+      }
+    }
+
+    return false;
   }
 
   public function PropertyHeating( $text = false )
@@ -239,6 +264,10 @@ class Property extends PropertyFactory
     if ($text) {
       $term  = $terms[0];
       return $term->name;
+    } else {
+      foreach ($terms as $t) {
+        $term[] = $t;
+      }
     }
 
     return $term;
@@ -673,16 +702,9 @@ class Property extends PropertyFactory
   public function Paramteres()
   {
     $params = array();
-
     $params[] = array(
-      'name' => __('Típusa', 'ti'),
+      'name' => __('Státusz', 'ti'),
       'value' => $this->PropertyStatus(true),
-      'after' => false
-    );
-
-    $params[] = array(
-      'name' => __('Épület állapota kívül', 'ti'),
-      'value' => $this->getMetaValue('_listing_star_outside'),
       'after' => false
     );
 
@@ -708,30 +730,6 @@ class Property extends PropertyFactory
     );
 
     $params[] = array(
-      'name' => __('Belső szintek száma', 'ti'),
-      'value' => $this->getMetaValue('_listing_level_numbers'),
-      'after' => 'db'
-    );
-
-    $params[] = array(
-      'name' => __('Épült', 'ti'),
-      'value' => $this->getMetaValue('_listing_year_built'),
-      'after' => false
-    );
-
-    $params[] = array(
-      'name' => __('Ház típusa', 'ti'),
-      'value' => false,
-      'after' => false
-    );
-
-    $params[] = array(
-      'name' => __('Fényviszony', 'ti'),
-      'value' => $this->getMetaValue('_listing_light_condition'),
-      'after' => false
-    );
-
-    $params[] = array(
       'name' => __('Méret', 'ti'),
       'value' => $this->getMetaValue('_listing_property_size'),
       'after' => 'm<sup>2</sup>'
@@ -740,6 +738,18 @@ class Property extends PropertyFactory
     $params[] = array(
       'name' => __('Szobák', 'ti'),
       'value' => $this->getMetaValue('_listing_room_numbers'),
+      'after' => 'db'
+    );
+
+    $params[] = array(
+      'name' => __('Fürdők', 'ti'),
+      'value' => $this->getMetaValue('_listing_bathroom_numbers'),
+      'after' => 'db'
+    );
+
+    $params[] = array(
+      'name' => __('Teraszok', 'ti'),
+      'value' => $this->getMetaValue('_listing_terrace'),
       'after' => 'db'
     );
 

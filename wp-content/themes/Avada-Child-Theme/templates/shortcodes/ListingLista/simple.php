@@ -2,7 +2,7 @@
   <div class="prop-item-wrapper">
     <div class="top-wp">
       <div class="features">
-        <?php $label = $item->PropertyStatus(); ?>
+        <?php $label = $item->PropertyLabel(); ?>
         <?php if ($label): ?>
           <div class="status status-<?=sanitize_title($label['text'])?>" style="<?=($label['bg'])?'background: '.$label['bg'].' !important;':''?>"><?=$label['text']?></div>
         <?php endif; ?>

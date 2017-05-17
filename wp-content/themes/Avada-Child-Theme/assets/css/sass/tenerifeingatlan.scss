@@ -930,6 +930,19 @@ body.news_template_page{
             font-size: 1.3em;
           }
         }
+
+        &.e2x{
+          flex-basis: 66.6666667%;
+        }
+
+        &.toleft{
+          padding: 11px;
+          .ico,
+          .h,
+          .v{
+            text-align: left;
+          }
+        }
       }
 
       .h{

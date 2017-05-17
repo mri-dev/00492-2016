@@ -68,22 +68,6 @@
             </div>
             <div class="properties">
               <div class="list">
-
-                <div class="e">
-                 <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/alapterulet.svg" alt="<?=__('Alapterület', 'ti')?>"></div>
-                   <?=__('Alapterület', 'ti')?>
-                 </div><!--
-              --><div class="v"><?=($v = $prop->getMetaValue('_listing_property_size'))?sprintf(__('%d nm', 'ti'), $v):'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
-                </div>
-
-                <div class="e">
-                 <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/szint.svg" alt="<?=__('Emelet', 'ti')?>"></div>
-                   <?=__('Szintek száma', 'ti')?>
-                 </div><!--
-              --><div class="v"><?=($v = $prop->getMetaValue('_listing_level_numbers'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
-                </div>
                 <div class="e">
                  <div class="h">
                    <div class="ico"><img src="<?=IMG?>/ico/szoba.svg" alt="<?=__('Szobaszám', 'ti')?>"></div>
@@ -112,12 +96,24 @@
                  </div><!--
               --><div class="v"><?=($v = $prop->getMetaValue('_listing_garage'))?$v:'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
-                <div class="e smaller">
+                <div class="e e2x smaller toleft">
+                  <?php
+                    $cond = $prop->PropertyCondition();
+                  ?>
                  <div class="h">
-                   <div class="ico"><img src="<?=IMG?>/ico/allapot.svg" alt="<?=__('Állapot', 'ti')?>"></div>
-                   <?=__('Állapot', 'ti')?>
+                   <div class="ico"><img src="<?=IMG?>/ico/allapot.svg" alt="<?=__('Állapot', 'ti')?>"> <?=__('Állapot', 'ti')?></div>
                  </div><!--
-              --><div class="v"><?=($v = $prop->PropertyCondition(true))?$v:'<span class="na">'.__('N/A', 'ti').'</span>'?></div>
+              --><div class="v">
+                  <?php $cond_text = ''; foreach ($cond as $co){ $cond_text .= '<a href="/'.SLUG_INGATLAN_LIST.'/?co='.$co->term_id.'">'.$co->name.'</a>, '; } $cond_text = rtrim($cond_text, ', ');  ?>
+                  <?php echo $cond_text; ?>
+                  </div>
+                </div>
+                <div class="e">
+                 <div class="h">
+                   <div class="ico"><img src="<?=IMG?>/ico/alapterulet.svg" alt="<?=__('Alapterület', 'ti')?>"></div>
+                   <?=__('Alapterület', 'ti')?>
+                 </div><!--
+              --><div class="v"><?=($v = $prop->getMetaValue('_listing_property_size'))?sprintf(__('%d nm', 'ti'), $v):'<span class="na">'.__('nincs megadva', 'ti').'</span>'?></div>
                 </div>
                 <div class="e price">
                   <?php if ($prop->isDropOff()): ?>
@@ -245,10 +241,10 @@
           </div>
         </div>
       </div>
-
       <div class="recomended-list">
         <div class="page-holder">
-          <? echo do_shortcode('[listing-list view="standard" src="recomended" limit="4"]'); ?>
+          <?php $nearb = end($prop->RegionName(false, 0, true)); ?>
+          <? echo do_shortcode('[listing-list view="standard" src="recomended" limit="4" loc="'.$nearb->term_id.'" city="'.$nearb->name.'" excid="'.$prop->ID().'"]'); ?>
         </div>
       </div>
       <div class="divider"></div>
@@ -274,7 +270,6 @@
           $('.image-slide').slick('slickGoTo', index);
         }
 
-        console.log(index);
       });
 
       $('.image-slide').on('beforeChange', function(event, slick, currentSlide, nextSlide){

@@ -19,7 +19,7 @@ echo '<div style="width: 45%; float: left">';
 		$sel_pf = 0;
 	}
 	echo '<p>
-	<label for="_listing_flag_pricetype">'.__('Price Type', 'wp-listings').'</label> <br>
+	<label for="_listing_flag_pricetype">'.__('Ár jellege', 'ti').'</label> <br>
 	<select id="_listing_flag_pricetype" name="wp_listings[_listing_flag_pricetype]">';
 	foreach ((array)$pf->price_types as $key => $value) {
 		echo '<option '. ( ($sel_pf == $value)?'selected="selected"':'' ) .' value="'.$value.'">'.$pf->i18n_pricetype_values($value).'</option>';
@@ -88,9 +88,10 @@ echo '<div style="width: 90%; float: left;">';
 	echo '<input type="text" id="label_color" class="color-picker" data-default-color="#ffffff" name="wp_listings[_listing_listlabel_bgcolor]" value="'.get_post_meta( $post->ID, '_listing_listlabel_bgcolor', true).'" /></p>';
 echo '<hr>';
 
-echo '<div style="width: 45%; float: left">';
+echo '<div style="width: 100%; float: left">';
 
 	_e('<h4>Térkép beállítások</h4>', 'ti');
+	_e('<em>Ha nincs megadva koordináta, akkor az automatikusan lekért város koordináták a mérvadóak.</em>', 'ti');
 
 	if(get_post_meta($post->ID, '_listing_automap', 1) == FALSE) {
     	update_post_meta($post->ID, '_listing_automap', 'y');
@@ -107,6 +108,7 @@ echo '</div>';
 echo '<div style="width: 45%; float: right;">';
 	printf( __('<p><label>Longitude: <br /><input type="text" name="wp_listings[_listing_gps_lng]" value="%s" /></label></p>', 'wp-listings'), get_post_meta( $post->ID, '_listing_gps_lng', true) );
 echo '</div><br style="clear: both;" />';
+
 
 echo '</div><br style="clear: both;" />';
 echo '<hr>';

@@ -2,7 +2,7 @@
   <div class="prop-item-wrapper">
     <div class="top-wp">
       <div class="features">
-        <?php $label = $item->PropertyStatus(); ?>
+        <?php $label = $item->PropertyLabel(); ?>
         <?php if ($label): ?>
           <div class="status status-<?=sanitize_title($label['text'])?>" style="<?=($label['bg'])?'background: '.$label['bg'].' !important;':''?>"><?=$label['text']?></div>
         <?php endif; ?>
@@ -33,21 +33,12 @@
           <div class="v"><?=$o?></div>
         </div>
       </div>
-      <?php $o = $item->getMetaValue('_listing_bedrooms'); ?>
+      <?php $o = $item->getMetaValue('_listing_room_numbers'); ?>
       <?php $o = ($o && !empty($o)) ? $o : $def_o; ?>
       <div class="opt">
         <div class="d">
-          <div class="ico"><img src="<?=IMG."/ico/halo.svg"?>" alt="<?=__('Háló', 'ti')?>" /></div>
-          <div class="t"><?=__('Háló', 'ti')?></div>
-          <div class="v c"><?=$o?></div>
-        </div>
-      </div>
-      <?php $o = $item->getMetaValue('_listing_level_numbers'); ?>
-      <?php $o = ($o && !empty($o)) ? $o : $def_o; ?>
-      <div class="opt">
-        <div class="d">
-          <div class="ico"><img src="<?=IMG."/ico/szint.svg"?>" alt="<?=__('Emelet', 'ti')?>" /></div>
-          <div class="t"><?=__('Emelet', 'ti')?></div>
+          <div class="ico"><img src="<?=IMG."/ico/szoba.svg"?>" alt="<?=__('Szobák', 'ti')?>" /></div>
+          <div class="t"><?=__('Szobák', 'ti')?></div>
           <div class="v c"><?=$o?></div>
         </div>
       </div>
@@ -60,21 +51,12 @@
           <div class="v c"><?=$o?></div>
         </div>
       </div>
-      <?php $o = $item->getMetaValue('_listing_room_numbers'); ?>
+      <?php $o = $item->getMetaValue('_listing_terrace'); ?>
       <?php $o = ($o && !empty($o)) ? $o : $def_o; ?>
       <div class="opt">
         <div class="d">
-          <div class="ico"><img src="<?=IMG."/ico/szoba.svg"?>" alt="<?=__('Szobák', 'ti')?>" /></div>
-          <div class="t"><?=__('Szobák', 'ti')?></div>
-          <div class="v c"><?=$o?></div>
-        </div>
-      </div>
-      <?php $o = $item->getMetaValue('_listing_garage'); ?>
-      <?php $o = ($o && !empty($o)) ? $o : $def_o; ?>
-      <div class="opt">
-        <div class="d">
-          <div class="ico"><img src="<?=IMG."/ico/garazs.svg"?>" alt="<?=__('Garázs', 'ti')?>" /></div>
-          <div class="t"><?=__('Garázs', 'ti')?></div>
+          <div class="ico"><img src="<?=IMG."/ico/terasz.svg"?>" alt="<?=__('Terasz', 'ti')?>" /></div>
+          <div class="t"><?=__('Terasz', 'ti')?></div>
           <div class="v c"><?=$o?></div>
         </div>
       </div>

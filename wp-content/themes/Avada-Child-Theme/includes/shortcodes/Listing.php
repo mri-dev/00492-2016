@@ -27,7 +27,10 @@ class ListingLista
               'src' => 'list',
               'view' => 'standard',
               'limit' => 6,
-              'listing' => 0
+              'listing' => 0,
+              'loc' => false,
+              'city' => '',
+              'excid' => 0
             )
         );
 
@@ -213,7 +216,7 @@ class ListingLista
           $o = '<h1>'.__('Kiemelt ingatlanok', 'ti').'</h1>';
         break;
         default:
-          if($this->template != 'maplist') {            
+          if($this->template != 'maplist') {
             $o = '<h1>'.__('Keresés eredménye', 'ti').'</h1>';
           }
         break;
@@ -264,6 +267,10 @@ class ListingLista
         $arg['status'] = explode(",", $get['st']);
       }
 
+      if (isset($get['co']) && !empty($get['co'])) {
+        $arg['condition'] = explode(",", $get['co']);
+      }
+
       if (isset($get['c']) && !empty($get['c'])) {
         $arg['property-types'] = explode(",", $get['c']);
       }
@@ -305,9 +312,7 @@ class ListingLista
     {
       $get = $_GET;
 
-      $o = '<div class="header">
-        <h2>'.__('Hasonló ingatlanok', 'ti').'</h2>
-      </div>';
+
 
       $t = new ShortcodeTemplates(__CLASS__.'/'.$this->template);
 
@@ -358,13 +363,22 @@ class ListingLista
         $arg['property-types'] = explode(",", $get['c']);
       }
 
-      //print_r($arg);
+      if (isset($this->params['loc']) && $this->params['loc'] !== false) {
+        $arg['location'] = array($this->params['loc']);
+      }
+
+      if (isset($this->params['excid']) && !empty($this->params['excid'])) {
+        $arg['exc_ids'] = array($this->params['excid']);
+      }
 
       $properties = new Properties($arg);
       $list = $properties->getList();
 
 
       if ( count($list) != 0 ) {
+        $o = '<div class="header">
+          <h2>'.sprintf(__('További ingatlanok itt: %s', 'ti'), $this->params['city']).'</h2>
+        </div>';
         $o .= '<div class="prop-list im4 style-'.$this->template.'"><div class="prop-wrapper">';
         foreach ( $list as $e )
         {
@@ -372,10 +386,10 @@ class ListingLista
         }
         $o .= '</div></div>';
       } else {
-        ob_start();
+        /*ob_start();
         include(locate_template('templates/parts/nodata-listing-get.php'));
         $o .= ob_get_contents();
-        ob_end_clean();
+        ob_end_clean();*/
       }
       return $o;
     }

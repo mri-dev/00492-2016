@@ -1,3 +1,4 @@
+<?php if (count($list) > 4): ?>
 <script type="text/javascript">
   (function($){
 
@@ -10,4 +11,5 @@
       autoplay: true
     });
   })(jQuery);
-</script>
+</script>  
+<?php endif; ?>
