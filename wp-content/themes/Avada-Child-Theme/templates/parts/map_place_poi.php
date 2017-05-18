@@ -197,7 +197,7 @@
             lng: results[0].geometry.location.lng(),
             term: term
           }, function(r){
-            console.log(r);
+            //console.log(r);
           },"data");
         } else {
           console.log('Geocode was not successful for the following reason: ' + status);
@@ -206,8 +206,6 @@
     }
 
   })(jQuery);
-
-
 
   function setGPSMarker(latLng, address) {
     var circle = new google.maps.Circle({

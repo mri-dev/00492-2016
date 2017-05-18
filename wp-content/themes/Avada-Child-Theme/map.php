@@ -9,15 +9,74 @@
         </div>
         <div class="listing" id="listing" style="padding-top: 237px;">
           <div class="listing-header">
-            0 db ingatlant találtunk
+            Ingatlanok betöltése...<i class="fa fa-spin fa-spinner"></i>
           </div>
           <div class="listing-items" id="listing-items">
-            <?php echo do_shortcode("[listing-list view='maplist' src='get']"); ?>
+            <div class="result" id="result-page-0"></div>
+            <div id="load-more-page" data-page="0" style="display:none;">További ingatlanok betöltése</div>
           </div>
         </div>
       </div>
       <div class="map-view" id="map"></div>
       <script type="text/javascript">
+      (function($){
+        var getqry = {};
+        var lastresult = null;
+
+        loadList(1);
+
+        function loadList(page) {
+          $('.listing-header').html('Ingatlanok betöltése...<i class="fa fa-spin fa-spinner"></i>');
+          $('#load-more-page').hide(0);
+          getqry.page = page;
+          getqry.limit = 2;
+          $.post('<?=get_ajax_url('maplist')?>', getqry, function(r){
+            lastresult = r;
+            console.log(r);
+            pushItems(r.data);
+          }, 'json' );
+        }
+
+        function pushItems(list) {
+          var datalist = '';
+          $.each(list, function(i,e){
+            datalist += pushItem(e);
+          });
+          var h = '<div class="result page'+lastresult.page.current+'" id="result-page-'+lastresult.page.current+'">'+
+          datalist+
+          '</div>';
+          var cp = getqry.page - 1;
+          $(h).insertAfter('#listing-items #result-page-'+cp);
+          $('.listing-header').html(lastresult.data_info.total_items+' db ingatlant találtunk');
+          getqry.page++;
+          var next_page = lastresult.page.current + 1;
+
+          if(next_page <= lastresult.page.max){
+            $('#load-more-page').data('page', next_page).show(0);
+          } else {
+            $('#load-more-page').data('page', next_page).hide(0);
+          }
+        }
+
+        $('#load-more-page').click(function(){
+          var p = $(this).data('page');
+          loadList(p);
+          console.log(p);
+        });
+
+        function pushItem(i) {
+          return '<div class="prop-item">'+
+          '<div class="img"><img src="'+i.image+'" alt="'+i.title+'"/></div>'+
+          '<div class="dt">'+
+          '<div class="title"><a href="'+i.url+'" target="_blank">'+i.title+'</a></div>'+
+          '<div class="info"><span class="price">'+i.price_text+'</span> <span class="pos">'+i.region+'</span></div>'+
+          '<div class="desc '+((i.desc == '')?'hided':'')+'">'+i.desc+'</div>'+
+          '<div class="label '+((!i.label)?'hided':'')+'">'+((i.label) ? '<span style="background:'+i.label.bg+' ">'+i.label.text+'</span>' :'')+'</div>'+
+          '</div>'+
+          '</div>';
+        }
+      })(jQuery);
+
       var styledMapType = new google.maps.StyledMapType( [
     {
       "elementType": "geometry",
@@ -182,6 +241,7 @@
 
         var mapopt = {
           center: {lat: 28.259343, lng: -16.607619},
+          scrollwheel: false,
           zoom: 10,
           mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']

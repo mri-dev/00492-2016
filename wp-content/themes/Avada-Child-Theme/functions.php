@@ -296,6 +296,7 @@ function ajax_requests()
   $ajax->property_fav_action();
   $ajax->city_autocomplete();
   $ajax->set_regio_gps();
+  $ajax->maplist();
 }
 add_action( 'init', 'ajax_requests' );
 

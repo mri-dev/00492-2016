@@ -31,9 +31,89 @@ class AjaxRequests
     add_action( 'wp_ajax_nopriv_'.__FUNCTION__, array( $this, 'setRegioGPS'));
   }
 
+  public function maplist()
+  {
+    add_action( 'wp_ajax_'.__FUNCTION__, array( $this, 'loadMapItems'));
+    add_action( 'wp_ajax_nopriv_'.__FUNCTION__, array( $this, 'loadMapItems'));
+  }
+
+  public function loadMapItems()
+  {
+    extract($_POST);
+    $data = array();
+    $arg = array();
+
+    // Default return
+    $return = array();
+    $return['filters'] = $_POST;
+    $return['limit'] = (isset($limit)) ? (int)$limit : 30;
+    $return['fromto'] = array(
+      'from' => 0,
+      'to' => (isset($limit)) ? (int)$limit : 30
+    );
+    $return['page'] = array(
+      'current' => (isset($page)) ? (int)$page : 1,
+      'max' => 1,
+      'next' => 1,
+      'prev' => 1
+    );
+    $return['data'] = array();
+    $return['data_info'] = array();
+
+    // Query filters
+    $arg[limit] = $return['limit'];
+    $arg[page] = $return['page']['current'];
+
+    // Query
+    $properties = new Properties($arg);
+    $list = $properties->getList();
+
+    // Return params
+    $return[query] = $properties->getQuery();
+    $max_page = (int)$return[query]->max_num_pages;
+    $return['page']['max'] = $max_page;
+
+    $return['data_info']['total_items'] = (int)$properties->CountTotal();
+
+    $prev_page = $return['page']['current'] - 1;
+    $next_page = $return['page']['current'] + 1;
+
+    if($prev_page < 0) {
+      $prev_page = 0;
+    }
+
+    if($next_page > $max_page) {
+      $next_page = $max_page;
+    }
+
+    $return['page']['next'] = $next_page;
+    $return['page']['prev'] = $prev_page;
+    $return['fromto']['from'] = ($return['page']['current'] * $return['limit']) - $return['limit'];
+
+    foreach ((array)$list as $item){
+      $data[] = array(
+        'id' => $item->ID(),
+        'title' => $item->Title(),
+        'region' => $item->RegionName(false, 0),
+        'url' => $item->URL(),
+        'image' => $item->ProfilImg(),
+        'desc' => $item->ShortDesc(),
+        'price' => $item->Price(),
+        'price_text' => $item->getValuta().$item->Price(true),
+        'label' => $item->PropertyLabel(),
+        'gps' => $item->GPS(),
+        'params' => $item->Paramteres()
+      );
+    }
+
+    $return['data'] = $data;
+
+    echo json_encode($return);
+    die();
+  }
+
   public function setRegioGPS()
   {
-
     extract($_POST);
 
     $return = array(

@@ -2443,6 +2443,65 @@ input[type=checkbox]:checked + label {
       height: 100%;
       position: relative;
       overflow: auto;
+      padding-bottom: 45px;
+
+
+      .prop-item{
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: 2px solid #f1f1f1;
+
+
+        .img{
+          flex-basis: 25%;
+
+          img{
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+
+        .dt {
+          flex-basis: 75%;
+          padding: 5px;
+          font-size: 0.9em;
+
+          .title{
+            a{
+              font-size: 1.2em;
+              font-weight: bold;
+              color: $color-secondary;
+            }
+          }
+
+          .info {
+            font-size: 0.9em;
+            margin: 4px 0;
+
+            .pos {
+              color: $color-orange;
+            }
+
+            .price {
+              font-size: 0.9em;
+              color: $color-red;
+              margin-right: 5px;
+            }
+          }
+          .label{
+            color: white;
+            font-size: 0.8em;
+            padding: 4px;
+            margin-top: 4px;
+          }
+          .desc{
+            font-size: 0.7em;
+            color: #888888;
+            height: 26px;
+            overflow: hidden;
+          }
+        }
+      }
     }
 
     .listing-header {

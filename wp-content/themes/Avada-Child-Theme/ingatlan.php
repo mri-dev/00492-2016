@@ -231,7 +231,9 @@
                 </div>
                 <?
                   $gps = $prop->GPS();
+                  $regio = end($regions);
                   $gps_term_id = $regio->term_id;
+                  
                   ob_start();
                   include(locate_template('/templates/parts/map_place_poi.php'));
                   ob_end_flush();
