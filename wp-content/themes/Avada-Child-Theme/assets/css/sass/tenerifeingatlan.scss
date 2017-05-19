@@ -2404,8 +2404,8 @@ input[type=checkbox]:checked + label {
 }
 
 .map-page-view{
-  min-height: 1100px;
-  height: 1100px;
+  min-height: 1000px;
+  height: 1000px;
   background-color: #afafaf;
   position: relative;
   display: flex;
@@ -2416,14 +2416,14 @@ input[type=checkbox]:checked + label {
     position: relative;
     height: 100%;
     min-height: 100%;
-    flex-basis: 75%;
+    flex-basis: 70%;
   }
 
   .data-list {
     position: relative;
     background: white;
     height: 100%;
-    flex-basis: 25%;
+    flex-basis: 30%;
     -webkit-box-shadow: 4px 0 4px rgba(9, 67, 95, 0.28);
     -moz-box-shadow: 4px 0 4px rgba(9, 67, 95, 0.28);
     box-shadow: 4px 0 4px rgba(9, 67, 95, 0.28);
@@ -2445,10 +2445,27 @@ input[type=checkbox]:checked + label {
       overflow: auto;
       padding-bottom: 45px;
 
+      #load-more-page{
+        text-align: center;
+        font-size: 0.8em;
+        background: #f1f1f1;
+        padding: 8px;
+        text-transform: uppercase;
+        color: black;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: 'Arial';
+
+        &:hover{
+          background: $color-secondary;
+          color: white;
+        }
+      }
 
       .prop-item{
         display: flex;
         flex-wrap: wrap;
+        border: 2px solid transparent;
         border-bottom: 2px solid #f1f1f1;
 
 
@@ -2464,7 +2481,16 @@ input[type=checkbox]:checked + label {
         .dt {
           flex-basis: 75%;
           padding: 5px;
-          font-size: 0.9em;
+          font-size: 1.1em;
+
+          .hided {
+            display: none;
+          }
+          .hided:not(.hasdata){
+            padding: 0;
+            margin: 0;
+            height: 1px !important;
+          }
 
           .title{
             a{
@@ -2497,8 +2523,33 @@ input[type=checkbox]:checked + label {
           .desc{
             font-size: 0.7em;
             color: #888888;
-            height: 26px;
+            height: 30px;
             overflow: hidden;
+          }
+        }
+
+
+        &:hover{
+          background: #f3f3f3;
+          border: 2px solid #eaeaea;
+          -webkit-box-shadow: 0 5px 30px -10px #000000;
+          -moz-box-shadow: 0 5px 30px -10px #000000;
+          box-shadow: 0 5px 30px -10px #000000;
+          .hided {
+            display: block;
+          }
+        }
+
+        &.focused{
+          background: $color-orange;
+          color: white;
+
+          .hided{
+            display: block !important;
+          }
+
+          .title a, .price, .pos, .desc {
+            color: white !important;
           }
         }
       }
@@ -2512,6 +2563,86 @@ input[type=checkbox]:checked + label {
       font-size: 1.2em;
       padding: 10px;
     }
+  }
+}
+
+.map-box-content{
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 5px solid #d2d2d2;
+  h2{
+    font-family: 'Arial' !important;
+    color: $color-secondary;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: bold !important;
+  }
+
+  .title {
+    padding: 10px 0;
+  }
+
+  .pos{
+    color: $color-orange;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+  }
+
+  .desc{
+    color: #8c8c8c;
+    font-size: 0.9em;
+    padding-bottom: 12px;
+  }
+
+  .params{
+    padding-bottom: 12px;
+    table.paramtable{
+      width: 100%;
+      border: 1px solid #f1f1f1;
+      border-collapse: collapse;
+
+      td {
+        padding: 5px;
+        width: 50%;
+        border: 1px solid #f1f1f1;
+      }
+
+      i {
+        color: $color-orange;
+      }
+
+      tr td:first-child{
+        font-weight: bold;
+      }
+    }
+  }
+
+  .img {
+    img{
+      max-width: 100%;
+    }
+  }
+
+  .price {
+    float: left;
+    font-size: 1.5em;
+    color: $color-red;
+    font-family: 'Arial';
+    font-weight: bold;
+
+  }
+
+  .read {
+    float: right;
+
+    a{
+      background: $color-primary;
+      color: white;
+      padding: 4px;
+    }
+
   }
 }
 
