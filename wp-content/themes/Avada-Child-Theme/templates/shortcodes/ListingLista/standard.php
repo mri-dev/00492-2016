@@ -19,7 +19,12 @@
     </div>
     <div class="prim-line">
       <div class="pos">
-        <div class="region"><a href="#"><img src="<?=IMG?>/ico/pinner.svg" alt=""> <?=$item->RegionName(true, 0)?></a></div>
+        <?php $regionname = $item->RegionName(true, 0); ?>
+        <?php if ($regionname): ?>
+          <div class="region"><a href="#"><img src="<?=IMG?>/ico/pinner.svg" alt=""> <?=$regionname?></a></div>
+        <?php else: ?>
+          <div class="region">&mdash;&mdash;</div>
+        <?php endif; ?>
       </div>
     </div>
     <?php $def_o = '&mdash;'; ?>

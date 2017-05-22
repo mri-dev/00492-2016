@@ -1792,17 +1792,22 @@ body.news_template_page{
      right: 0;
     }
     .searcher-header ul{
-      background: #54b4e4;
+      background: darken($color-secondary, 10%);
       li, li .head-title{
         width: 100%;
         float: none;
         color: white;
         text-align: center;
+        padding: 0;
       }
     }
     li .head-title{
       padding: 10px;
-      font-size: 1.5em;
+      font-size: 1.3em;
+    }
+
+    .head-title {
+      padding: 10px 0 !important;
     }
 
     .submit {
@@ -1824,9 +1829,14 @@ body.news_template_page{
     .form-items{
       .inp {
         display: none;
+        padding:4px;
 
         input, select{
           font-size: 0.9em;
+        }
+
+        label {
+          font-size: 0.8em;
         }
 
         &.inp-city,
@@ -2419,6 +2429,25 @@ input[type=checkbox]:checked + label {
     flex-basis: 70%;
   }
 
+  .item-loader{
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      background: transparentize($color-secondary, 0.05);
+      color: white;
+
+      .text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 1.3em;
+        transform: translate(-50%, -50%);
+      }
+  }
+
   .data-list {
     position: relative;
     background: white;
@@ -2467,7 +2496,7 @@ input[type=checkbox]:checked + label {
         flex-wrap: wrap;
         border: 2px solid transparent;
         border-bottom: 2px solid #f1f1f1;
-
+        cursor: pointer;
 
         .img{
           flex-basis: 25%;
@@ -2516,9 +2545,13 @@ input[type=checkbox]:checked + label {
           }
           .label{
             color: white;
-            font-size: 0.8em;
-            padding: 4px;
+            font-size: 0.7em;
+            padding: 0;
             margin-top: 4px;
+
+            span {
+              padding: 2px 4px;
+            }
           }
           .desc{
             font-size: 0.7em;

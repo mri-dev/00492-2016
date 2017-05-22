@@ -7,7 +7,7 @@
         <div class="searcher">
           <?php echo do_shortcode("[listing-searcher view='map']"); ?>
         </div>
-        <div class="listing" id="listing" style="padding-top: 237px;">
+        <div class="listing" id="listing" style="padding-top: 202px;">
           <div class="listing-header">
             Ingatlanok betöltése...<i class="fa fa-spin fa-spinner"></i>
           </div>
@@ -18,6 +18,11 @@
         </div>
       </div>
       <div class="map-view" id="map"></div>
+      <div class="item-loader" id="itempreloader">
+        <div class="text">
+          <i class="fa fa-spin fa-spinner"></i> Ingatlanok betöltése...
+        </div>
+      </div>
       <script type="text/javascript">
         var styledMapType = new google.maps.StyledMapType( [
         {
@@ -201,17 +206,25 @@
         var lastresult = null;
         var ir = 0;
         var currentWindow;
+        var currentindexhovered = 0;
 
         loadList(1);
+
+        map.addListener('click', function() {
+            if (currentWindow) {
+              currentWindow.close();
+            }
+        });
 
         function loadList(page) {
           $('.listing-header').html('Ingatlanok betöltése...<i class="fa fa-spin fa-spinner"></i>');
           $('#load-more-page').hide(0);
           getqry.page = page;
-          getqry.limit = 30;
+          getqry.limit = 3;
           $.post('<?=get_ajax_url('maplist')?>', getqry, function(r){
             lastresult = r;
             pushItems(r.data);
+            $('#itempreloader').fadeOut(400);
           }, 'json' );
         }
 
@@ -220,7 +233,9 @@
           $.each(list, function(i,e){
             datalist += pushItem(e);
           });
+          var pageinfo = '<div class="page-info">'+getqry.limit+' ingatlan megjelenítve</div>';
           var h = '<div class="result page'+lastresult.page.current+'" id="result-page-'+lastresult.page.current+'">'+
+          pageinfo+
           datalist+
           '</div>';
           var cp = getqry.page - 1;
@@ -234,6 +249,25 @@
           } else {
             $('#load-more-page').data('page', next_page).hide(0);
           }
+
+          $('.prop-item').bind('click',function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var ix = $(this).data('index');
+            var id = $(this).data('id');
+
+            if(ix != currentindexhovered) {
+              currentindexhovered = ix;
+              var current_marker = markers[id];
+              var lat = parseFloat(current_marker.position.lat());
+              var lng = parseFloat(current_marker.position.lng());
+              if (!isNaN(lat) && !isNaN(lng)) {
+                map.setCenter(current_marker.position);
+                map.setZoom(16);
+                google.maps.event.trigger(current_marker, 'click');
+              }
+            }
+          });
         }
 
         $('#load-more-page').click(function(){
@@ -306,9 +340,15 @@
             var id = marker.get("id");
             $('.prop-item.focused').removeClass('focused');
             $('.prop-item[data-id=\''+id+'\']').addClass('focused');
+
+            var itemtop = $('.prop-item[data-id=\''+id+'\']').offset().top;
+            var holdertop = $('#listing-items').offset().top;
+
             $('.listing-items').animate({
-              scrollTop: $('.prop-item[data-id=\''+id+'\']').offset().top
+              scrollTop: itemtop-holdertop
             }, 100);
+
+            console.log(itemtop-holdertop);
 
             if( currentWindow ) {
               currentWindow.close();
@@ -317,7 +357,7 @@
             infowindow.open(map, marker);
           });
 
-          markers.push(marker);
+          markers[i.id] = marker;
           marker.setMap(map);
 
           return '<div class="prop-item itemindex'+ir+'" data-id="'+i.id+'" data-index="'+ir+'">'+

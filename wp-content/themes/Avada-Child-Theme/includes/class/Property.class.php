@@ -126,6 +126,10 @@ class Property extends PropertyFactory
     $terms    = wp_get_post_terms( $this->ID(), 'locations' );
     $top_term = $this->get_top_term($terms);
 
+    if (!$terms) {
+      return false;
+    }
+
     $parent = ($top_term) ? $top_term->term_id : false;
 
     $top_term->children = $this->load_child_term($parent, $terms);
@@ -217,7 +221,7 @@ class Property extends PropertyFactory
 
     $re = array(
       'text'  => $text,
-      'bg'    => ($bgcolor == '') ? false : $bgcolor,
+      'bg'    => ($bgcolor == '') ? '#435061' : $bgcolor,
     );
 
     return $re;
@@ -838,7 +842,7 @@ class Property extends PropertyFactory
 
 
     if (!$img_id) {
-      return IMG.'/default_image.jpg';
+      return IMG.'/no-property-image.png';
     } else {
       $img = wp_get_attachment_url($img_id);
       return $img;

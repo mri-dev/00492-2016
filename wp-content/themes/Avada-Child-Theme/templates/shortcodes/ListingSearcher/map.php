@@ -2,7 +2,6 @@
   // Régiók
   $regions = $properties->getRegions();
 ?>
-
 <form class="" role="searcher" id="searcher-form" action="/<?=SLUG_MAP?>/" method="get">
 <div class="searcher-header">
   <ul>
