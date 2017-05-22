@@ -13,7 +13,7 @@
           </div>
           <div class="listing-items" id="listing-items">
             <div class="result" id="result-page-0"></div>
-            <div id="load-more-page" data-page="0" style="display:none;">További ingatlanok betöltése</div>
+            <div id="load-more-page" data-page="0" style="display:none;">További <span id="pagenum">0</span> db ingatlan betöltése <i class="fa fa-arrow-circle-right"></i></div>
           </div>
         </div>
       </div>
@@ -217,10 +217,12 @@
         });
 
         function loadList(page) {
-          $('.listing-header').html('Ingatlanok betöltése...<i class="fa fa-spin fa-spinner"></i>');
+          $('.listing-header').html('<i class="fa fa-spin fa-spinner"></i> Ingatlanok betöltése...');
           $('#load-more-page').hide(0);
           getqry.page = page;
-          getqry.limit = 3;
+          getqry.limit = 10;
+          getqry.get = '<?=json_encode($_GET)?>';
+          $('#pagenum').text(getqry.limit);
           $.post('<?=get_ajax_url('maplist')?>', getqry, function(r){
             lastresult = r;
             pushItems(r.data);
@@ -233,7 +235,17 @@
           $.each(list, function(i,e){
             datalist += pushItem(e);
           });
-          var pageinfo = '<div class="page-info">'+getqry.limit+' ingatlan megjelenítve</div>';
+
+          console.log(lastresult);
+
+          if (getqry.page == 1) {
+            var pageinfo = '<div class="page-info page'+lastresult.page.current+'">'+lastresult.data.length+' ingatlan megjelenítve:</div>';
+          } else if(getqry.page == 2) {
+            var pageinfo = '<div class="page-info page'+lastresult.page.current+'">További ingatlanok:</div>';
+          } else {
+            var pageinfo = '';
+          }
+
           var h = '<div class="result page'+lastresult.page.current+'" id="result-page-'+lastresult.page.current+'">'+
           pageinfo+
           datalist+

@@ -43,9 +43,12 @@ class AjaxRequests
     $data = array();
     $arg = array();
 
+    $get = json_decode(stripslashes($get), true);
+
     // Default return
     $return = array();
     $return['filters'] = $_POST;
+    $return['gets'] = $get;
     $return['limit'] = (isset($limit)) ? (int)$limit : 30;
     $return['fromto'] = array(
       'from' => 0,
@@ -63,6 +66,54 @@ class AjaxRequests
     // Query filters
     $arg[limit] = $return['limit'];
     $arg[page] = $return['page']['current'];
+
+    // GETS
+    if (isset($get['hl']) && $get['hl'] == '1') {
+      $arg['highlight'] = 1;
+    }
+
+    if (isset($get['n']) && !empty($get['n'])) {
+      $arg['idnumber'] = $get['n'];
+    }
+
+    if (isset($get['rg']) && !empty($get['rg'])) {
+      $arg['regio'] = $get['rg'];
+    }
+    if (isset($get['pa']) && !empty($get['pa'])) {
+      $arg['price_from'] = (float)str_replace(array("."," "), "", $get['pa']);
+      $arg['price'] = 1;
+    }
+    if (isset($get['pb']) && !empty($get['pb'])) {
+      $arg['price_to'] = (float)str_replace(array("."," "), "", $get['pb']);
+      $arg['price'] = 1;
+    }
+
+    if (isset($get['r']) && !empty($get['r'])) {
+      $arg['rooms'] = $get['r'];
+    }
+
+    if (isset($get['ps']) && !empty($get['ps'])) {
+      $arg['alapterulet'] = $get['ps'];
+    }
+
+    if (isset($get['ci']) && !empty($get['ci'])) {
+      $arg['location'] = explode(",", $get['ci']);
+    }
+    if (isset($get['cities']) && !empty($get['cities'])) {
+      $arg['cities'] = explode(",", $get['cities']);
+    }
+
+    if (isset($get['st']) && !empty($get['st'])) {
+      $arg['status'] = explode(",", $get['st']);
+    }
+
+    if (isset($get['co']) && !empty($get['co'])) {
+      $arg['condition'] = explode(",", $get['co']);
+    }
+
+    if (isset($get['c']) && !empty($get['c'])) {
+      $arg['property-types'] = explode(",", $get['c']);
+    }
 
     // Query
     $properties = new Properties($arg);

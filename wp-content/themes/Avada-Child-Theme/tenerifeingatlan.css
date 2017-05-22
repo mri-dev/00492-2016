@@ -589,8 +589,20 @@ body.ingatlan_page #main .data-main-holder {
 .megtekintett-page-view .listing-content,
 .news-page-view .listing-content {
   flex-basis: 65.3333%;
+  position: relative;
 }
-/* line 552, assets/css/sass/tenerifeingatlan.scss */
+/* line 553, assets/css/sass/tenerifeingatlan.scss */
+.megtekintett-page-view .listing-content .set-watced-prop,
+.news-page-view .listing-content .set-watced-prop {
+  position: absolute;
+  right: 0;
+  font-size: 0.8em;
+  background: white;
+  padding: 5px;
+  line-height: 1;
+  border-radius: 4px;
+}
+/* line 563, assets/css/sass/tenerifeingatlan.scss */
 .megtekintett-page-view .listing-content h1,
 .news-page-view .listing-content h1 {
   font-family: 'Roboto';
@@ -604,42 +616,42 @@ body.ingatlan_page #main .data-main-holder {
   font-weight: bold;
 }
 
-/* line 568, assets/css/sass/tenerifeingatlan.scss */
+/* line 579, assets/css/sass/tenerifeingatlan.scss */
 body.megtekintett_template_page #content,
 body.news_template_page #content {
   background: #eaf0f3;
 }
 
-/* line 576, assets/css/sass/tenerifeingatlan.scss */
+/* line 587, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .history-list,
 .ingatlan-page-view .recomended-list {
   padding: 20px 0;
 }
-/* line 579, assets/css/sass/tenerifeingatlan.scss */
+/* line 590, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .history-list .header,
 .ingatlan-page-view .recomended-list .header {
   padding: 0 0 15px 0;
 }
-/* line 582, assets/css/sass/tenerifeingatlan.scss */
+/* line 593, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .history-list .header h2,
 .ingatlan-page-view .recomended-list .header h2 {
   font-size: 2.2em !important;
 }
-/* line 587, assets/css/sass/tenerifeingatlan.scss */
+/* line 598, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs {
   margin: 0 !important;
 }
-/* line 589, assets/css/sass/tenerifeingatlan.scss */
+/* line 600, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .nav {
   background: #cbcbcb;
   margin-bottom: -1px;
 }
-/* line 593, assets/css/sass/tenerifeingatlan.scss */
+/* line 604, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .nav .nav-tabs {
   background: transparent !important;
   border: none !important;
 }
-/* line 597, assets/css/sass/tenerifeingatlan.scss */
+/* line 608, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .nav .nav-tabs li .tab-link {
   background: transparent !important;
   border: none !important;
@@ -647,41 +659,41 @@ body.news_template_page #content {
   color: white !important;
   text-transform: uppercase;
 }
-/* line 604, assets/css/sass/tenerifeingatlan.scss */
+/* line 615, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .nav .nav-tabs li .tab-link h4 {
   color: white !important;
   font-size: 1.2em !important;
 }
-/* line 610, assets/css/sass/tenerifeingatlan.scss */
+/* line 621, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .nav .nav-tabs li.active + li .tab-link,
 .ingatlan-page-view .fusion-tabs .nav .nav-tabs li:first-child .tab-link {
   border-left: none !important;
 }
-/* line 613, assets/css/sass/tenerifeingatlan.scss */
+/* line 624, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .nav .nav-tabs li.active .tab-link {
   background: #ffffff !important;
   border: 1px solid #0ec5c7 !important;
   border-bottom: 1px solid #ffffff !important;
 }
-/* line 617, assets/css/sass/tenerifeingatlan.scss */
+/* line 628, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .nav .nav-tabs li.active .tab-link h4 {
   color: #0ec5c7 !important;
 }
-/* line 624, assets/css/sass/tenerifeingatlan.scss */
+/* line 635, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .tab-content {
   margin-top: -2px;
 }
-/* line 626, assets/css/sass/tenerifeingatlan.scss */
+/* line 637, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .tab-content .tab-pane {
   padding: 0 !important;
   background: #ffffff;
   border: 1px solid #0ec5c7 !important;
 }
-/* line 630, assets/css/sass/tenerifeingatlan.scss */
+/* line 641, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .fusion-tabs .tab-content .tab-pane .pad {
   padding: 15px !important;
 }
-/* line 638, assets/css/sass/tenerifeingatlan.scss */
+/* line 649, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top,
 .ingatlan-page-view .data-main {
   display: -webkit-box;
@@ -689,30 +701,30 @@ body.news_template_page #content {
   display: flex;
   width: 100%;
 }
-/* line 644, assets/css/sass/tenerifeingatlan.scss */
+/* line 655, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left,
 .ingatlan-page-view .data-main > .data-top-left {
   flex-basis: 60%;
 }
-/* line 647, assets/css/sass/tenerifeingatlan.scss */
+/* line 658, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper {
   padding-right: 10px;
   position: relative;
 }
-/* line 650, assets/css/sass/tenerifeingatlan.scss */
+/* line 661, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper .images,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper .images {
   background: #f2f2f2;
 }
-/* line 652, assets/css/sass/tenerifeingatlan.scss */
+/* line 663, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper .images .profil,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper .images .profil {
   position: relative;
   height: 520px;
   overflow: hidden;
 }
-/* line 657, assets/css/sass/tenerifeingatlan.scss */
+/* line 668, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper .images .profil img,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper .images .profil img {
   position: absolute;
@@ -724,20 +736,20 @@ body.news_template_page #content {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 670, assets/css/sass/tenerifeingatlan.scss */
+/* line 681, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper .images .stack .stack-wrapper .items,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper .images .stack .stack-wrapper .items {
   width: 100%;
   table-layout: fixed;
   display: table;
 }
-/* line 676, assets/css/sass/tenerifeingatlan.scss */
+/* line 687, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper .images .stack .stack-wrapper .items .i,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper .images .stack .stack-wrapper .items .i {
   border: 5px solid #efefef;
   position: relative;
 }
-/* line 680, assets/css/sass/tenerifeingatlan.scss */
+/* line 691, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper .images .stack .stack-wrapper .items .i img,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper .images .stack .stack-wrapper .items .i img {
   position: absolute;
@@ -749,7 +761,7 @@ body.news_template_page #content {
   height: 115%;
   max-height: 115%;
 }
-/* line 692, assets/css/sass/tenerifeingatlan.scss */
+/* line 703, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-left .cwrapper .images .stack .stack-wrapper .items .i.orientation-portrait img,
 .ingatlan-page-view .data-main > .data-top-left .cwrapper .images .stack .stack-wrapper .items .i.orientation-portrait img {
   height: auto;
@@ -757,23 +769,23 @@ body.news_template_page #content {
   max-width: 115%;
   width: 115%;
 }
-/* line 706, assets/css/sass/tenerifeingatlan.scss */
+/* line 717, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right,
 .ingatlan-page-view .data-main > .data-top-right {
   flex-basis: 40%;
 }
-/* line 708, assets/css/sass/tenerifeingatlan.scss */
+/* line 719, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .properties,
 .ingatlan-page-view .data-main > .data-top-right .properties {
   margin-top: 10px;
 }
-/* line 711, assets/css/sass/tenerifeingatlan.scss */
+/* line 722, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title,
 .ingatlan-page-view .data-main > .data-top-right .title {
   margin: 0;
   position: relative;
 }
-/* line 714, assets/css/sass/tenerifeingatlan.scss */
+/* line 725, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title h1,
 .ingatlan-page-view .data-main > .data-top-right .title h1 {
   margin: 0 0 10px 0;
@@ -784,28 +796,28 @@ body.news_template_page #content {
   font-weight: bold;
   letter-spacing: -1px;
 }
-/* line 724, assets/css/sass/tenerifeingatlan.scss */
+/* line 735, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .subtitle,
 .ingatlan-page-view .data-main > .data-top-right .title .subtitle {
   font-size: 1.3em;
   line-height: 1.3;
   margin: 0 0 20px 0;
 }
-/* line 729, assets/css/sass/tenerifeingatlan.scss */
+/* line 740, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .subtitle .addr,
 .ingatlan-page-view .data-main > .data-top-right .title .subtitle .addr {
   font-family: 'Arial';
   font-weight: bold !important;
   color: #008dd2;
 }
-/* line 736, assets/css/sass/tenerifeingatlan.scss */
+/* line 747, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons,
 .ingatlan-page-view .data-main > .data-top-right .title .icons {
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 740, assets/css/sass/tenerifeingatlan.scss */
+/* line 751, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons > div,
 .ingatlan-page-view .data-main > .data-top-right .title .icons > div {
   display: inline-block;
@@ -813,7 +825,7 @@ body.news_template_page #content {
   zoom: 1;
   margin-left: 5px;
 }
-/* line 746, assets/css/sass/tenerifeingatlan.scss */
+/* line 757, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons > div a,
 .ingatlan-page-view .data-main > .data-top-right .title .icons > div a {
   display: block;
@@ -825,56 +837,56 @@ body.news_template_page #content {
   color: #757575;
   font-size: 22px;
 }
-/* line 756, assets/css/sass/tenerifeingatlan.scss */
+/* line 767, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons > div a i,
 .ingatlan-page-view .data-main > .data-top-right .title .icons > div a i {
   margin: 0;
   padding: 0;
 }
-/* line 762, assets/css/sass/tenerifeingatlan.scss */
+/* line 773, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons > div.facebook a,
 .ingatlan-page-view .data-main > .data-top-right .title .icons > div.facebook a {
   background: #0061ad;
   color: white;
 }
-/* line 765, assets/css/sass/tenerifeingatlan.scss */
+/* line 776, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons > div.facebook a:hover,
 .ingatlan-page-view .data-main > .data-top-right .title .icons > div.facebook a:hover {
   background: #00447a;
 }
-/* line 771, assets/css/sass/tenerifeingatlan.scss */
+/* line 782, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons > div.gplus a,
 .ingatlan-page-view .data-main > .data-top-right .title .icons > div.gplus a {
   background: #bf2121;
   color: white;
 }
-/* line 774, assets/css/sass/tenerifeingatlan.scss */
+/* line 785, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-top-right .title .icons > div.gplus a:hover,
 .ingatlan-page-view .data-main > .data-top-right .title .icons > div.gplus a:hover {
   background: #941919;
 }
-/* line 784, assets/css/sass/tenerifeingatlan.scss */
+/* line 795, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-main-left,
 .ingatlan-page-view .data-main > .data-main-left {
   flex-basis: 65%;
 }
-/* line 787, assets/css/sass/tenerifeingatlan.scss */
+/* line 798, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top > .data-main-right,
 .ingatlan-page-view .data-main > .data-main-right {
   flex-basis: 35%;
 }
-/* line 793, assets/css/sass/tenerifeingatlan.scss */
+/* line 804, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line {
   border-bottom: 1px solid #cacecf;
 }
-/* line 796, assets/css/sass/tenerifeingatlan.scss */
+/* line 807, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line .param {
   border-right: 1px solid #dedede;
   display: inline-block;
   width: 50%;
   margin: 0 -1px;
 }
-/* line 802, assets/css/sass/tenerifeingatlan.scss */
+/* line 813, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line .param .text, .ingatlan-page-view .parameters .line .param .value {
   display: inline-block;
   margin: 0 -1px;
@@ -884,58 +896,58 @@ body.news_template_page #content {
   vertical-align: middle;
   max-height: 35px;
 }
-/* line 811, assets/css/sass/tenerifeingatlan.scss */
+/* line 822, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line .param .text {
   width: 50%;
   padding: 0 0 0 15px;
 }
-/* line 815, assets/css/sass/tenerifeingatlan.scss */
+/* line 826, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line .param .value {
   width: 50%;
   font-weight: bold;
   font-family: 'Arial';
   color: #444444;
 }
-/* line 821, assets/css/sass/tenerifeingatlan.scss */
+/* line 832, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line .param .value i {
   line-height: 0;
   padding: 0 2px 0 0;
   margin: 0;
   color: #0ec5c7;
 }
-/* line 829, assets/css/sass/tenerifeingatlan.scss */
+/* line 840, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line .param .value .na {
   color: #999999;
   font-weight: normal;
   font-style: italic;
 }
-/* line 835, assets/css/sass/tenerifeingatlan.scss */
+/* line 846, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line .param:nth-child(even) {
   border-right: none;
 }
-/* line 840, assets/css/sass/tenerifeingatlan.scss */
+/* line 851, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line:nth-child(odd) {
   background: #f2f2f2;
 }
-/* line 843, assets/css/sass/tenerifeingatlan.scss */
+/* line 854, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .parameters .line:last-child {
   border-bottom: none;
 }
-/* line 849, assets/css/sass/tenerifeingatlan.scss */
+/* line 860, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-top {
   padding: 20px 0;
 }
-/* line 853, assets/css/sass/tenerifeingatlan.scss */
+/* line 864, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .data-main {
   margin: 25px 0 20px 0;
 }
-/* line 858, assets/css/sass/tenerifeingatlan.scss */
+/* line 869, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list {
   border: 1px solid #d7d7d7;
   display: flex;
   flex-wrap: wrap;
 }
-/* line 864, assets/css/sass/tenerifeingatlan.scss */
+/* line 875, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e {
   border-bottom: 1px solid #e0dede;
   border-right: 1px solid #e0dede;
@@ -943,12 +955,12 @@ body.news_template_page #content {
   font-size: 0.94em;
   flex-basis: calc(100% / 3);
 }
-/* line 872, assets/css/sass/tenerifeingatlan.scss */
+/* line 883, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e .h,
 .ingatlan-page-view .properties .list .e .v {
   text-align: center;
 }
-/* line 874, assets/css/sass/tenerifeingatlan.scss */
+/* line 885, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e .h .na,
 .ingatlan-page-view .properties .list .e .v .na {
   font-style: italic;
@@ -957,7 +969,7 @@ body.news_template_page #content {
   font-size: 0.9em;
   letter-spacing: -0.4px;
 }
-/* line 883, assets/css/sass/tenerifeingatlan.scss */
+/* line 894, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.price {
   border-right: none;
   flex-basis: 66.6666%;
@@ -969,18 +981,18 @@ body.news_template_page #content {
   padding: 8px;
   line-height: 65px;
 }
-/* line 893, assets/css/sass/tenerifeingatlan.scss */
+/* line 904, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.price .current-price {
   font-size: 2.8em;
   line-height: 88px;
 }
-/* line 897, assets/css/sass/tenerifeingatlan.scss */
+/* line 908, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.price .current-price .pt {
   font-size: 0.5em;
   font-weight: normal;
   letter-spacing: -1px;
 }
-/* line 903, assets/css/sass/tenerifeingatlan.scss */
+/* line 914, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.price .old-price {
   position: relative;
   font-size: 1.3em;
@@ -989,7 +1001,7 @@ body.news_template_page #content {
   line-height: 88px;
   color: #9ec8dc;
 }
-/* line 910, assets/css/sass/tenerifeingatlan.scss */
+/* line 921, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.price .old-price:before {
   position: absolute;
   width: 100%;
@@ -1003,55 +1015,55 @@ body.news_template_page #content {
   transform: rotate(-10deg);
   content: "";
 }
-/* line 925, assets/css/sass/tenerifeingatlan.scss */
+/* line 936, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e:nth-child(3n+3) {
   border-right: none;
 }
-/* line 929, assets/css/sass/tenerifeingatlan.scss */
+/* line 940, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.smaller .v {
   font-size: 1.3em;
 }
-/* line 934, assets/css/sass/tenerifeingatlan.scss */
+/* line 945, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.e2x {
   flex-basis: 66.6666667%;
 }
-/* line 938, assets/css/sass/tenerifeingatlan.scss */
+/* line 949, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.toleft {
   padding: 11px;
 }
-/* line 942, assets/css/sass/tenerifeingatlan.scss */
+/* line 953, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .e.toleft .ico,
 .ingatlan-page-view .properties .list .e.toleft .h,
 .ingatlan-page-view .properties .list .e.toleft .v {
   text-align: left;
 }
-/* line 948, assets/css/sass/tenerifeingatlan.scss */
+/* line 959, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .h {
   color: #c8c8c8;
   font-size: 1.1em;
 }
-/* line 952, assets/css/sass/tenerifeingatlan.scss */
+/* line 963, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .h .ico {
   text-align: center;
 }
-/* line 955, assets/css/sass/tenerifeingatlan.scss */
+/* line 966, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .h .ico img {
   width: 20px;
   height: 20px;
 }
-/* line 962, assets/css/sass/tenerifeingatlan.scss */
+/* line 973, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .v {
   font-weight: bold;
   font-size: 2em;
   font-family: 'Arial';
   color: #8f8e8e;
 }
-/* line 968, assets/css/sass/tenerifeingatlan.scss */
+/* line 979, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .properties .list .v .na {
   font-size: 0.55em !important;
   color: #9c9c9c !important;
 }
-/* line 978, assets/css/sass/tenerifeingatlan.scss */
+/* line 989, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact {
   background: #EFEFEF;
   padding: 15px;
@@ -1061,49 +1073,49 @@ body.news_template_page #content {
   line-height: 1.6;
   color: #767676;
 }
-/* line 987, assets/css/sass/tenerifeingatlan.scss */
+/* line 998, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .profil-img {
   float: left;
   padding: 0 8px 8px 0;
 }
-/* line 992, assets/css/sass/tenerifeingatlan.scss */
+/* line 1003, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact i {
   margin-right: 8px;
   color: #8c8c8c;
 }
-/* line 997, assets/css/sass/tenerifeingatlan.scss */
+/* line 1008, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .title {
   color: #008dd2;
   margin-bottom: 8px;
   font-size: 1.5em;
 }
-/* line 1002, assets/css/sass/tenerifeingatlan.scss */
+/* line 1013, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .name {
   font-size: 1.2em;
   color: black;
 }
-/* line 1006, assets/css/sass/tenerifeingatlan.scss */
+/* line 1017, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .phone {
   font-size: 1.45em;
   color: #444444;
   font-weight: bold;
   font-family: 'Arial';
 }
-/* line 1012, assets/css/sass/tenerifeingatlan.scss */
+/* line 1023, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .phone i {
   color: #008dd2;
 }
-/* line 1015, assets/css/sass/tenerifeingatlan.scss */
+/* line 1026, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .email a, .ingatlan-page-view .contact .email a:link, .ingatlan-page-view .contact .email a:visited {
   font-size: 0.9em;
   color: #008dd2 !important;
 }
-/* line 1021, assets/css/sass/tenerifeingatlan.scss */
+/* line 1032, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .mail {
   text-align: right;
   margin-top: 4px;
 }
-/* line 1024, assets/css/sass/tenerifeingatlan.scss */
+/* line 1035, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .mail a {
   font-size: 0.9em;
   background: #fc4226;
@@ -1116,17 +1128,17 @@ body.news_template_page #content {
   border-radius: 3px;
   text-transform: uppercase;
 }
-/* line 1035, assets/css/sass/tenerifeingatlan.scss */
+/* line 1046, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .contact .mail a i {
   color: white;
 }
-/* line 1042, assets/css/sass/tenerifeingatlan.scss */
+/* line 1053, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block {
   border: 1px solid #e0dede;
   margin-right: 5px;
   margin-bottom: 12px;
 }
-/* line 1047, assets/css/sass/tenerifeingatlan.scss */
+/* line 1058, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .head {
   border-bottom: 1px solid #e0dede;
   background: #F9F9F9;
@@ -1134,7 +1146,7 @@ body.news_template_page #content {
   color: #0ec5c7;
   font-size: 1.2em;
 }
-/* line 1054, assets/css/sass/tenerifeingatlan.scss */
+/* line 1065, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .head .ico {
   float: left;
   border-right: 1px solid #e0dede;
@@ -1142,29 +1154,29 @@ body.news_template_page #content {
   width: 50px;
   margin-right: 15px;
 }
-/* line 1061, assets/css/sass/tenerifeingatlan.scss */
+/* line 1072, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .head .ico i {
   font-size: 24px;
   margin: 0;
   padding: 0;
   vertical-align: middle;
 }
-/* line 1070, assets/css/sass/tenerifeingatlan.scss */
+/* line 1081, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text {
   padding: 15px;
   font-size: 0.9em;
   color: black;
 }
-/* line 1075, assets/css/sass/tenerifeingatlan.scss */
+/* line 1086, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text strong {
   font-family: 'Arial';
   font-weight: bold;
 }
-/* line 1080, assets/css/sass/tenerifeingatlan.scss */
+/* line 1091, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text.doc-list {
   padding: 8px;
 }
-/* line 1082, assets/css/sass/tenerifeingatlan.scss */
+/* line 1093, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text.doc-list .doc a {
   display: block;
   border-bottom: 1px solid #f1f1f1;
@@ -1172,32 +1184,32 @@ body.news_template_page #content {
   line-height: 1;
   color: #747474;
 }
-/* line 1089, assets/css/sass/tenerifeingatlan.scss */
+/* line 1100, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text.doc-list .doc a i {
   margin-right: 5px;
 }
-/* line 1093, assets/css/sass/tenerifeingatlan.scss */
+/* line 1104, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text.doc-list .doc a .doc-info {
   float: right;
   color: #bdbdbd;
   font-size: 0.9em;
 }
-/* line 1099, assets/css/sass/tenerifeingatlan.scss */
+/* line 1110, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text.doc-list .doc a:hover {
   background: #f1f1f1;
 }
-/* line 1103, assets/css/sass/tenerifeingatlan.scss */
+/* line 1114, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .description-block .text.doc-list .doc:last-child a {
   border-bottom: none;
 }
-/* line 1110, assets/css/sass/tenerifeingatlan.scss */
+/* line 1121, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .map-block {
   border: 1px solid #e0dede;
   min-height: 200px;
   margin-left: 5px;
   background: #ffffff;
 }
-/* line 1116, assets/css/sass/tenerifeingatlan.scss */
+/* line 1127, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .map-block .head {
   background: #ffffff;
   padding: 10px;
@@ -1207,22 +1219,22 @@ body.news_template_page #content {
   text-transform: uppercase;
   border-bottom: 1px solid #e0dede;
 }
-/* line 1125, assets/css/sass/tenerifeingatlan.scss */
+/* line 1136, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .map-block .head i {
   margin: 0 8px 0 5px;
 }
-/* line 1133, assets/css/sass/tenerifeingatlan.scss */
+/* line 1144, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .history-list .header,
 .ingatlan-page-view .recomended-list .header {
   text-align: center;
 }
-/* line 1135, assets/css/sass/tenerifeingatlan.scss */
+/* line 1146, assets/css/sass/tenerifeingatlan.scss */
 .ingatlan-page-view .history-list .header h2,
 .ingatlan-page-view .recomended-list .header h2 {
   margin: 0;
 }
 
-/* line 1144, assets/css/sass/tenerifeingatlan.scss */
+/* line 1155, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder {
   width: 100%;
   position: relative;
@@ -1232,7 +1244,7 @@ body.news_template_page #content {
   /* V1 */
   /* END: V1 */
 }
-/* line 1152, assets/css/sass/tenerifeingatlan.scss */
+/* line 1163, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 {
   height: 450px;
   max-height: 450px;
@@ -1240,21 +1252,21 @@ body.news_template_page #content {
   padding: 0;
   font-size: 1.3em;
 }
-/* line 1159, assets/css/sass/tenerifeingatlan.scss */
+/* line 1170, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list {
   height: 100%;
 }
-/* line 1161, assets/css/sass/tenerifeingatlan.scss */
+/* line 1172, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper {
   position: relative;
   height: 100%;
 }
-/* line 1164, assets/css/sass/tenerifeingatlan.scss */
+/* line 1175, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider {
   width: 100%;
   height: 100%;
 }
-/* line 1168, assets/css/sass/tenerifeingatlan.scss */
+/* line 1179, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .image {
   background-position: center;
   background-repeat: no-repeat;
@@ -1264,20 +1276,20 @@ body.news_template_page #content {
   position: absolute;
   z-index: 10;
 }
-/* line 1178, assets/css/sass/tenerifeingatlan.scss */
+/* line 1189, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper {
   width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 100;
 }
-/* line 1184, assets/css/sass/tenerifeingatlan.scss */
+/* line 1195, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper {
   width: 90%;
   margin: 0 auto;
   position: relative;
 }
-/* line 1188, assets/css/sass/tenerifeingatlan.scss */
+/* line 1199, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox {
   position: absolute;
   top: 90px;
@@ -1286,13 +1298,13 @@ body.news_template_page #content {
   color: white;
   padding: 15px;
 }
-/* line 1196, assets/css/sass/tenerifeingatlan.scss */
+/* line 1207, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .features {
   position: absolute;
   top: 0;
   left: 100%;
 }
-/* line 1201, assets/css/sass/tenerifeingatlan.scss */
+/* line 1212, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .features > div {
   right: 0;
   top: 0;
@@ -1305,15 +1317,15 @@ body.news_template_page #content {
   text-align: left;
   margin-bottom: 4px;
 }
-/* line 1214, assets/css/sass/tenerifeingatlan.scss */
+/* line 1225, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .features .dropoff {
   background: transparent;
 }
-/* line 1218, assets/css/sass/tenerifeingatlan.scss */
+/* line 1229, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .features .highlight {
   background: #fc4226;
 }
-/* line 1222, assets/css/sass/tenerifeingatlan.scss */
+/* line 1233, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .features .newi {
   position: absolute;
   background: #fc4226;
@@ -1332,25 +1344,25 @@ body.news_template_page #content {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1245, assets/css/sass/tenerifeingatlan.scss */
+/* line 1256, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .region {
   margin-bottom: 10px;
   font-weight: bold;
 }
-/* line 1250, assets/css/sass/tenerifeingatlan.scss */
+/* line 1261, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options {
   display: flex;
   flex-wrap: wrap;
   width: 300px;
 }
-/* line 1255, assets/css/sass/tenerifeingatlan.scss */
+/* line 1266, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt {
   flex-basis: 50%;
   font-size: 1em;
   padding: 5px;
   line-height: 18px;
 }
-/* line 1260, assets/css/sass/tenerifeingatlan.scss */
+/* line 1271, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt .d {
   padding: 0;
   line-height: 10px;
@@ -1358,7 +1370,7 @@ body.news_template_page #content {
   color: #ffffff;
   text-align: center;
 }
-/* line 1266, assets/css/sass/tenerifeingatlan.scss */
+/* line 1277, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt .d .ico {
   height: 16px;
   width: 22px;
@@ -1366,22 +1378,22 @@ body.news_template_page #content {
   text-align: center;
   float: left;
 }
-/* line 1272, assets/css/sass/tenerifeingatlan.scss */
+/* line 1283, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt .d .ico img {
   height: 100%;
 }
-/* line 1277, assets/css/sass/tenerifeingatlan.scss */
+/* line 1288, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt .d .t {
   line-height: 18px;
   float: left;
 }
-/* line 1281, assets/css/sass/tenerifeingatlan.scss */
+/* line 1292, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt .d .v {
   line-height: 18px;
   float: right;
   padding: 0 3px;
 }
-/* line 1286, assets/css/sass/tenerifeingatlan.scss */
+/* line 1297, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt .d .v.c {
   background: #ffffff;
   color: #444444;
@@ -1396,21 +1408,21 @@ body.news_template_page #content {
   width: 20px;
   height: 20px;
 }
-/* line 1304, assets/css/sass/tenerifeingatlan.scss */
+/* line 1315, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .important-options > .opt:last-child {
   border-right: none;
 }
-/* line 1309, assets/css/sass/tenerifeingatlan.scss */
+/* line 1320, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .prices {
   margin-top: 5px;
   padding-left: 5px;
 }
-/* line 1312, assets/css/sass/tenerifeingatlan.scss */
+/* line 1323, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .prices .price {
   font-size: 2em;
   font-weight: bold;
 }
-/* line 1316, assets/css/sass/tenerifeingatlan.scss */
+/* line 1327, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .prices .price .oldar {
   font-size: 0.4em;
   font-weight: normal;
@@ -1419,7 +1431,7 @@ body.news_template_page #content {
   margin-top: 44px;
   font-style: italic;
 }
-/* line 1323, assets/css/sass/tenerifeingatlan.scss */
+/* line 1334, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .prices .price .oldar:before {
   position: absolute;
   width: 100%;
@@ -1433,7 +1445,7 @@ body.news_template_page #content {
   transform: rotate(-10deg);
   content: "";
 }
-/* line 1338, assets/css/sass/tenerifeingatlan.scss */
+/* line 1349, assets/css/sass/tenerifeingatlan.scss */
 .listing-slider-holder.style-v1 .listing-slider-list .list-wrapper .pslider .inside-wrapper .info-wrapper .infobox .prices .url {
   color: white;
   float: right;
@@ -1441,7 +1453,7 @@ body.news_template_page #content {
   line-height: 54px;
 }
 
-/* line 1356, assets/css/sass/tenerifeingatlan.scss */
+/* line 1367, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder {
   background: #ffffff;
   margin: 0 auto;
@@ -1453,12 +1465,12 @@ body.news_template_page #content {
   /* Ingatlan style floating */
   /* MOD v2 */
 }
-/* line 1364, assets/css/sass/tenerifeingatlan.scss */
+/* line 1375, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v1 {
   width: 80%;
   margin-top: -71px;
 }
-/* line 1367, assets/css/sass/tenerifeingatlan.scss */
+/* line 1378, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v1:after {
   display: block;
   position: absolute;
@@ -1476,12 +1488,50 @@ body.news_template_page #content {
   -moz-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 1386, assets/css/sass/tenerifeingatlan.scss */
+/* line 1397, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 {
   width: 100%;
   margin-top: 10px;
 }
-/* line 1391, assets/css/sass/tenerifeingatlan.scss */
+/* line 1401, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-v2 .submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+}
+/* line 1409, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-v2 .submit button {
+  flex-basis: 50%;
+  font-size: 0.89em;
+  background: #008dd2;
+}
+/* line 1414, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-v2 .submit button i {
+  font-size: 14px;
+  margin-right: 4px;
+}
+/* line 1419, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-v2 .submit button:hover {
+  background: #0ec5c7;
+}
+/* line 1424, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-v2 .submit .backlist {
+  flex-basis: 50%;
+  background: #36aee9;
+  color: black;
+  text-align: center;
+}
+/* line 1430, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-v2 .submit .backlist a {
+  display: block;
+  line-height: 50px;
+  font-size: 0.9em;
+  color: white;
+}
+/* line 1440, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-floating {
   width: 320px;
   position: fixed;
@@ -1489,7 +1539,7 @@ body.news_template_page #content {
   top: 80px;
   z-index: 99999;
 }
-/* line 1399, assets/css/sass/tenerifeingatlan.scss */
+/* line 1448, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header {
   position: relative;
   left: 0;
@@ -1498,12 +1548,12 @@ body.news_template_page #content {
   background: #008dd2;
   color: white;
 }
-/* line 1407, assets/css/sass/tenerifeingatlan.scss */
+/* line 1456, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul {
   margin: 0;
   padding: 0;
 }
-/* line 1410, assets/css/sass/tenerifeingatlan.scss */
+/* line 1459, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li {
   display: inline-block;
   *display: inline;
@@ -1511,17 +1561,17 @@ body.news_template_page #content {
   vertical-align: middle;
   margin-right: 5px;
 }
-/* line 1417, assets/css/sass/tenerifeingatlan.scss */
+/* line 1466, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li.title {
   text-transform: uppercase;
   font-size: 1.4em;
   padding: 0 15px;
 }
-/* line 1423, assets/css/sass/tenerifeingatlan.scss */
+/* line 1472, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li input[type=radio] {
   display: none;
 }
-/* line 1427, assets/css/sass/tenerifeingatlan.scss */
+/* line 1476, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li label {
   cursor: pointer;
   position: relative;
@@ -1537,7 +1587,7 @@ body.news_template_page #content {
   font-size: 1.2em;
   letter-spacing: 1px;
 }
-/* line 1442, assets/css/sass/tenerifeingatlan.scss */
+/* line 1491, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li label:before {
   font-family: 'FontAwesome';
   content: "\f111";
@@ -1548,23 +1598,23 @@ body.news_template_page #content {
   width: 20px;
   text-align: center;
 }
-/* line 1454, assets/css/sass/tenerifeingatlan.scss */
+/* line 1503, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li input[type=radio]:checked + label {
   background: #0ec5c7;
 }
-/* line 1456, assets/css/sass/tenerifeingatlan.scss */
+/* line 1505, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li input[type=radio]:checked + label:before {
   content: "\f192";
   color: white;
 }
-/* line 1462, assets/css/sass/tenerifeingatlan.scss */
+/* line 1511, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li .ico {
   background: #007cb8;
   height: 50px;
   text-align: center;
   padding: 0 15px;
 }
-/* line 1468, assets/css/sass/tenerifeingatlan.scss */
+/* line 1517, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li .ico .mobile-text {
   color: white;
   font-size: 1.3em;
@@ -1575,7 +1625,7 @@ body.news_template_page #content {
   visibility: hidden;
   position: absolute;
 }
-/* line 1479, assets/css/sass/tenerifeingatlan.scss */
+/* line 1528, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li .ico i {
   color: white;
   padding: 0;
@@ -1584,15 +1634,15 @@ body.news_template_page #content {
   font-size: 24px;
   line-height: 50px;
 }
-/* line 1489, assets/css/sass/tenerifeingatlan.scss */
+/* line 1538, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-header ul li:first-child {
   margin-right: 0;
 }
-/* line 1495, assets/css/sass/tenerifeingatlan.scss */
+/* line 1544, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper {
   padding: 5px;
 }
-/* line 1498, assets/css/sass/tenerifeingatlan.scss */
+/* line 1547, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1601,23 +1651,23 @@ body.news_template_page #content {
   flex-wrap: wrap;
   align-items: flex-end;
 }
-/* line 1506, assets/css/sass/tenerifeingatlan.scss */
+/* line 1555, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp {
   padding: 8px;
   position: relative;
 }
-/* line 1510, assets/css/sass/tenerifeingatlan.scss */
+/* line 1559, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp label {
   line-height: 1;
   color: #878787;
   margin-bottom: 10px;
   display: block;
 }
-/* line 1517, assets/css/sass/tenerifeingatlan.scss */
+/* line 1566, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-submit {
   text-align: right;
 }
-/* line 1519, assets/css/sass/tenerifeingatlan.scss */
+/* line 1568, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-submit button {
   color: white;
   background: #0ec5c7;
@@ -1633,7 +1683,7 @@ body.news_template_page #content {
   position: relative;
   text-align: right;
 }
-/* line 1534, assets/css/sass/tenerifeingatlan.scss */
+/* line 1583, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-submit button i {
   background: #0ec5c7;
   position: absolute;
@@ -1644,52 +1694,52 @@ body.news_template_page #content {
   padding: 0 5px;
   margin: 6px 0 0 5px;
 }
-/* line 1545, assets/css/sass/tenerifeingatlan.scss */
+/* line 1594, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-submit button:hover {
   background: #0ec5c7;
   cursor: pointer;
 }
-/* line 1552, assets/css/sass/tenerifeingatlan.scss */
+/* line 1601, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-city {
   flex-basis: 40%;
 }
-/* line 1555, assets/css/sass/tenerifeingatlan.scss */
+/* line 1604, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-kategoria {
   flex-basis: 30%;
 }
-/* line 1558, assets/css/sass/tenerifeingatlan.scss */
+/* line 1607, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-allapot {
   flex-basis: 30%;
 }
-/* line 1561, assets/css/sass/tenerifeingatlan.scss */
+/* line 1610, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-status {
   flex-basis: 30%;
 }
-/* line 1565, assets/css/sass/tenerifeingatlan.scss */
+/* line 1614, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-rooms {
   flex-basis: 20%;
 }
-/* line 1568, assets/css/sass/tenerifeingatlan.scss */
+/* line 1617, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-alapterulet {
   flex-basis: 15%;
 }
-/* line 1572, assets/css/sass/tenerifeingatlan.scss */
+/* line 1621, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-price-min {
   flex-basis: 25%;
 }
-/* line 1575, assets/css/sass/tenerifeingatlan.scss */
+/* line 1624, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-price-max {
   flex-basis: 25%;
 }
-/* line 1578, assets/css/sass/tenerifeingatlan.scss */
+/* line 1627, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-submit {
   flex-basis: 15%;
 }
-/* line 1580, assets/css/sass/tenerifeingatlan.scss */
+/* line 1629, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-submit button {
   float: right;
 }
-/* line 1588, assets/css/sass/tenerifeingatlan.scss */
+/* line 1637, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-wrapper .form-items input[type=text],
 .listing-searcher-holder .searcher-wrapper .form-items input[type=number],
 .listing-searcher-holder .searcher-wrapper .form-items select {
@@ -1701,7 +1751,7 @@ body.news_template_page #content {
   font-size: 1.2em;
   color: #f7941f;
 }
-/* line 1599, assets/css/sass/tenerifeingatlan.scss */
+/* line 1648, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer {
   padding: 15px;
   background: #f2f2f2;
@@ -1712,22 +1762,22 @@ body.news_template_page #content {
   display: -ms-flexbox;
   display: flex;
 }
-/* line 1609, assets/css/sass/tenerifeingatlan.scss */
+/* line 1658, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .option-holder {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
 }
-/* line 1616, assets/css/sass/tenerifeingatlan.scss */
+/* line 1665, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-more {
   flex-basis: 20%;
 }
-/* line 1617, assets/css/sass/tenerifeingatlan.scss */
+/* line 1666, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-more a {
   font-size: 0.8em;
 }
-/* line 1623, assets/css/sass/tenerifeingatlan.scss */
+/* line 1672, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-selects {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1735,18 +1785,18 @@ body.news_template_page #content {
   flex-wrap: wrap;
   flex-basis: 80%;
 }
-/* line 1630, assets/css/sass/tenerifeingatlan.scss */
+/* line 1679, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-selects > div {
   padding: 0 15px 8px 0;
 }
-/* line 1632, assets/css/sass/tenerifeingatlan.scss */
+/* line 1681, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-selects > div input[type=checkbox] + label {
   padding-left: 20px;
   font-size: 0.9em;
   color: #808080;
   line-height: 24px;
 }
-/* line 1638, assets/css/sass/tenerifeingatlan.scss */
+/* line 1687, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-selects > div input[type=checkbox] + label:before {
   color: #9d9d9d;
   height: 20px;
@@ -1755,30 +1805,30 @@ body.news_template_page #content {
   vertical-align: middle;
   margin-top: 2px;
 }
-/* line 1648, assets/css/sass/tenerifeingatlan.scss */
+/* line 1697, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-selects > div input[type=checkbox]:checked + label:before {
   color: #6cbf92;
 }
-/* line 1652, assets/css/sass/tenerifeingatlan.scss */
+/* line 1701, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-selects > div.secondary-param {
   display: none;
 }
-/* line 1655, assets/css/sass/tenerifeingatlan.scss */
+/* line 1704, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder .searcher-footer .options-selects > div.secondary-param.show {
   display: block;
 }
-/* line 1667, assets/css/sass/tenerifeingatlan.scss */
+/* line 1716, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-header, .listing-searcher-holder.style-floating .searcher-header, .listing-searcher-holder.style-map .searcher-header {
   left: -1px;
   right: -1px;
   font-size: 0.9em;
 }
-/* line 1671, assets/css/sass/tenerifeingatlan.scss */
+/* line 1720, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-header ul, .listing-searcher-holder.style-floating .searcher-header ul, .listing-searcher-holder.style-map .searcher-header ul {
   width: 100%;
   background: #eaeaea;
 }
-/* line 1674, assets/css/sass/tenerifeingatlan.scss */
+/* line 1723, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-header ul li, .listing-searcher-holder.style-floating .searcher-header ul li, .listing-searcher-holder.style-map .searcher-header ul li {
   padding: 8px 15px;
   color: white;
@@ -1788,41 +1838,41 @@ body.news_template_page #content {
   width: 50%;
   margin: 0;
 }
-/* line 1683, assets/css/sass/tenerifeingatlan.scss */
+/* line 1732, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-header ul li .head-title, .listing-searcher-holder.style-floating .searcher-header ul li .head-title, .listing-searcher-holder.style-map .searcher-header ul li .head-title {
   display: block;
   font-size: 1.15em;
   color: #008dd2;
   line-height: 30px;
 }
-/* line 1691, assets/css/sass/tenerifeingatlan.scss */
+/* line 1740, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-header ul li .selecting select, .listing-searcher-holder.style-floating .searcher-header ul li .selecting select, .listing-searcher-holder.style-map .searcher-header ul li .selecting select {
   line-height: 30px;
   height: 30px;
   display: block;
   width: 100%;
 }
-/* line 1703, assets/css/sass/tenerifeingatlan.scss */
+/* line 1752, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-footer .option-holder, .listing-searcher-holder.style-floating .searcher-footer .option-holder, .listing-searcher-holder.style-map .searcher-footer .option-holder {
   display: block;
 }
-/* line 1706, assets/css/sass/tenerifeingatlan.scss */
+/* line 1755, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-footer .options-selects, .listing-searcher-holder.style-floating .searcher-footer .options-selects, .listing-searcher-holder.style-map .searcher-footer .options-selects {
   margin-top: 10px;
 }
-/* line 1708, assets/css/sass/tenerifeingatlan.scss */
+/* line 1757, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-footer .options-selects > div, .listing-searcher-holder.style-floating .searcher-footer .options-selects > div, .listing-searcher-holder.style-map .searcher-footer .options-selects > div {
   flex-basis: 50%;
 }
-/* line 1723, assets/css/sass/tenerifeingatlan.scss */
+/* line 1772, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-kategoria, .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-status, .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-allapot, .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-alapterulet, .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-rooms, .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-price-min, .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-price-max, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-kategoria, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-status, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-allapot, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-alapterulet, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-rooms, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-price-min, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-price-max, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-kategoria, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-status, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-allapot, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-alapterulet, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-rooms, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-price-min, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-price-max {
   flex-basis: 50%;
 }
-/* line 1727, assets/css/sass/tenerifeingatlan.scss */
+/* line 1776, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .searcher-wrapper .form-items .inp.inp-city, .listing-searcher-holder.style-floating .searcher-wrapper .form-items .inp.inp-city, .listing-searcher-holder.style-map .searcher-wrapper .form-items .inp.inp-city {
   flex-basis: 100%;
 }
-/* line 1733, assets/css/sass/tenerifeingatlan.scss */
+/* line 1782, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .submit button, .listing-searcher-holder.style-floating .submit button, .listing-searcher-holder.style-map .submit button {
   display: block;
   width: 100%;
@@ -1838,26 +1888,26 @@ body.news_template_page #content {
   font-weight: bold;
   text-transform: uppercase;
 }
-/* line 1748, assets/css/sass/tenerifeingatlan.scss */
+/* line 1797, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .submit button i, .listing-searcher-holder.style-floating .submit button i, .listing-searcher-holder.style-map .submit button i {
   font-size: 20px;
   line-height: 20px;
   margin-right: 10px;
   padding: 0;
 }
-/* line 1755, assets/css/sass/tenerifeingatlan.scss */
+/* line 1804, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-v2 .submit button:hover, .listing-searcher-holder.style-floating .submit button:hover, .listing-searcher-holder.style-map .submit button:hover {
   background: #0ec5c7;
 }
-/* line 1760, assets/css/sass/tenerifeingatlan.scss */
+/* line 1809, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-floating {
   left: -320px;
 }
-/* line 1762, assets/css/sass/tenerifeingatlan.scss */
+/* line 1811, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-floating .searcher-wrapper {
   padding: 5px;
 }
-/* line 1764, assets/css/sass/tenerifeingatlan.scss */
+/* line 1813, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-floating .searcher-wrapper .vlabel {
   cursor: pointer;
   background: #B1241C;
@@ -1873,95 +1923,120 @@ body.news_template_page #content {
   font-size: 1.1em;
   padding: 15px 80px;
 }
-/* line 1781, assets/css/sass/tenerifeingatlan.scss */
+/* line 1830, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-floating.opened {
   left: 0;
 }
-/* line 1786, assets/css/sass/tenerifeingatlan.scss */
+/* line 1835, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map {
   outline: none;
-  background: #f1f1f1;
+  background: #fafafa;
+  border: 3px solid #d2d2d2;
 }
-/* line 1790, assets/css/sass/tenerifeingatlan.scss */
+/* line 1840, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .searcher-header {
   left: 0;
   right: 0;
 }
-/* line 1794, assets/css/sass/tenerifeingatlan.scss */
+/* line 1844, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .searcher-header ul {
-  background: #006b9f;
+  background: #eaeaea;
 }
-/* line 1796, assets/css/sass/tenerifeingatlan.scss */
+/* line 1846, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .searcher-header ul li, .listing-searcher-holder.style-map .searcher-header ul li .head-title {
   width: 100%;
   float: none;
-  color: white;
+  color: #008dd2;
   text-align: center;
   padding: 0;
 }
-/* line 1804, assets/css/sass/tenerifeingatlan.scss */
+/* line 1854, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map li .head-title {
   padding: 10px;
   font-size: 1.3em;
 }
-/* line 1809, assets/css/sass/tenerifeingatlan.scss */
+/* line 1859, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .head-title {
   padding: 10px 0 !important;
 }
-/* line 1814, assets/css/sass/tenerifeingatlan.scss */
-.listing-searcher-holder.style-map .submit button {
-  font-size: 0.89em;
-  background: #7a7a7a;
+/* line 1863, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-map .submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
 }
-/* line 1818, assets/css/sass/tenerifeingatlan.scss */
+/* line 1871, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-map .submit button {
+  flex-basis: 50%;
+  font-size: 0.89em;
+  background: #008dd2;
+}
+/* line 1876, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .submit button i {
   font-size: 14px;
   margin-right: 4px;
 }
-/* line 1823, assets/css/sass/tenerifeingatlan.scss */
+/* line 1881, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .submit button:hover {
-  background: #4a4a4a;
+  background: #0ec5c7;
 }
-/* line 1830, assets/css/sass/tenerifeingatlan.scss */
+/* line 1886, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-map .submit .backlist {
+  flex-basis: 50%;
+  background: #36aee9;
+  color: black;
+  text-align: center;
+}
+/* line 1892, assets/css/sass/tenerifeingatlan.scss */
+.listing-searcher-holder.style-map .submit .backlist a {
+  display: block;
+  line-height: 50px;
+  font-size: 0.9em;
+  color: white;
+}
+/* line 1902, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .form-items .inp {
   display: none;
   padding: 4px;
 }
-/* line 1834, assets/css/sass/tenerifeingatlan.scss */
+/* line 1906, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .form-items .inp input, .listing-searcher-holder.style-map .form-items .inp select {
   font-size: 0.9em;
 }
-/* line 1838, assets/css/sass/tenerifeingatlan.scss */
+/* line 1910, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .form-items .inp label {
   font-size: 0.8em;
 }
-/* line 1844, assets/css/sass/tenerifeingatlan.scss */
+/* line 1916, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .form-items .inp.inp-city, .listing-searcher-holder.style-map .form-items .inp.inp-toggler, .listing-searcher-holder.style-map .form-items .inp.showed {
   display: block;
 }
-/* line 1848, assets/css/sass/tenerifeingatlan.scss */
+/* line 1920, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .form-items .inp.inp-toggler {
   flex-basis: 100%;
   text-align: center;
 }
-/* line 1852, assets/css/sass/tenerifeingatlan.scss */
+/* line 1924, assets/css/sass/tenerifeingatlan.scss */
 .listing-searcher-holder.style-map .form-items .inp.inp-toggler a {
   font-size: 0.84em;
   color: #666666;
 }
 
-/* line 1862, assets/css/sass/tenerifeingatlan.scss */
+/* line 1934, assets/css/sass/tenerifeingatlan.scss */
 input[type=checkbox] {
   display: none;
 }
 
-/* line 1865, assets/css/sass/tenerifeingatlan.scss */
+/* line 1937, assets/css/sass/tenerifeingatlan.scss */
 input[type=checkbox] + label {
   cursor: pointer;
   position: relative;
   padding-left: 24px;
 }
-/* line 1870, assets/css/sass/tenerifeingatlan.scss */
+/* line 1942, assets/css/sass/tenerifeingatlan.scss */
 input[type=checkbox] + label:before {
   content: "\f096";
   font-family: 'FontAwesome';
@@ -1974,24 +2049,24 @@ input[type=checkbox] + label:before {
   margin: 0;
 }
 
-/* line 1883, assets/css/sass/tenerifeingatlan.scss */
+/* line 1955, assets/css/sass/tenerifeingatlan.scss */
 input[type=checkbox]:checked + label:before {
   content: "\f046";
   color: #000000;
 }
 
-/* line 1889, assets/css/sass/tenerifeingatlan.scss */
+/* line 1961, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder {
   position: absolute;
   width: 100%;
   z-index: 1000;
   display: none;
 }
-/* line 1895, assets/css/sass/tenerifeingatlan.scss */
+/* line 1967, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder.opened {
   display: block;
 }
-/* line 1899, assets/css/sass/tenerifeingatlan.scss */
+/* line 1971, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper {
   background: #ffffff;
   border: 1px solid #cccccc;
@@ -2002,59 +2077,59 @@ input[type=checkbox]:checked + label:before {
   -moz-box-shadow: 0 10px 26px -9px #8e8e8e;
   box-shadow: 0 10px 26px -9px #8e8e8e;
 }
-/* line 1910, assets/css/sass/tenerifeingatlan.scss */
+/* line 1982, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper .selector-row input[type=checkbox] + label {
   padding: 5px 5px 5px 35px;
   margin: 0 0 1px 0;
   font-size: 0.8em;
   line-height: 17px;
 }
-/* line 1916, assets/css/sass/tenerifeingatlan.scss */
+/* line 1988, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper .selector-row input[type=checkbox] + label .n {
   color: #d2d2d2;
   font-size: 0.85em;
 }
-/* line 1920, assets/css/sass/tenerifeingatlan.scss */
+/* line 1992, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper .selector-row input[type=checkbox] + label:before {
   left: 10px;
 }
-/* line 1925, assets/css/sass/tenerifeingatlan.scss */
+/* line 1997, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper .selector-row input[type=checkbox] + label:hover,
 .multi-selector-holder .selector-wrapper .selector-row input[type=checkbox]:checked + label {
   background: #585a5d;
   color: white;
 }
-/* line 1929, assets/css/sass/tenerifeingatlan.scss */
+/* line 2001, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper .selector-row input[type=checkbox] + label:hover:before,
 .multi-selector-holder .selector-wrapper .selector-row input[type=checkbox]:checked + label:before {
   color: white;
 }
-/* line 1934, assets/css/sass/tenerifeingatlan.scss */
+/* line 2006, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper .selector-row.lvl-1 label {
   padding-left: 45px !important;
 }
-/* line 1936, assets/css/sass/tenerifeingatlan.scss */
+/* line 2008, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper .selector-row.lvl-1 label:before {
   left: 20px !important;
 }
-/* line 1942, assets/css/sass/tenerifeingatlan.scss */
+/* line 2014, assets/css/sass/tenerifeingatlan.scss */
 .multi-selector-holder .selector-wrapper.sel-def {
   margin-top: -2px;
   margin-right: 30px;
 }
 
-/* line 1950, assets/css/sass/tenerifeingatlan.scss */
+/* line 2022, assets/css/sass/tenerifeingatlan.scss */
 .tglwatcher {
   cursor: pointer;
 }
 
-/* line 1955, assets/css/sass/tenerifeingatlan.scss */
+/* line 2027, assets/css/sass/tenerifeingatlan.scss */
 .tglwatcher-wrapper,
 .select-wrapper {
   position: relative;
   cursor: pointer;
 }
-/* line 1959, assets/css/sass/tenerifeingatlan.scss */
+/* line 2031, assets/css/sass/tenerifeingatlan.scss */
 .tglwatcher-wrapper:after,
 .select-wrapper:after {
   pointer-events: none;
@@ -2070,38 +2145,38 @@ input[type=checkbox]:checked + label:before {
   line-height: 34px;
   color: #fff;
 }
-/* line 1975, assets/css/sass/tenerifeingatlan.scss */
+/* line 2047, assets/css/sass/tenerifeingatlan.scss */
 .tglwatcher-wrapper.tgl-def:after,
 .select-wrapper.tgl-def:after {
   height: 40px;
   line-height: 40px;
 }
 
-/* line 1982, assets/css/sass/tenerifeingatlan.scss */
+/* line 2054, assets/css/sass/tenerifeingatlan.scss */
 .home-bigbox-links {
   margin: 20px -15px 0 -15px !important;
 }
-/* line 1985, assets/css/sass/tenerifeingatlan.scss */
+/* line 2057, assets/css/sass/tenerifeingatlan.scss */
 .home-bigbox-links .link-area-box {
   margin: 15px !important;
   padding: 0 !important;
   border: 1px solid #fff !important;
 }
-/* line 1990, assets/css/sass/tenerifeingatlan.scss */
+/* line 2062, assets/css/sass/tenerifeingatlan.scss */
 .home-bigbox-links .link-area-box .heading {
   margin-bottom: 0 !important;
 }
-/* line 1992, assets/css/sass/tenerifeingatlan.scss */
+/* line 2064, assets/css/sass/tenerifeingatlan.scss */
 .home-bigbox-links .link-area-box .heading .image {
   position: relative !important;
   overflow: hidden !important;
 }
-/* line 1996, assets/css/sass/tenerifeingatlan.scss */
+/* line 2068, assets/css/sass/tenerifeingatlan.scss */
 .home-bigbox-links .link-area-box .heading .image img {
   width: 102% !important;
   margin: 0 !important;
 }
-/* line 2001, assets/css/sass/tenerifeingatlan.scss */
+/* line 2073, assets/css/sass/tenerifeingatlan.scss */
 .home-bigbox-links .link-area-box .heading h2.content-box-heading {
   padding: 0 !important;
   background-color: #008dd2 !important;
@@ -2109,7 +2184,7 @@ input[type=checkbox]:checked + label:before {
   text-transform: uppercase;
   padding: 15px 0 !important;
 }
-/* line 2010, assets/css/sass/tenerifeingatlan.scss */
+/* line 2082, assets/css/sass/tenerifeingatlan.scss */
 .home-bigbox-links .link-area-box .content-container {
   padding: 12px !important;
   font-size: 1.35em !important;
@@ -2118,56 +2193,56 @@ input[type=checkbox]:checked + label:before {
   text-align: justify !important;
 }
 
-/* line 2019, assets/css/sass/tenerifeingatlan.scss */
+/* line 2091, assets/css/sass/tenerifeingatlan.scss */
 .fusion-content-boxes-1 .fusion-content-box-hover .link-area-box-hover .heading .heading-link h2 {
   color: white !important;
 }
 
-/* line 2023, assets/css/sass/tenerifeingatlan.scss */
+/* line 2095, assets/css/sass/tenerifeingatlan.scss */
 .prop-list {
   margin: -10px;
 }
-/* line 2026, assets/css/sass/tenerifeingatlan.scss */
+/* line 2098, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-list-info {
   position: absolute;
   right: 0;
   top: 5px;
   text-align: right;
 }
-/* line 2032, assets/css/sass/tenerifeingatlan.scss */
+/* line 2104, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-list-info .total {
   font-size: 1.15em;
   color: black;
 }
-/* line 2037, assets/css/sass/tenerifeingatlan.scss */
+/* line 2109, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-list-info .pages {
   color: #9e9e9e;
   font-size: 0.7em;
 }
-/* line 2041, assets/css/sass/tenerifeingatlan.scss */
+/* line 2113, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-list-info .pages strong {
   color: #444444;
 }
-/* line 2047, assets/css/sass/tenerifeingatlan.scss */
+/* line 2119, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
-/* line 2052, assets/css/sass/tenerifeingatlan.scss */
+/* line 2124, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item {
   width: calc(100% / 4);
   padding: 10px;
 }
-/* line 2056, assets/css/sass/tenerifeingatlan.scss */
+/* line 2128, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper {
   position: relative;
 }
-/* line 2058, assets/css/sass/tenerifeingatlan.scss */
+/* line 2130, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .top-wp {
   position: relative;
 }
-/* line 2062, assets/css/sass/tenerifeingatlan.scss */
+/* line 2134, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features > div {
   position: absolute;
   z-index: 100;
@@ -2176,7 +2251,7 @@ input[type=checkbox]:checked + label:before {
   padding: 4px 8px;
   pointer-events: none;
 }
-/* line 2071, assets/css/sass/tenerifeingatlan.scss */
+/* line 2143, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .status {
   background: #435061;
   text-transform: uppercase;
@@ -2186,25 +2261,25 @@ input[type=checkbox]:checked + label:before {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 2080, assets/css/sass/tenerifeingatlan.scss */
+/* line 2152, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .status.status-elado {
   background: #0ec5c7;
 }
-/* line 2083, assets/css/sass/tenerifeingatlan.scss */
+/* line 2155, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .status.status-berbeado {
   background: #ffa700;
 }
-/* line 2088, assets/css/sass/tenerifeingatlan.scss */
+/* line 2160, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .dropoff {
   right: 5px;
   top: 16px;
   z-index: 90;
 }
-/* line 2093, assets/css/sass/tenerifeingatlan.scss */
+/* line 2165, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .dropoff img {
   max-height: 42px;
 }
-/* line 2098, assets/css/sass/tenerifeingatlan.scss */
+/* line 2170, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .photo {
   bottom: 3px;
   left: 3px;
@@ -2213,12 +2288,12 @@ input[type=checkbox]:checked + label:before {
   opacity: 1;
   filter: alpha(opacity=100);
 }
-/* line 2106, assets/css/sass/tenerifeingatlan.scss */
+/* line 2178, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .photo img {
   height: 25px;
   margin-right: 5px;
 }
-/* line 2112, assets/css/sass/tenerifeingatlan.scss */
+/* line 2184, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .newi {
   bottom: -13px;
   line-height: 1;
@@ -2230,20 +2305,20 @@ input[type=checkbox]:checked + label:before {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 2124, assets/css/sass/tenerifeingatlan.scss */
+/* line 2196, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .features .highlight {
   top: 0;
   right: 0;
   background: #fc4226;
 }
-/* line 2130, assets/css/sass/tenerifeingatlan.scss */
+/* line 2202, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .image {
   position: relative;
   width: 100%;
   height: 240px;
   overflow: hidden;
 }
-/* line 2136, assets/css/sass/tenerifeingatlan.scss */
+/* line 2208, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .image img {
   height: 125%;
   max-height: 125%;
@@ -2256,7 +2331,7 @@ input[type=checkbox]:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 2148, assets/css/sass/tenerifeingatlan.scss */
+/* line 2220, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .image .excerpt {
   padding: 7px;
   font-size: 0.7em;
@@ -2269,40 +2344,40 @@ input[type=checkbox]:checked + label:before {
   width: 100%;
   pointer-events: none;
 }
-/* line 2162, assets/css/sass/tenerifeingatlan.scss */
+/* line 2234, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .prim-line {
   display: block;
   width: 100%;
 }
-/* line 2172, assets/css/sass/tenerifeingatlan.scss */
+/* line 2244, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .sec-line {
   display: block;
   width: 100%;
   text-align: right;
 }
-/* line 2177, assets/css/sass/tenerifeingatlan.scss */
+/* line 2249, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .sec-line > .price {
   padding: 8px 15px;
   font-size: 2.2em;
   font-family: 'Arial';
   font-weight: 700;
 }
-/* line 2183, assets/css/sass/tenerifeingatlan.scss */
+/* line 2255, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .sec-line > .price .pt {
   font-size: 0.5em;
   letter-spacing: -1px;
   font-weight: normal;
 }
-/* line 2192, assets/css/sass/tenerifeingatlan.scss */
+/* line 2264, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper:hover .excerpt {
   bottom: 0%;
 }
-/* line 2195, assets/css/sass/tenerifeingatlan.scss */
+/* line 2267, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper:hover .photo {
   opacity: 0.1;
   filter: alpha(opacity=10);
 }
-/* line 2201, assets/css/sass/tenerifeingatlan.scss */
+/* line 2273, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options {
   border-top: 1px solid #cccccc;
   display: flex;
@@ -2310,14 +2385,14 @@ input[type=checkbox]:checked + label:before {
   width: 100%;
   background: #ffffff;
 }
-/* line 2208, assets/css/sass/tenerifeingatlan.scss */
+/* line 2280, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt {
   flex-basis: 50%;
   font-size: 1em;
   padding: 5px;
   line-height: 18px;
 }
-/* line 2213, assets/css/sass/tenerifeingatlan.scss */
+/* line 2285, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt .d {
   padding: 0;
   line-height: 10px;
@@ -2325,7 +2400,7 @@ input[type=checkbox]:checked + label:before {
   color: #79828e;
   text-align: center;
 }
-/* line 2219, assets/css/sass/tenerifeingatlan.scss */
+/* line 2291, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt .d .ico {
   height: 18px;
   width: 25px;
@@ -2333,22 +2408,22 @@ input[type=checkbox]:checked + label:before {
   text-align: center;
   float: left;
 }
-/* line 2225, assets/css/sass/tenerifeingatlan.scss */
+/* line 2297, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt .d .ico img {
   height: 100%;
 }
-/* line 2230, assets/css/sass/tenerifeingatlan.scss */
+/* line 2302, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt .d .t {
   line-height: 18px;
   float: left;
 }
-/* line 2234, assets/css/sass/tenerifeingatlan.scss */
+/* line 2306, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt .d .v {
   line-height: 18px;
   float: right;
   padding: 0 3px;
 }
-/* line 2239, assets/css/sass/tenerifeingatlan.scss */
+/* line 2311, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt .d .v.c {
   background: #f1f3f6;
   padding: 5px;
@@ -2361,34 +2436,34 @@ input[type=checkbox]:checked + label:before {
   border-radius: 15px;
   width: 20px;
 }
-/* line 2255, assets/css/sass/tenerifeingatlan.scss */
+/* line 2327, assets/css/sass/tenerifeingatlan.scss */
 .prop-list .prop-wrapper .prop-item .prop-item-wrapper .important-options > .opt:last-child {
   border-right: none;
 }
-/* line 2265, assets/css/sass/tenerifeingatlan.scss */
+/* line 2337, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper, .prop-list.style-slide .prop-item-wrapper {
   border: 1px solid #d9d9d9;
 }
-/* line 2268, assets/css/sass/tenerifeingatlan.scss */
+/* line 2340, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper .dropoff, .prop-list.style-slide .prop-item-wrapper .dropoff {
   right: 5px !important;
   top: 17px !important;
 }
-/* line 2274, assets/css/sass/tenerifeingatlan.scss */
+/* line 2346, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper .image .excerpt, .prop-list.style-slide .prop-item-wrapper .image .excerpt {
   background: rgba(14, 197, 199, 0.5);
   padding: 10px;
   font-size: 0.8em;
   color: white;
 }
-/* line 2282, assets/css/sass/tenerifeingatlan.scss */
+/* line 2354, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper .prim-line, .prop-list.style-slide .prop-item-wrapper .prim-line {
   background: white;
   color: #f5f5f5;
   text-align: center;
   padding: 15px 0;
 }
-/* line 2288, assets/css/sass/tenerifeingatlan.scss */
+/* line 2360, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper .prim-line a, .prop-list.style-slide .prop-item-wrapper .prim-line a {
   color: #008dd2;
   font-size: 1.1em;
@@ -2396,79 +2471,79 @@ input[type=checkbox]:checked + label:before {
   font-weight: bold;
   font-family: 'Arial';
 }
-/* line 2295, assets/css/sass/tenerifeingatlan.scss */
+/* line 2367, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper .prim-line a img, .prop-list.style-slide .prop-item-wrapper .prim-line a img {
   height: 16px;
   vertical-align: middle;
 }
-/* line 2301, assets/css/sass/tenerifeingatlan.scss */
+/* line 2373, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper .sec-line, .prop-list.style-slide .prop-item-wrapper .sec-line {
   background: #0b89c7;
   color: #f5f5f5;
 }
-/* line 2306, assets/css/sass/tenerifeingatlan.scss */
+/* line 2378, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-standard .prop-item-wrapper .sec-line > .linkto a, .prop-list.style-slide .prop-item-wrapper .sec-line > .linkto a {
   background: #006b9f;
   color: #f5f5f5;
 }
-/* line 2316, assets/css/sass/tenerifeingatlan.scss */
+/* line 2388, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-simple-priced .prop-item-wrapper {
   border: 1px solid #d9d9d9;
 }
-/* line 2318, assets/css/sass/tenerifeingatlan.scss */
+/* line 2390, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-simple-priced .prop-item-wrapper .image {
   height: 140px !important;
 }
-/* line 2320, assets/css/sass/tenerifeingatlan.scss */
+/* line 2392, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-simple-priced .prop-item-wrapper .image .excerpt {
-  background: rgba(214, 44, 48, 0.81);
+  background: rgba(214, 44, 48, 0.8);
   padding: 10px;
   font-size: 0.8em;
   color: white;
 }
-/* line 2327, assets/css/sass/tenerifeingatlan.scss */
+/* line 2399, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-simple-priced .prop-item-wrapper .sec-line {
   background: #79828e;
   color: #f5f5f5;
 }
-/* line 2331, assets/css/sass/tenerifeingatlan.scss */
+/* line 2403, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-simple-priced .prop-item-wrapper .sec-line .price {
   flex-basis: 100% !important;
   text-align: center;
 }
-/* line 2340, assets/css/sass/tenerifeingatlan.scss */
+/* line 2412, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.style-maplist .prop-item {
   flex-basis: 100%;
 }
-/* line 2347, assets/css/sass/tenerifeingatlan.scss */
+/* line 2419, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.im1 .prop-wrapper .prop-item {
   width: calc(100% / 1);
 }
-/* line 2355, assets/css/sass/tenerifeingatlan.scss */
+/* line 2427, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.im3 .prop-wrapper .prop-item {
   width: calc(100% / 3);
   font-size: 0.9em;
 }
-/* line 2359, assets/css/sass/tenerifeingatlan.scss */
+/* line 2431, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.im3 .prop-wrapper .prop-item .image {
   height: 180px;
 }
-/* line 2368, assets/css/sass/tenerifeingatlan.scss */
+/* line 2440, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.im4 .prop-wrapper .prop-item {
   width: calc(100% / 4);
 }
-/* line 2375, assets/css/sass/tenerifeingatlan.scss */
+/* line 2447, assets/css/sass/tenerifeingatlan.scss */
 .prop-list.im5 .prop-wrapper .prop-item {
   width: calc(100% / 5);
 }
 
-/* line 2386, assets/css/sass/tenerifeingatlan.scss */
+/* line 2458, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-set-unwatched h1,
 .listing-list-set-viewed h1,
 .listing-list-set-get h1 {
   margin: 0 0 5px 0 !important;
 }
-/* line 2389, assets/css/sass/tenerifeingatlan.scss */
+/* line 2461, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-set-unwatched .subtitle,
 .listing-list-set-viewed .subtitle,
 .listing-list-set-get .subtitle {
@@ -2476,7 +2551,7 @@ input[type=checkbox]:checked + label:before {
   font-size: 1.2em;
   margin: 0 0 15px 0;
 }
-/* line 2394, assets/css/sass/tenerifeingatlan.scss */
+/* line 2466, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-set-unwatched .listing-nodata,
 .listing-list-set-viewed .listing-nodata,
 .listing-list-set-get .listing-nodata {
@@ -2487,14 +2562,14 @@ input[type=checkbox]:checked + label:before {
   display: block;
   width: 100%;
 }
-/* line 2402, assets/css/sass/tenerifeingatlan.scss */
+/* line 2474, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-set-unwatched .listing-nodata i,
 .listing-list-set-viewed .listing-nodata i,
 .listing-list-set-get .listing-nodata i {
   font-size: 72px;
   color: #366c86;
 }
-/* line 2407, assets/css/sass/tenerifeingatlan.scss */
+/* line 2479, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-set-unwatched .listing-nodata h2,
 .listing-list-set-viewed .listing-nodata h2,
 .listing-list-set-get .listing-nodata h2 {
@@ -2504,7 +2579,7 @@ input[type=checkbox]:checked + label:before {
   margin: 0 0 8px 0;
 }
 
-/* line 2416, assets/css/sass/tenerifeingatlan.scss */
+/* line 2488, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view {
   min-height: 1000px;
   height: 1000px;
@@ -2513,14 +2588,14 @@ input[type=checkbox]:checked + label:before {
   display: flex;
   flex-wrap: nowrap;
 }
-/* line 2425, assets/css/sass/tenerifeingatlan.scss */
+/* line 2497, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .map-view {
   position: relative;
   height: 100%;
   min-height: 100%;
   flex-basis: 70%;
 }
-/* line 2432, assets/css/sass/tenerifeingatlan.scss */
+/* line 2504, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .item-loader {
   position: fixed;
   left: 0;
@@ -2531,7 +2606,7 @@ input[type=checkbox]:checked + label:before {
   background: rgba(0, 141, 210, 0.95);
   color: white;
 }
-/* line 2442, assets/css/sass/tenerifeingatlan.scss */
+/* line 2514, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .item-loader .text {
   position: absolute;
   top: 50%;
@@ -2539,7 +2614,7 @@ input[type=checkbox]:checked + label:before {
   font-size: 1.3em;
   transform: translate(-50%, -50%);
 }
-/* line 2451, assets/css/sass/tenerifeingatlan.scss */
+/* line 2523, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list {
   position: relative;
   background: white;
@@ -2551,7 +2626,7 @@ input[type=checkbox]:checked + label:before {
   z-index: 999;
   overflow: hidden;
 }
-/* line 2462, assets/css/sass/tenerifeingatlan.scss */
+/* line 2534, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing {
   height: 100%;
   top: 0;
@@ -2560,14 +2635,14 @@ input[type=checkbox]:checked + label:before {
   bottom: 0;
   position: absolute;
 }
-/* line 2471, assets/css/sass/tenerifeingatlan.scss */
+/* line 2543, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items {
   height: 100%;
   position: relative;
   overflow: auto;
   padding-bottom: 45px;
 }
-/* line 2477, assets/css/sass/tenerifeingatlan.scss */
+/* line 2549, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items #load-more-page {
   text-align: center;
   font-size: 0.8em;
@@ -2579,12 +2654,21 @@ input[type=checkbox]:checked + label:before {
   font-weight: bold;
   font-family: 'Arial';
 }
-/* line 2488, assets/css/sass/tenerifeingatlan.scss */
+/* line 2560, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items #load-more-page:hover {
   background: #008dd2;
   color: white;
 }
-/* line 2494, assets/css/sass/tenerifeingatlan.scss */
+/* line 2566, assets/css/sass/tenerifeingatlan.scss */
+.map-page-view .data-list .listing-items .page-info {
+  text-align: center;
+  padding: 8px;
+  font-size: 0.7em;
+  background: #f1f1f1;
+  color: black;
+  text-transform: uppercase;
+}
+/* line 2575, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item {
   display: flex;
   flex-wrap: wrap;
@@ -2592,71 +2676,71 @@ input[type=checkbox]:checked + label:before {
   border-bottom: 2px solid #f1f1f1;
   cursor: pointer;
 }
-/* line 2501, assets/css/sass/tenerifeingatlan.scss */
+/* line 2582, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .img {
   flex-basis: 25%;
 }
-/* line 2504, assets/css/sass/tenerifeingatlan.scss */
+/* line 2585, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .img img {
   width: 100%;
   max-width: 100%;
 }
-/* line 2510, assets/css/sass/tenerifeingatlan.scss */
+/* line 2591, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt {
   flex-basis: 75%;
   padding: 5px;
   font-size: 1.1em;
 }
-/* line 2515, assets/css/sass/tenerifeingatlan.scss */
+/* line 2596, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .hided {
   display: none;
 }
-/* line 2518, assets/css/sass/tenerifeingatlan.scss */
+/* line 2599, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .hided:not(.hasdata) {
   padding: 0;
   margin: 0;
   height: 1px !important;
 }
-/* line 2525, assets/css/sass/tenerifeingatlan.scss */
+/* line 2606, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .title a {
   font-size: 1.2em;
   font-weight: bold;
   color: #008dd2;
 }
-/* line 2532, assets/css/sass/tenerifeingatlan.scss */
+/* line 2613, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .info {
   font-size: 0.9em;
   margin: 4px 0;
 }
-/* line 2536, assets/css/sass/tenerifeingatlan.scss */
+/* line 2617, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .info .pos {
   color: #f7941f;
 }
-/* line 2540, assets/css/sass/tenerifeingatlan.scss */
+/* line 2621, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .info .price {
   font-size: 0.9em;
   color: #fc4226;
   margin-right: 5px;
 }
-/* line 2546, assets/css/sass/tenerifeingatlan.scss */
+/* line 2627, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .label {
   color: white;
   font-size: 0.7em;
   padding: 0;
   margin-top: 4px;
 }
-/* line 2552, assets/css/sass/tenerifeingatlan.scss */
+/* line 2633, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .label span {
   padding: 2px 4px;
 }
-/* line 2556, assets/css/sass/tenerifeingatlan.scss */
+/* line 2637, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item .dt .desc {
   font-size: 0.7em;
   color: #888888;
   height: 30px;
   overflow: hidden;
 }
-/* line 2565, assets/css/sass/tenerifeingatlan.scss */
+/* line 2646, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item:hover {
   background: #f3f3f3;
   border: 2px solid #eaeaea;
@@ -2664,24 +2748,24 @@ input[type=checkbox]:checked + label:before {
   -moz-box-shadow: 0 5px 30px -10px black;
   box-shadow: 0 5px 30px -10px black;
 }
-/* line 2571, assets/css/sass/tenerifeingatlan.scss */
+/* line 2652, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item:hover .hided {
   display: block;
 }
-/* line 2576, assets/css/sass/tenerifeingatlan.scss */
+/* line 2657, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item.focused {
   background: #f7941f;
   color: white;
 }
-/* line 2580, assets/css/sass/tenerifeingatlan.scss */
+/* line 2661, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item.focused .hided {
   display: block !important;
 }
-/* line 2584, assets/css/sass/tenerifeingatlan.scss */
+/* line 2665, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-items .prop-item.focused .title a, .map-page-view .data-list .listing-items .prop-item.focused .price, .map-page-view .data-list .listing-items .prop-item.focused .pos, .map-page-view .data-list .listing-items .prop-item.focused .desc {
   color: white !important;
 }
-/* line 2591, assets/css/sass/tenerifeingatlan.scss */
+/* line 2672, assets/css/sass/tenerifeingatlan.scss */
 .map-page-view .data-list .listing-header {
   background: #f7941f;
   text-align: center;
@@ -2691,13 +2775,13 @@ input[type=checkbox]:checked + label:before {
   padding: 10px;
 }
 
-/* line 2602, assets/css/sass/tenerifeingatlan.scss */
+/* line 2683, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content {
   padding: 15px;
   background: rgba(255, 255, 255, 0.9);
   border: 5px solid #d2d2d2;
 }
-/* line 2606, assets/css/sass/tenerifeingatlan.scss */
+/* line 2687, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content h2 {
   font-family: 'Arial' !important;
   color: #008dd2;
@@ -2707,51 +2791,51 @@ input[type=checkbox]:checked + label:before {
   line-height: 1.2;
   font-weight: bold !important;
 }
-/* line 2616, assets/css/sass/tenerifeingatlan.scss */
+/* line 2697, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .title {
   padding: 10px 0;
 }
-/* line 2620, assets/css/sass/tenerifeingatlan.scss */
+/* line 2701, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .pos {
   color: #f7941f;
   font-size: 1.1em;
   margin-bottom: 8px;
 }
-/* line 2626, assets/css/sass/tenerifeingatlan.scss */
+/* line 2707, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .desc {
   color: #8c8c8c;
   font-size: 0.9em;
   padding-bottom: 12px;
 }
-/* line 2632, assets/css/sass/tenerifeingatlan.scss */
+/* line 2713, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .params {
   padding-bottom: 12px;
 }
-/* line 2634, assets/css/sass/tenerifeingatlan.scss */
+/* line 2715, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .params table.paramtable {
   width: 100%;
   border: 1px solid #f1f1f1;
   border-collapse: collapse;
 }
-/* line 2639, assets/css/sass/tenerifeingatlan.scss */
+/* line 2720, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .params table.paramtable td {
   padding: 5px;
   width: 50%;
   border: 1px solid #f1f1f1;
 }
-/* line 2645, assets/css/sass/tenerifeingatlan.scss */
+/* line 2726, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .params table.paramtable i {
   color: #f7941f;
 }
-/* line 2649, assets/css/sass/tenerifeingatlan.scss */
+/* line 2730, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .params table.paramtable tr td:first-child {
   font-weight: bold;
 }
-/* line 2656, assets/css/sass/tenerifeingatlan.scss */
+/* line 2737, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .img img {
   max-width: 100%;
 }
-/* line 2661, assets/css/sass/tenerifeingatlan.scss */
+/* line 2742, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .price {
   float: left;
   font-size: 1.5em;
@@ -2759,29 +2843,29 @@ input[type=checkbox]:checked + label:before {
   font-family: 'Arial';
   font-weight: bold;
 }
-/* line 2670, assets/css/sass/tenerifeingatlan.scss */
+/* line 2751, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .read {
   float: right;
 }
-/* line 2673, assets/css/sass/tenerifeingatlan.scss */
+/* line 2754, assets/css/sass/tenerifeingatlan.scss */
 .map-box-content .read a {
   background: #0ec5c7;
   color: white;
   padding: 4px;
 }
 
-/* line 2684, assets/css/sass/tenerifeingatlan.scss */
+/* line 2765, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-set-viewed h1,
 .listing-list-set-get h1 {
   margin: 0 0 15px 0 !important;
 }
 
-/* line 2688, assets/css/sass/tenerifeingatlan.scss */
+/* line 2769, assets/css/sass/tenerifeingatlan.scss */
 .pagination {
   float: none;
   text-align: center;
 }
-/* line 2691, assets/css/sass/tenerifeingatlan.scss */
+/* line 2772, assets/css/sass/tenerifeingatlan.scss */
 .pagination .page-numbers {
   line-height: 1;
   padding: 4px 8px;
@@ -2793,12 +2877,12 @@ input[type=checkbox]:checked + label:before {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 2702, assets/css/sass/tenerifeingatlan.scss */
+/* line 2783, assets/css/sass/tenerifeingatlan.scss */
 .pagination .page-numbers:hover {
   background: #008dd2;
   color: white;
 }
-/* line 2707, assets/css/sass/tenerifeingatlan.scss */
+/* line 2788, assets/css/sass/tenerifeingatlan.scss */
 .pagination .page-numbers.current {
   background: #f7941f;
   border: 1px solid #db7a08;
@@ -2806,45 +2890,45 @@ input[type=checkbox]:checked + label:before {
   margin: 0;
 }
 
-/* line 2717, assets/css/sass/tenerifeingatlan.scss */
+/* line 2798, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-initialized .slick-slide {
   height: auto !important;
 }
-/* line 2720, assets/css/sass/tenerifeingatlan.scss */
+/* line 2801, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-next, .listing-list-holder .slick-prev {
   background: rgba(0, 0, 0, 0.19);
   height: 30px;
   width: 30px;
 }
-/* line 2721, assets/css/sass/tenerifeingatlan.scss */
+/* line 2802, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-next:before, .listing-list-holder .slick-prev:before {
   font-size: 20px;
 }
-/* line 2729, assets/css/sass/tenerifeingatlan.scss */
+/* line 2810, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-next {
   right: -34px;
 }
-/* line 2733, assets/css/sass/tenerifeingatlan.scss */
+/* line 2814, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-prev {
   left: -34px;
 }
-/* line 2736, assets/css/sass/tenerifeingatlan.scss */
+/* line 2817, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-dots {
   bottom: -36px;
 }
-/* line 2738, assets/css/sass/tenerifeingatlan.scss */
+/* line 2819, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-dots li {
   margin: 0;
 }
-/* line 2741, assets/css/sass/tenerifeingatlan.scss */
+/* line 2822, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-dots li button {
   padding: 2px;
 }
-/* line 2744, assets/css/sass/tenerifeingatlan.scss */
+/* line 2825, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-dots li button:before {
   color: rgba(0, 0, 0, 0.6);
 }
-/* line 2747, assets/css/sass/tenerifeingatlan.scss */
+/* line 2828, assets/css/sass/tenerifeingatlan.scss */
 .listing-list-holder .slick-dots li.slick-active button:before {
   color: rgba(0, 141, 210, 0.8);
 }

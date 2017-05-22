@@ -120,6 +120,9 @@
     </div>
 </div>
 <div class="submit">
+  <div class="backlist">
+    <a href="<?php echo str_replace(SLUG_MAP, SLUG_INGATLAN_LIST, $_SERVER['REQUEST_URI']); ?>"><i class="fa fa-bars"></i> Váltás lista nézetre</a>
+  </div>
   <button type="submit"><i class="fa fa-search"></i> <?=__('Keresés', 'gh')?></button>
 </div>
 </form>

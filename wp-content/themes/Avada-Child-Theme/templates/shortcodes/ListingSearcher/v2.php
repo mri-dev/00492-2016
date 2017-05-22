@@ -118,6 +118,9 @@
     </div>
 </div>
 <div class="submit">
+  <div class="backlist">
+    <a href="<?php echo str_replace(SLUG_INGATLAN_LIST, SLUG_MAP, $_SERVER['REQUEST_URI']); ?>"><i class="fa fa-map"></i> Váltás térkép nézetre</a>
+  </div>
   <button type="submit"><i class="fa fa-search"></i> <?=__('Keresés', 'gh')?></button>
 </div>
 </form>
