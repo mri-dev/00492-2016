@@ -2830,3 +2830,112 @@ input[type=checkbox]:checked + label {
     }
   }
 }
+
+@media screen and (max-width: 1200px) {
+  #main .fusion-row, #slidingbar-area .fusion-row, .fusion-footer-copyright-area .fusion-row, .fusion-footer-widget-area .fusion-row, .fusion-page-title-row, .tfs-slider .slide-content-container .slide-content,
+  body.ingatlan_page #main .fusion-row .page-holder{
+    max-width: 1024px;
+  }
+  .fusion-secondary-header .custom-secondary-header-holder{
+    width: 1024px;
+  }
+  .prop-list .prop-wrapper .prop-item .prop-item-wrapper .sec-line > .price{
+    font-size: 1.5em;
+  }
+  #menu-widget-2 ul li a{
+    font-size: 14px !important;
+  }
+  .fusion-main-menu > ul > li > a{
+    font-size: 12px !important;
+    padding: 0 4px !important;
+  }
+  .prop-list.style-standard .prop-item-wrapper .prim-line a, .prop-list.style-slide .prop-item-wrapper .prim-line a{
+    font-size: 0.84em;
+  }
+  .listing-searcher-holder .searcher-footer .options-more{
+    flex-basis: 30%;
+  }
+  .listing-searcher-holder .searcher-footer .options-selects{
+    flex-basis: 70%;
+  }
+  .listing-searcher-holder .searcher-wrapper .form-items .inp.inp-submit button{
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #main .fusion-row, #slidingbar-area .fusion-row, .fusion-footer-copyright-area .fusion-row, .fusion-footer-widget-area .fusion-row, .fusion-page-title-row, .tfs-slider .slide-content-container .slide-content,
+  body.ingatlan_page #main .fusion-row .page-holder{
+    max-width: 100%;
+  }
+  .fusion-secondary-header .custom-secondary-header-holder{
+    width: 100%;
+  }
+  .listing-searcher-holder.style-v1{
+    width: 100%;
+  }
+  .prop-list .prop-wrapper .prop-item{
+    flex-basis: calc(100%/2);
+  }
+  .prop-list .prop-wrapper .prop-item .prop-item-wrapper .sec-line > .price{
+    font-size: 2.5em;
+  }
+  .listing-sc .header h2{
+    line-height: 1.2 !important;
+  }
+  .prop-list.style-simple-priced .prop-item-wrapper .image{
+    height: 240px !important;
+  }
+  .home-bigbox-links{
+    margin: 0 !important;
+  }
+  .home-bigbox-links .link-area-box{
+    margin: 0 !important;
+  }
+  .home-bigbox-links .link-area-box h2 {
+    font-size: 14px !important;
+  }
+  .home-bigbox-links .link-area-box .content-container{
+    font-size: 1em !important;
+    line-height: 1.2 !important;
+  }
+
+  .footer-after-menu .fusion-column-wrapper{
+    text-align: center;
+  }
+
+  .footer-after-menu .footer-search{
+    width: 50%;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .footer-after-menu .social-links{
+    float: none;
+    display: block;
+  }
+  .header-holder{
+    flex-wrap: wrap;
+  }
+  .fusion-social-networks{
+    padding: 10px 0 !important;
+  }
+  .header-holder .fusion-logo,
+  .header-holder .side-of-logo{
+    text-align: center;
+    flex-basis: 100%;
+  }
+  .header-search {
+    float: none;
+    width: 50%;
+    margin: 20px auto;
+  }
+  .fusion-mobile-menu-icons{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .fusion-mobile-menu-icons a{
+    font-size: 40px;
+  }
+}
