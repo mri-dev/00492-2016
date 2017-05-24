@@ -3265,4 +3265,14 @@ input[type=checkbox]:checked + label {
   a.back-to-home{
     line-height: 22px;
   }
+  .ingatlan-page-view .history-list .header, .ingatlan-page-view .recomended-list .header{
+    font-size: 0.7em;
+    padding: 0 5px 15px 5px;
+  }
+  .ingatlan-page-view .data-top > .data-top-right .title h1, .ingatlan-page-view .data-main > .data-top-right .title h1{
+    font-size: 1.8em;
+  }
+  .ingatlan-page-view .history-list, .ingatlan-page-view .recomended-list{
+    padding: 5px 0;
+  }
 }
