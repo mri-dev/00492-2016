@@ -19,7 +19,7 @@
 <div class="searcher-wrapper">
     <div class="form-items">
 
-      <div class="inp inp-city">
+      <div class="inp inp-city show-mob-at">
         <label for="zone_multiselect_text">Régió / Város</label>
         <div class="tglwatcher-wrapper">
           <input type="text" readonly="readonly" id="zone_multiselect_text" class="form-control tglwatcher" tglwatcher="zone_multiselect" placeholder="<?=__('Összes', 'gh')?>" value="">
@@ -120,7 +120,10 @@
         <label for="searcher_price_max"><?=__('Maximum ár (€)', 'ti')?></label>
         <input type="text" class="form-control pricebind" id="searcher_price_max" name="pb" placeholder="<?=__('€', 'ti')?>" value="">
       </div>
-      <div class="inp inp-submit">
+      <div class="inp inp-more-on-mobile show-mob-at">
+        <span id="searcher-mobile-tgl" data-status="closed">Részletesebb keresés <i class="fa fa-angle-down"></i></span>
+      </div>
+      <div class="inp inp-submit show-mob-at">
         <button type="submit"><i class="fa fa-search"></i> <?=__('Keresés', 'ti')?></button>
       </div>
     </div>
@@ -149,6 +152,21 @@
         $('.tglwatcher.toggled').removeClass('toggled');
       }
     });
+
+    $('#searcher-mobile-tgl').click(function(){
+     var co = $(this).data('status');
+
+     if(co == 'closed') {
+       $('.listing-searcher-holder .form-items > .inp:not(.show-mob-at)').addClass('show');
+       $(this).data('status', 'opened');
+       $(this).html('Egyszerűbb keresés <i class="fa fa-angle-up"></i>');
+     } else {
+       $('.listing-searcher-holder .form-items > .inp.show').removeClass('show');
+       $(this).data('status', 'closed');
+       $(this).html('Részletesebb keresés <i class="fa fa-angle-down"></i>');
+     }
+   });
+
 
     $('#options-toggler').click(function(){
       var toggled = ($(this).data('options-tgl') == '0') ? false : true ;

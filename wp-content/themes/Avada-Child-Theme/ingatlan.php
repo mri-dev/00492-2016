@@ -108,7 +108,7 @@
                   <?php echo $cond_text; ?>
                   </div>
                 </div>
-                <div class="e">
+                <div class="e nm">
                  <div class="h">
                    <div class="ico"><img src="<?=IMG?>/ico/alapterulet.svg" alt="<?=__('Alapterület', 'ti')?>"></div>
                    <?=__('Alapterület', 'ti')?>
@@ -233,7 +233,7 @@
                   $gps = $prop->GPS();
                   $regio = end($regions);
                   $gps_term_id = $regio->term_id;
-                  
+
                   ob_start();
                   include(locate_template('/templates/parts/map_place_poi.php'));
                   ob_end_flush();

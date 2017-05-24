@@ -1,7 +1,7 @@
 <script type="text/javascript">
   (function($){
       $('.listing-slider-list .list-wrapper').slick({
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 8000,
         speed: 1000,
         slideToScroll: 1,
