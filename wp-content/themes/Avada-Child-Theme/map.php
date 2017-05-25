@@ -2,7 +2,7 @@
   get_header();
 ?>
 	<div id="content" <?php Avada()->layout->add_class( 'content_class' ); ?> <?php Avada()->layout->add_style( 'content_style' ); ?>>
-    <div class="<?=SLUG_MAP?>-page-view">
+    <div class="<?=SLUG_MAP?>-page-view bindwindowheight">
       <div class="data-list">
         <div class="searcher">
           <?php echo do_shortcode("[listing-searcher view='map']"); ?>
@@ -216,6 +216,59 @@
             }
         });
 
+        var contentHeight = $(window).height();
+
+        $('.bindwindowheight').css({
+          height: contentHeight,
+          minHeight: contentHeight
+        });
+
+        $(window).resize(function(){
+          var contentHeight = $(window).height();
+
+          if ($(window).width() > 480) {
+            contentHeight -= $('.fusion-header-v3').height();
+            contentHeight -= $('.fusion-page-title-bar').height();
+            contentHeight -= 200;
+          } else {
+            contentHeight -= 43;
+          }
+
+          $('.bindwindowheight').css({
+            height: contentHeight,
+            minHeight: contentHeight
+          });
+
+        });
+
+        $('#tgl-map-results').click(function(){
+          var st = $(this).data('state');
+          console.log(st);
+
+          if (st == 'closed') {
+            $(this).data('state', 'opened');
+            $('body.map_template_page .map-view').css({
+              flexBasis: '0%'
+            });
+            $('body.map_template_page .data-list').css({
+              flexBasis: '100%'
+            });
+          } else {
+            $(this).data('state', 'closed');
+            $('body.map_template_page .map-view').css({
+              flexBasis: '100%'
+            });
+            $('body.map_template_page .data-list').css({
+              flexBasis: '0%'
+            });
+          }
+
+          $('#listing').css({
+            paddingTop: $('.searcher').height()
+          });
+
+        });
+
         function loadList(page) {
           $('.listing-header').html('<i class="fa fa-spin fa-spinner"></i> Ingatlanok betöltése...');
           $('#load-more-page').hide(0);
@@ -236,8 +289,6 @@
             datalist += pushItem(e);
           });
 
-          console.log(lastresult);
-
           if (getqry.page == 1) {
             var pageinfo = '<div class="page-info page'+lastresult.page.current+'">'+lastresult.data.length+' ingatlan megjelenítve:</div>';
           } else if(getqry.page == 2) {
@@ -253,6 +304,7 @@
           var cp = getqry.page - 1;
           $(h).insertAfter('#listing-items #result-page-'+cp);
           $('.listing-header').html(lastresult.data_info.total_items+' db ingatlant találtunk');
+          $('li.show-on-map.only-in-mobile .num').addClass('has').text(lastresult.data_info.total_items);
           getqry.page++;
           var next_page = lastresult.page.current + 1;
 
@@ -267,8 +319,19 @@
             e.stopPropagation();
             var ix = $(this).data('index');
             var id = $(this).data('id');
+            var ww = $(window).width();
 
             if(ix != currentindexhovered) {
+              if(ww <= 480) {
+                $('body.map_template_page .map-view').css({
+                  flexBasis: '100%'
+                });
+                $('body.map_template_page .data-list').css({
+                  flexBasis: '0%'
+                });
+
+                $('#tgl-map-results').data('state', 'closed');
+              }
               currentindexhovered = ix;
               var current_marker = markers[id];
               var lat = parseFloat(current_marker.position.lat());
@@ -281,6 +344,10 @@
             }
           });
         }
+
+        $('#listing').css({
+          paddingTop: $('.searcher').height()
+        });
 
         $('#load-more-page').click(function(){
           var p = $(this).data('page');
@@ -359,8 +426,6 @@
             $('.listing-items').animate({
               scrollTop: itemtop-holdertop
             }, 100);
-
-            console.log(itemtop-holdertop);
 
             if( currentWindow ) {
               currentWindow.close();
