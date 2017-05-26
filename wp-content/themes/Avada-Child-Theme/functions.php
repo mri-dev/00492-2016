@@ -71,6 +71,7 @@ function app_init()
   add_rewrite_rule('^'.SLUG_INGATLAN.'/([^/]+)/([^/]+)/([^/]+)', 'index.php?custom_page='.SLUG_INGATLAN.'&regionslug=$matches[1]&cityslug=$matches[2]&urlstring=$matches[3]', 'top');
   add_rewrite_rule('^'.SLUG_WATCHED.'/?', 'index.php?custom_page='.SLUG_WATCHED.'&urlstring=$matches[1]', 'top');
   add_rewrite_rule('^'.SLUG_NEWS.'/?', 'index.php?custom_page='.SLUG_NEWS.'&urlstring=$matches[1]', 'top');
+  add_rewrite_rule('^'.SLUG_INGATLAN.'/print/(.+)', 'index.php?custom_page=print&urlstring=$matches[1]', 'top');
 }
 add_action('init', 'app_init');
 
