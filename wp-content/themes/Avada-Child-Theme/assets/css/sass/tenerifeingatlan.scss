@@ -2115,7 +2115,7 @@ input[type=checkbox]:checked + label {
 }
 
 .prop-list {
-  margin: -10px;
+  margin: 0 -10px;
 
   .prop-list-info{
     position: absolute;
@@ -2787,7 +2787,16 @@ input[type=checkbox]:checked + label {
 .listing-list-set-viewed,
 .listing-list-set-get{
   h1 {
-    margin: 0 0 15px 0 !important;
+    margin: 0 0 5px 0 !important;
+  }
+
+  h1 + .searching{
+    margin: 0 0 5px 0;
+    color: #888;
+
+    strong{
+      color: black;
+    }
   }
 }
 .pagination{
@@ -2891,6 +2900,14 @@ input[type=checkbox]:checked + label {
   #main .fusion-row, #slidingbar-area .fusion-row, .fusion-footer-copyright-area .fusion-row, .fusion-footer-widget-area .fusion-row, .fusion-page-title-row, .tfs-slider .slide-content-container .slide-content,
   body.ingatlan_page #main .fusion-row .page-holder{
     max-width: 100%;
+  }
+
+  .megtekintett-page-view, .news-page-view{
+    flex-wrap: wrap;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0;
+    margin: 0;
   }
   .fusion-secondary-header .custom-secondary-header-holder{
     width: 100%;
@@ -3325,5 +3342,24 @@ input[type=checkbox]:checked + label {
     .map-page-view .data-list .listing-items .prop-item .dt .title{
       margin: 0 0 4px 0 !important;
     }
+  }
+  .listing-list-set-viewed h1 + .searching, .listing-list-set-get h1 + .searching{
+    text-align: center;
+  }
+  .megtekintett-page-view .listing-content, .news-page-view .listing-content,
+  .megtekintett-page-view .search-side, .news-page-view .search-side{
+    flex-basis: 100%;
+    margin: 0;
+  }
+  .megtekintett-page-view .listing-content h1, .news-page-view .listing-content h1{
+    padding: 10px;
+    line-height: 1;
+    text-align: center;
+    margin: 10px 0 !important;
+  }
+  .listing-list-set-unwatched .subtitle, .listing-list-set-viewed .subtitle, .listing-list-set-get .subtitle{
+    text-align: center;
+    padding: 10px !important;
+    line-height: 1.1;
   }
 }

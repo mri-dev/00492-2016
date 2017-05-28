@@ -336,6 +336,25 @@ class Properties extends PropertyFactory
       $meta_qry[] = $price_meta_qry;
     }
 
+    if (isset($this->arg['src'])) {
+      $src = $this->arg['src'];
+      $src_meta_qry = array();
+      $src_meta_qry['relation'] = 'AND';
+
+      foreach ((array)$src as $s) {
+        $src_meta_qry[] = array(
+          'key' => '_listing_keywords',
+          'value' => $s,
+          'compare' => 'LIKE'
+        );
+      }
+
+      if(!empty($src_meta_qry)){
+        $meta_qry[] = $src_meta_qry;
+      }
+
+    }
+
     if (!empty($meta_qry)) {
       $post_arg['meta_query'] = $meta_qry;
     }
@@ -347,7 +366,11 @@ class Properties extends PropertyFactory
     $this->query = $posts;
     $this->count = $posts->found_posts;
 
-    //print_r($post_arg);
+    /*
+    echo '<pre>';
+    print_r($post_arg);
+    echo '</pre>';
+    */
 
     foreach($posts->posts as $post) {
       $this->datalist[] = new Property($post);

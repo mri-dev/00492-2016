@@ -78,6 +78,13 @@ echo '<div style="width: 90%; float: left;">';
 echo '</div><br style="clear: both;" /><br /><br />';
 */
 
+echo '';
+
+echo '<div style="width: 100%; float: left;">';
+	_e('<h4>Kereső kulcsszavak</h4>', 'ti');
+	echo '<em>Szóközzel válassza el azokat a kulcsszavakat, melyek alapján rátalálhat a látogató.</em>';
+	echo '<textarea rows="5" cols="15" style="width: 100%;" name="wp_listings[_listing_keywords]">'.get_post_meta( $post->ID, '_listing_keywords', true).'</textarea>';
+	echo '</div>';
 echo '<hr>';
 
 echo '<div style="width: 90%; float: left;">';

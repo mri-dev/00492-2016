@@ -44,9 +44,8 @@ class Footer_After_Menu extends AvadaTemplate
 
         // Kereső
         $search = '
-        <form class="searchform seach-form" role="search" method="get" action="'.get_option('url', true).'">
-            <input type="hidden" name="lang" value="hu">
-            <input id="searchform" type="text" value="" name="s" class="s" placeholder="">
+        <form class="searchform seach-form" method="get" action="/'.SLUG_INGATLAN_LIST.'">
+            <input id="searchform" type="text" value="'.$_GET['src'].'" name="src" class="s" placeholder="">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>';
 

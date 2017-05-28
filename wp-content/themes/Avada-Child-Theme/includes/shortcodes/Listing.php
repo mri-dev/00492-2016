@@ -218,6 +218,9 @@ class ListingLista
         default:
           if($this->template != 'maplist') {
             $o = '<h1>'.__('Keresés eredménye', 'ti').'</h1>';
+            if(isset($_GET['src']) && !empty($_GET['src'])) {
+              $o .= '<div class="searching"><i class="fa fa-search"></i> kulcsszó keresés, mint <strong>'. $_GET['src'].'</strong>.</div>';
+            }
           }
         break;
       }
@@ -276,6 +279,11 @@ class ListingLista
       }
 
       $arg['page'] = max( 1, get_query_var('page') );
+
+      // Search
+      if (isset($_GET['src']) && !empty($_GET['src'])) {
+        $arg['src'] = explode(" ", $_GET['src']);
+      }
 
       $properties = new Properties($arg);
       $list = $properties->getList();

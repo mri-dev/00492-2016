@@ -4,6 +4,7 @@
 ?>
 
 <form class="" role="searcher" id="searcher-form" action="/<?=SLUG_INGATLAN_LIST?>/" method="get">
+<input type="hidden" name="src" value="<?php echo $_GET['src']; ?>">
 <div class="searcher-header"><!--
 --><ul>
     <li>
