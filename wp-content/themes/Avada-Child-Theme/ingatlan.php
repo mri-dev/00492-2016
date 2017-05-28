@@ -104,8 +104,8 @@
                    <div class="ico"><img src="<?=IMG?>/ico/allapot.svg" alt="<?=__('Állapot', 'ti')?>"> <?=__('Állapot', 'ti')?></div>
                  </div><!--
               --><div class="v">
-                  <?php $cond_text = ''; foreach ($cond as $co){ $cond_text .= '<a href="/'.SLUG_INGATLAN_LIST.'/?co='.$co->term_id.'">'.$co->name.'</a>, '; } $cond_text = rtrim($cond_text, ', ');  ?>
-                  <?php echo $cond_text; ?>
+                  <?php $cond_text = ''; foreach ((array)$cond as $co){ $cond_text .= '<a href="/'.SLUG_INGATLAN_LIST.'/?co='.$co->term_id.'">'.$co->name.'</a>, '; } $cond_text = rtrim($cond_text, ', ');  ?>
+                  <?php if(empty($cond_text)){ echo '<span class="na">'.__('nincs megadva', 'ti').'</span>';  }else{ echo $cond_text; } ?>
                   </div>
                 </div>
                 <div class="e nm">
