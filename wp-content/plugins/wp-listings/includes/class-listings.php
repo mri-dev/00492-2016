@@ -14,6 +14,7 @@ class WP_Listings {
 	var $settings_field = 'wp_listings_taxonomies';
 	var $menu_page = 'register-taxonomies';
 	private $temppostid = false;
+	private $do_watermark = true;
 
 	var $options;
 
@@ -40,7 +41,7 @@ class WP_Listings {
 				__( 'Hálók (db)', 'ti' )  => '_listing_bedrooms',
 				__( 'Méret (nm)', 'ti' )  => '_listing_property_size',
 				__( 'Fürdő (db)', 'ti' )  => '_listing_bathroom_numbers',
-				__( 'Garázs (db)', 'ti' )  => '_listing_garage',				
+				__( 'Garázs (db)', 'ti' )  => '_listing_garage',
 				__( 'Terasz (db)', 'ti' )  => '_listing_terrace',
 				__( 'Ingatlan állapota (1-5)', 'ti' )  => '_listing_star_property',
 			),
@@ -423,11 +424,9 @@ class WP_Listings {
     // Watermark
     if ( $this->do_watermark && $attach_id )
     {
-			/*
       $image = new ImageModifier();
       $image->loadResourceByID($attach_id);
       $image->watermark();
-			*/
     }
 
     return $attach_id;

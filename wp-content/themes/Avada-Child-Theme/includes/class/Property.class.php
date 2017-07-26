@@ -67,6 +67,20 @@ class Property extends PropertyFactory
     }
     return $this->raw_post->post_status;
   }
+  public function isSold()
+  {
+    $sold = false;
+
+    $terms = wp_get_post_terms( $this->ID(), 'status' );
+
+    foreach ((array)$terms as $term) {
+      if($term->slug == 'eladva'){
+        return true;
+      }
+    }
+
+    return $sold;
+  }
   public function URL()
   {
     $regionslug = $this->ParentRegionSlug();

@@ -15,16 +15,29 @@
   }
   $properties->logView();
   $regions = $prop->Regions();
+  $eladva = $prop->isSold();
 
 ?>
 	<div id="content" <?php Avada()->layout->add_class( 'content_class' ); ?> <?php Avada()->layout->add_style( 'content_style' ); ?>>
     <div class="<?=SLUG_INGATLAN?>-page-view">
       <div class="page-holder">
         <div class="data-top">
-          <div class="data-top-left">
+          <div class="data-top-left <?=($eladva)?'sold':''?>">
+            <div class="features">
+              <?php $label = $prop->PropertyLabel(); ?>
+              <?php if ($label): ?>
+                <div class="status status-<?=sanitize_title($label['text'])?>" style="<?=($label['bg'])?'background: '.$label['bg'].' !important;':''?>"><?=$label['text']?></div>
+              <?php endif; ?>
+              <? if($prop->isHighlighted()):?><div class="highlight"><?=__('Kiemelt', 'ti')?></div><? endif; ?>
+              <? if($prop->isNews()):?><div class="newi"><?=__('új')?></div><? endif; ?>
+              <? if($prop->isDropOff()):?><div class="dropoff"><img src="<?=IMG?>/discount-label.svg" alt="<?=__('Leárazott', 'ti')?>" /></div><? endif; ?>
+            </div>
             <div class="cwrapper">
               <div class="images">
                 <div class="profil" id="profilimg">
+                  <?php if ($eladva) { ?>
+                    <div class="sold" style="background-image:url('<?=IMG?>sold_overlay.png');"></div>
+                  <? } ?>
                   <a data-rel="iLightbox[p<?=$prop->ID()?>]" class="fusion-lightbox" data-title="<?=$prop->Title()?>" href="<?=$prop->ProfilImg()?>"><img src="<?=$prop->ProfilImg()?>" alt=""></a>
                 </div>
                 <?
@@ -128,14 +141,13 @@
             --></div>
             </div>
             <div class="contact">
-              <div class="profil-img">
-                <?=$prop->AuthorImage(135)?>
-              </div>
               <div class="title"><?=__('Érdeklődjön kollégánknál', 'ti')?></div>
               <div class="name"><strong><?=$prop->AuthorName()?></strong> <span class="tit"><?=__('Ingatlan referens', 'ti')?></span></div>
               <div class="email"><a href="mailto:<?=$prop->AuthorEmail()?>"><?=$prop->AuthorEmail()?></a></div>
+              <div class="clearfix"></div>
               <div class="phone"><i class="fa fa-phone"></i> <?=$prop->AuthorPhone()?></div>
               <div class="mail"><a href="mailto:<?=$prop->AuthorEmail()?>"><i class="fa fa-envelope-o"></i> <?=__('Üzenet küldése', 'ti')?></a></div>
+              <div class="clearfix"></div>
             </div>
           </div>
         </div>

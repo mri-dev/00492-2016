@@ -193,7 +193,7 @@ a.back-to-home {
 
         &.visited-adv {
             a {
-                background: $color-primary;
+                background: #e7ad50;
             }
         }
 
@@ -298,6 +298,16 @@ a.back-to-home {
 }
 .footer-search {
   float: right;
+}
+.fusion-social-links-header .fusion-social-networks a{
+  padding: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.fusion-social-links-header .fusion-social-networks a.fusion-facebook{
+  background: $color-orange;
+
 }
 
 .search-box {
@@ -670,6 +680,77 @@ body.news_template_page{
 
     & > .data-top-left {
       flex-basis: 60%;
+      position: relative;
+
+
+      &.sold{
+        .images{
+          .profil{
+            img{
+              opacity: 0.4;
+              filter:alpha(opacity=40);
+            }
+          }
+        }
+      }
+
+      .features {
+        position: absolute;
+        top: 10px;
+        left: -10px;
+        z-index: 1;
+        pointer-events: none;
+
+        & > div {
+          color: white;
+          right: 0;
+          top: 0;
+          left:auto;
+          background: #435061;
+          padding: 10px 20px;
+          font-size: 0.9em;
+          text-transform: uppercase;
+          line-height: 1;
+          text-align: left;
+          margin-bottom: 4px;
+          -moz-box-shadow: 2px 2px 8px -4px #000;
+          -webkit-box-shadow: 2px 2px 8px -4px #000;
+          box-shadow: 2px 2px 8px -4px #000;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+        }
+
+        .dropoff{
+           background: transparent;
+        }
+
+        .highlight{
+          background: $color-red;
+        }
+
+        .newi{
+          position: absolute;
+          background: $color-red;
+          left: 0;
+          top:0;
+          right: auto;
+          width: 35px;
+          height: 35px;
+          padding: 0;
+          text-align: center;
+          line-height: 35px;
+
+
+          -webkit-border-radius: 35px;
+          -moz-border-radius: 35px;
+          border-radius: 35px;
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+        }
+
+      }
 
       .cwrapper{
         padding-right: 10px;
@@ -680,6 +761,19 @@ body.news_template_page{
             position: relative;
             height: 520px;
             overflow: hidden;
+
+            .sold{
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              top: 0;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: contain;
+              z-index: 1;
+              pointer-events: none;
+            }
 
             img{
               position: absolute;
@@ -727,6 +821,13 @@ body.news_template_page{
               }
             }
           }
+        }
+      }
+
+      &:hover{
+        .features{
+          opacity: 0.2;
+          filter:alpha(opacity=20);
         }
       }
     }
@@ -1023,31 +1124,36 @@ body.news_template_page{
 
     .title {
       color: $color-secondary;
-      margin-bottom: 8px;
-      font-size: 1.5em;
+      margin-bottom: 8px !important;
+      font-size: 1em;
     }
     .name {
-      font-size: 1.2em;
+      font-size: 1.3em;
       color: black;
+      line-height: 1.2;
     }
     .phone{
       font-size: 1.45em;
       color: #444444;
       font-weight: bold;
       font-family: 'Arial';
+      float: left;
 
       i{color: $color-secondary;}
     }
     .email{
+      line-height: 1.2;
+      margin-bottom: 10px;
       a, a:link, a:visited {
         font-size: 0.9em;
-        color: $color-secondary !important;
+        color: $color-orange !important;
       }
     }
 
     .mail {
+      float: right;
       text-align: right;
-      margin-top: 4px;
+      margin-top: 5px;
       a {
         font-size: 0.9em;
         background: $color-red;
@@ -2147,6 +2253,7 @@ input[type=checkbox]:checked + label {
       width: calc(100% / 4);
       padding: 10px;
 
+
       .prop-item-wrapper {
         position: relative;
         .top-wp {
@@ -2226,6 +2333,19 @@ input[type=checkbox]:checked + label {
           width: 100%;
           height: 240px;
           overflow: hidden;
+
+          .sold{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 1;
+            pointer-events: none;
+          }
 
           img {
             height: 125%;
@@ -2348,6 +2468,17 @@ input[type=checkbox]:checked + label {
 
           & > .opt:last-child{
             border-right: none;
+          }
+        }
+      }
+
+      &.sold{
+        .prop-item-wrapper{
+          .image{
+            img{
+              opacity: 0.5 !important;
+              filter:alpha(opacity=50) !important;
+            }
           }
         }
       }

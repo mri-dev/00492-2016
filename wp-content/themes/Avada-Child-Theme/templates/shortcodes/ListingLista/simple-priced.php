@@ -1,4 +1,4 @@
-<div class="prop-item">
+<div class="prop-item <?=($item->isSold())?'sold':''?>">
   <div class="prop-item-wrapper">
     <div class="top-wp">
       <div class="features">
@@ -10,6 +10,9 @@
         <? if($item->isDropOff()):?><div class="dropoff"><img src="<?=IMG?>/discount-label.svg" alt="<?=__('Leárazott', 'gh')?>" /></div><? endif; ?>
       </div>
       <div class="image">
+        <?php if ($item->isSold()) { ?>
+          <div class="sold" style="background-image:url('<?=IMG?>sold_overlay.png');"></div>
+        <? } ?>
         <a title="<?=$item->Title()?>" href="<?=$item->URL()?>"><img src="<?=$item->ProfilImg()?>" alt="<?=$item->Title()?>" /></a>
         <? if( ($excp = $item->ShortDesc()) != "" ): ?>
         <div class="excerpt transf"><?=$excp?></div>
